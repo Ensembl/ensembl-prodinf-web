@@ -100,3 +100,9 @@ ENV/
 # mypy
 .mypy_cache/
 instance
+
+/node_modules
+/dist
+/.tmp
+/.sass-cache
+/bower_components
