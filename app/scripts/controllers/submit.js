@@ -1,5 +1,6 @@
 'use strict';
 
+
 /**
  * @ngdoc function
  * @name ensemblProdinfHcserviceApp.controller:MainCtrl
@@ -10,11 +11,21 @@
 
 
 angular.module('hcSrvApp')
-    .controller('MainCtrl', function ($scope, $http, CONFIG, $q) {
+    .controller('SubmitCtrl', function ($scope, $http, CONFIG, $q, $location) {
 	$scope.staging_uri = CONFIG.STAGING_URI;
 	$scope.production_uri = CONFIG.PROD_URI;
 	$scope.compara_uri = CONFIG.COMPARA_URI;
 	$scope.live_uri = CONFIG.LIVE_URI;
+
+	var ud = $q.defer();
+	$http.get("servers.json").then(function (response) {
+	    ud.resolve(response.data)
+	})
+	    .catch(function(data) {
+		ud.reject(data);
+	    });
+	$scope.db_uri = "";
+	$scope.db_uris =ud.promise;
 
 	$scope.loadHcNames = function(query, url) {
 	    var lQuery = query.toLowerCase();
@@ -30,17 +41,6 @@ angular.module('hcSrvApp')
 	    return d.promise;
 	};
 
-	$scope.getResult = function() {
-	    $scope.jobResult = null
-	    $scope.showCreate = false
-	    var url = "http://ens-prod-1.ebi.ac.uk:5000/results/"+$scope.jobId
-	    $http.get(url)
-		.then(function(response) {
-		    $scope.jobResult = response.data
-		}).catch(function (data) {		  
-		    alert("Could not get result for job") 
-		});
-	};
 	$scope.submitJob = function() {
 	    $scope.jobResult = null
 	    $scope.jobId = null
@@ -49,8 +49,12 @@ angular.module('hcSrvApp')
 		alert("DB URI required")
 		return
 	    }
+	    if($scope.db_name == null || $scope.db_name == '') {
+		alert("DB name required")
+		return
+	    }
 	    var input = {
-		"db_uri": $scope.db_uri
+		"db_uri": $scope.db_uri+$scope.db_name
 	    };
 
 	    if($scope.staging_uri!=null && $scope.staging_uri!='') {
@@ -76,17 +80,17 @@ angular.module('hcSrvApp')
 		alert("Either HC names or groups names are required")
 	    }	
 	    console.log(input)
-	    var url = "http://ens-prod-1.ebi.ac.uk:5000/submit"
+	    var url = CONFIG.HC_SRV_URL+"submit"
 	    console.log("POSTing to "+url)
 	    $http.post(url, input)
 		.then(function(response) {
 		    console.log(response)
 		    $scope.jobId = response.data.job_id
 		    $scope.db_uri = null
+		    $scope.db_name = null
 		    $scope.hc_names = null
 		    $scope.hc_groups = null
-		    $scope.getResult()
-		    $('.navbar-nav a[href="#!view"]').tab('show')
+		    $location.url('/view/'+$scope.jobId);
 		}).catch(function (data) {		  
 		    alert("Could not submit job") 
 		});

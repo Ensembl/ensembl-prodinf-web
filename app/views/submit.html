@@ -1,0 +1,78 @@
+<div class="container">
+	  <form class="form-horizontal">
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="db_uri">
+	      Test server URI:
+	    </label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="db_uri" ng-model="db_uri" bs-options="uri for uri in db_uris" placeholder="Enter URI" bs-typeahead>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="db_name">
+	      Test database:
+	    </label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="db_name" ng-model="db_name"/>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="hc_names">
+	      Healthcheck names:
+	    </label>
+	    <div class="col-sm-10">
+	      <tags-input id="hc_names" ng-model="hc_names" add-on-paste="true" placeholder="Healthcheck(s) to run" use-strings="true">
+		<auto-complete source="loadHcNames($query,'hc_list.json')"></auto-complete>
+	      </tags-input>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="hc_groups">
+	     Healthcheck groups:
+	    </label>
+	    <div class="col-sm-10">
+	      <tags-input id="hc_groups" ng-model="hc_groups" add-on-paste="true" placeholder="Healthcheck group(s) to run" use-strings="true">
+		<auto-complete source="loadHcNames($query, 'hc_groups.json')"></auto-complete>
+	      </tags-input>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="staging_uri">
+	      Staging URI:
+	    </label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="staging_uri" ng-model="staging_uri"/>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="live_uri">
+	      Live URI:
+	    </label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="live_uri" ng-model="live_uri"/>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="compara_uri">
+	      Compara Master URI:
+	    </label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="compara_uri" ng-model="compara_uri"/>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="production_uri">
+	      Production URI:
+	    </label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="production_uri" ng-model="production_uri"/>
+	    </div>
+	  </div>
+	  <button type="submit" class="btn btn-default" ng-click="submitJob()">Submit</button>
+	  </form>
+</div>
+
