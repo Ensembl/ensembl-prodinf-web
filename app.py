@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from sqlalchemy import create_engine, text
 from ensembl_prodinf import HiveInstance
 import json
 import logging
@@ -35,5 +36,20 @@ def results(job_id):
     try:
         logging.info("Retrieving job with ID "+str(job_id))
         return jsonify(hive.get_result_for_job_id(job_id))
+    except ValueError:
+        return "Job "+str(job_id)+" not found", 404
+
+@app.route('/list_databases', methods=['GET'])
+def list_databases():
+    try:
+        db_uri = request.args.get('db_uri')
+        query = request.args.get('query')
+        logging.info("Looking up "+str(query)+" on "+str(db_uri))
+        engine = create_engine(db_uri)
+        s = text("select schema_name from information_schema.schemata where schema_name rlike :q")
+        noms = []
+        with engine.connect() as con:
+            noms = [str(r[0]) for r in con.execute(s, {"q":query}).fetchall()]
+        return jsonify(noms)
     except ValueError:
         return "Job "+str(job_id)+" not found", 404
