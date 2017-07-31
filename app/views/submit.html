@@ -14,7 +14,7 @@
 	      Test database:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="db_name" ng-model="db_name"/>
+	      <input type="text" class="form-control" id="db_name" ng-model="db_name" bs-options="db_name for db_name in getDbs($viewValue)" minLength="3" bs-typeahead>
 	    </div>
 	  </div>
 

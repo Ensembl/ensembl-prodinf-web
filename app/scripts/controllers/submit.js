@@ -27,6 +27,19 @@ angular.module('hcSrvApp')
 	$scope.db_uri = "";
 	$scope.db_uris =ud.promise;
 
+	$scope.getDbs = function(query) {
+	    if(query==null || query == '' || $scope.db_uri == null || $scope.db_uri == '') {
+		return [];
+	    }
+	    var url = CONFIG.HC_SRV_URL+"list_databases?query=" + query + "&db_uri="+$scope.db_uri
+	    console.log(url)
+	    return $http.get(url)
+		.then(function(res) {
+		    console.log(res.data);
+		    return res.data;
+		});
+	};
+
 	$scope.loadHcNames = function(query, url) {
 	    var lQuery = query.toLowerCase();
 	    var d = $q.defer();
@@ -36,7 +49,7 @@ angular.module('hcSrvApp')
 		}));
 	    }
 	    ).catch(function(data) {
-		d.reject(data);
+		alert("Could not look up database names") 
 	    });
 	    return d.promise;
 	};
