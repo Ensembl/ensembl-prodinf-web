@@ -33,17 +33,19 @@
 	  <div class="panel panel-default" ng-repeat="(test,result) in jobResult.output.results">
 	    <div class="{{result.status}} panel-heading" role="tab">
 	      <h4 class="panel-title">
+		{{ test }} : {{result.status}}
 		<a bs-collapse-toggle ng-show="result.status=='failure'">
-		  {{ test }} : {{result.status}}
+		  <span class="glyphicon glyphicon-plus"></span>
 		</a>
-		<div ng-hide="result.status=='failure'">
-		  {{ test }} : {{result.status}}
-		</div>
 	      </h4>
 	    </div>
 	    <div class="panel-collapse" role="tabpanel" bs-collapse-target ng-show="result.status == 'failure'">
 	      <div class="panel-body">
-		{{ result.messages }}
+		<ul>
+		  <li ng-repeat="msg in result.messages">
+		    {{msg}}
+		  </li>
+		</ul>
 	      </div>
 	    </div>
 	  </div>
