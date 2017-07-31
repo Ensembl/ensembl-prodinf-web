@@ -57,14 +57,16 @@ body {
     background-color: lightgray;
     text-align : right;
     font-weight: bold;
-    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+}
+.tablevalue { 
+    text-align : left;
     padding: 5px 5px 5px 5px;
 }
 .rowkey { 
     background-color: lightgray;
     text-align : center;
     font-weight: bold;
-    margin: 5px 5px 5px 5px;
     padding: 5px 5px 5px 5px;
 }
 .complete {
@@ -72,14 +74,22 @@ body {
 }
 .incomplete {
     background-color: lightblue;
-    height: 100%;
 }
-.success { 
+.tablevalue.success { 
     background-color: lightgreen;
 }
-.failure { 
+.tablevalue.failure { 
+    background-color: lightpink;
+}
+.panel-heading.success { 
+    background-color: lightgreen;
+}
+.panel-heading.failure { 
     background-color: lightpink;
 }
 .row {
     height: 100%;
+}
+.results {
+    margin: 5px 5px 5px 5px;
 }
