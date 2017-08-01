@@ -42,7 +42,7 @@
 	    <div class="panel-collapse" role="tabpanel" bs-collapse-target ng-show="result.status == 'failure'">
 	      <div class="panel-body">
 		<ul>
-		  <li ng-repeat="msg in result.messages">
+		  <li ng-repeat="msg in result.messages track by $index">
 		    {{msg}}
 		  </li>
 		</ul>

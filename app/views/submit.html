@@ -1,41 +1,41 @@
 <div class="container">
 	  <form class="form-horizontal">
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label" for="db_uri">
+	    <label class="col-sm-2 control-label" for="dbUri">
 	      Test server URI:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="db_uri" ng-model="db_uri" bs-options="uri for uri in db_uris" placeholder="Enter URI" bs-typeahead>
+	      <input type="text" class="form-control" id="dbUri" ng-model="dbUri" bs-options="uri for uri in dbUris" placeholder="Enter URI" bs-typeahead>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label" for="db_name">
+	    <label class="col-sm-2 control-label" for="dbName">
 	      Test database:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="db_name" ng-model="db_name" bs-options="db_name for db_name in getDbs($viewValue)" minLength="3" bs-typeahead>
+	      <input type="text" class="form-control" id="dbName" ng-model="dbName" bs-options="dbName for dbName in getDbs($viewValue)" minLength="3" bs-typeahead>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label" for="hc_names">
+	    <label class="col-sm-2 control-label" for="hcNames">
 	      Healthcheck names:
 	    </label>
 	    <div class="col-sm-10">
-	      <tags-input id="hc_names" ng-model="hc_names" add-on-paste="true" placeholder="Healthcheck(s) to run" use-strings="true">
+	      <tags-input id="hcNames" ng-model="hcNames" add-on-paste="true" placeholder="Healthcheck(s) to run" use-strings="true">
 		<auto-complete source="loadHcNames($query,'hc_list.json')"></auto-complete>
 	      </tags-input>
 	    </div>
 	  </div>
 
 	  <div class="form-group">
-	    <label class="col-sm-2 control-label" for="hc_groups">
+	    <label class="col-sm-2 control-label" for="hcGroups">
 	     Healthcheck groups:
 	    </label>
 	    <div class="col-sm-10">
-	      <tags-input id="hc_groups" ng-model="hc_groups" add-on-paste="true" placeholder="Healthcheck group(s) to run" use-strings="true">
-		<auto-complete source="loadHcNames($query, 'hc_groups.json')"></auto-complete>
+	      <tags-input id="hcGroups" ng-model="hcGroups" add-on-paste="true" placeholder="Healthcheck group(s) to run" use-strings="true">
+		<auto-complete source="loadHcNames($query, 'hcGroups.json')"></auto-complete>
 	      </tags-input>
 	    </div>
 	  </div>

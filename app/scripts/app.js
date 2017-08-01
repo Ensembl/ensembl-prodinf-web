@@ -13,19 +13,19 @@ var app = angular.module('hcSrvApp', ['app.config','ngTagsInput','ngRoute', 'mgc
 
 app.config(function($routeProvider) {
     $routeProvider
-	.when("/", {
-	    templateUrl:"views/submit.html",
-	    controller:"SubmitCtrl"
+	.when('/', {
+	    templateUrl:'views/submit.html',
+	    controller:'SubmitCtrl'
     })
-	.when("/view", {
-	    templateUrl:"views/view.html",
-	    controller:"ViewCtrl"
+	.when('/view', {
+	    templateUrl:'views/view.html',
+	    controller:'ViewCtrl'
     })
-	.when("/view/:jobIdParam", {
-	    templateUrl:"views/view.html",
-	    controller:"ViewCtrl"
+	.when('/view/:jobIdParam', {
+	    templateUrl:'views/view.html',
+	    controller:'ViewCtrl'
     })
-	.when("/help", {
-	    templateUrl:"views/help.html"
-    })
+	.when('/help', {
+	    templateUrl:'views/help.html'
+    });
 });
