@@ -30,7 +30,7 @@ angular.module('hcSrvApp')
 	    if(query===null || query === '' || $scope.dbUri === null || $scope.dbUri === '') {
 		return [];
 	    }
-	    var url = CONFIG.HC_SRV_URL+'list_databases?query=' + query + '&dbUri='+$scope.dbUri;
+	    var url = CONFIG.HC_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.dbUri;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
