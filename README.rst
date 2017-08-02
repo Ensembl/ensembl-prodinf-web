@@ -1,2 +1,1 @@
-# ensembl-prodinf-hcservice
-Service for running healthchecks on demand
+Web app for accessing Ensembl Production services
