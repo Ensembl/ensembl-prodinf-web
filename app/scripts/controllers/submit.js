@@ -101,12 +101,16 @@ angular.module('hcSrvApp')
 	    $http.post(url, input)
 		.then(function(response) {
 		    console.log(response);
-		    $scope.jobId = response.data.job_id;
-		    $scope.dbUri = null;
-		    $scope.dbName = null;
-		    $scope.hcNames = null;
-		    $scope.hcGroups = null;
-		    $location.url('/view/'+$scope.jobId);
+		    if($scope.keepValues == true) {
+			window.alert("Job submitted with ID "+response.data.job_id)
+		    } else {
+			$scope.jobId = response.data.job_id;
+			$scope.dbUri = null;
+			$scope.dbName = null;
+			$scope.hcNames = null;
+			$scope.hcGroups = null;
+			$location.url('/view/'+$scope.jobId);
+		    } 
 		}).catch(function (data) {		  
 		    window.alert('Could not submit job: '+data);
 		});
