@@ -5,7 +5,7 @@
 	      Test server URI:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="dbUri" ng-model="dbUri" bs-options="uri for uri in dbUris" placeholder="Enter URI" bs-typeahead>
+	      <input type="text" class="form-control" id="dbUri" ng-model="dbUri" bs-options="uri for uri in getUris($viewValue)" placeholder="Enter URI" bs-typeahead>
 	    </div>
 	  </div>
 

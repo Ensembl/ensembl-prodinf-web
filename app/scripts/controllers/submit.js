@@ -16,15 +16,18 @@ angular.module('hcSrvApp')
 	$scope.compara_uri = CONFIG.COMPARA_URI;
 	$scope.live_uri = CONFIG.LIVE_URI;
 
-	var ud = $q.defer();
-	$http.get('servers.json').then(function (response) {
-	    ud.resolve(response.data);
-	})
-	    .catch(function(data) {
-		ud.reject(data);
-	    });
-	$scope.dbUri = '';
-	$scope.dbUris =ud.promise;
+	$scope.getUris = function(query) {
+	    if(query===null || query === '' || $scope.dbUri === null || $scope.dbUri === '') {
+		return [];
+	    }
+	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.URI_USER+'?query=' + query;
+	    console.log(url);
+	    return $http.get(url)
+		.then(function(res) {
+		    console.log(res.data);
+		    return res.data;
+		});
+	};
 
 	$scope.getDbs = function(query) {
 	    if(query===null || query === '' || $scope.dbUri === null || $scope.dbUri === '') {
@@ -77,17 +80,17 @@ angular.module('hcSrvApp')
 		input.live_uri = $scope.live_uri;
 	    }
 	    if($scope.production_uri!==null && $scope.production_uri!=='') {
-		input.production_uri = $scope.production_uri;
+	    	input.production_uri = $scope.production_uri;
 	    }
 	    if($scope.compara_uri!==null && $scope.compara_uri!=='') {
-		input.compara_uri = $scope.compara_uri;
+	    	input.compara_uri = $scope.compara_uri;
 	    }	   
 	    
 	    if($scope.hcNames!==null) {
-		input.hc_names = $scope.hcNames;
+	    	input.hc_names = $scope.hcNames;
 	    }
 	    if($scope.hcGroups!==null) {
-		input.hc_groups = $scope.hcGroups;
+	    	input.hc_groups = $scope.hcGroups;
 	    }
 	    if($scope.email!==null && $scope.email!=='') {
 		input.email = $scope.email;
@@ -102,7 +105,7 @@ angular.module('hcSrvApp')
 		.then(function(response) {
 		    console.log(response);
 		    if($scope.keepValues === true) {
-		    	window.alert("Job submitted with ID "+response.data.job_id);
+		    	window.alert('Job submitted with ID '+response.data.job_id);
 		    } else {
 		    	$scope.jobId = response.data.job_id;
 		    	$scope.dbUri = null;
