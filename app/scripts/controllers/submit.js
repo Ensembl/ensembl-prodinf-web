@@ -30,7 +30,7 @@ angular.module('hcSrvApp')
 	    if(query===null || query === '' || $scope.dbUri === null || $scope.dbUri === '') {
 		return [];
 	    }
-	    var url = CONFIG.HC_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.dbUri;
+	    var url = CONFIG.DB_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.dbUri;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -101,15 +101,15 @@ angular.module('hcSrvApp')
 	    $http.post(url, input)
 		.then(function(response) {
 		    console.log(response);
-		    if($scope.keepValues == true) {
-			window.alert("Job submitted with ID "+response.data.job_id)
+		    if($scope.keepValues === true) {
+		    	window.alert("Job submitted with ID "+response.data.job_id);
 		    } else {
-			$scope.jobId = response.data.job_id;
-			$scope.dbUri = null;
-			$scope.dbName = null;
-			$scope.hcNames = null;
-			$scope.hcGroups = null;
-			$location.url('/view/'+$scope.jobId);
+		    	$scope.jobId = response.data.job_id;
+		    	$scope.dbUri = null;
+		    	$scope.dbName = null;
+		    	$scope.hcNames = null;
+		    	$scope.hcGroups = null;
+		    	$location.url('/view/'+$scope.jobId);
 		    } 
 		}).catch(function (data) {		  
 		    window.alert('Could not submit job: '+data);
