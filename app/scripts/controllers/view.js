@@ -3,9 +3,7 @@
 /**
  * @ngdoc function
  * @name ensemblProdinfHcserviceApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the ensemblProdinfHcserviceApp
+ * @description # MainCtrl Controller of the ensemblProdinfHcserviceApp
  */
 
 
@@ -27,7 +25,7 @@ angular.module('hcSrvApp')
 	};
 
 	if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
-	    console.log($routeParams.jobIdParam)
+	    console.log($routeParams.jobIdParam);
 	    $scope.jobId = $routeParams.jobIdParam;
 	    $scope.getResult();
 	}
