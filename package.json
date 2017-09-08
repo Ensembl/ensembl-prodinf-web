@@ -1,5 +1,5 @@
 {
-  "name": "EnsemblProdWeb",
+  "name": "ensembl-prodinf-web",
   "private": true,
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
@@ -39,5 +39,21 @@
   },
   "scripts": {
     "test": "karma start test/karma.conf.js"
-  }
+  },
+  "description": "Web app for accessing Ensembl Production services",
+  "version": "1.0.0",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "bower": "^1.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danstaines/ensembl-prodinf-web.git"
+  },
+  "author": "danstaines",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/danstaines/ensembl-prodinf-web/issues"
+  },
+  "homepage": "https://github.com/danstaines/ensembl-prodinf-web#readme"
 }
