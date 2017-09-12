@@ -4,10 +4,17 @@
    <tbody>
      <tr>
        <th scope="col" title="ID">ID</th>
+       <th scope="col" title="Status">DB</th>
+       <th scope="col" title="Status">HCs</th>
        <th scope="col" title="Status">Status</th>
      </tr>
      <tr ng-repeat="job in jobs">
 		<td><a href="/#!/view/{{job.id}}">{{job.id}}</a></td>
+		<td>{{job.input.db_uri}}</td>
+		<td>
+		<span ng-repeat="name in job.input.hc_names">{{name}}</span>
+		<span ng-repeat="name in job.input.hc_groups">{{name}}</span>
+		</td>
 		<td>{{job.status}}</td>
      </tr>
 	 </tbody>
