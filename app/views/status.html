@@ -27,21 +27,21 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
+				<div class="tablekey">Disk</div>
+			</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.disk_available}} free ({{serverStatus.disk_total}} total)</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
 				<div class="tablekey">Memory</div>
 			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.memory_available_M}}M/{{serverStatus.memory_total_M}}M</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.memory_available_M}}M free ({{serverStatus.memory_total_M}}M total)</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="tablekey">Load (1, 5, 15 min)</div>
 			</div>
 			<div class="col-sm-10 tablevalue">{{serverStatus.load_1m}}, {{serverStatus.load_5m}}, {{serverStatus.load_15m}}</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">Disk</div>
-			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.disk_available}}/{{serverStatus.disk_total}}</div>
 		</div>
 	</div>
 </div>
