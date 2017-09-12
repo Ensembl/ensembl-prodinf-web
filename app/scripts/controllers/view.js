@@ -23,6 +23,20 @@ angular.module('hcSrvApp')
 		    });
 	    }
 	};
+	
+	$scope.deleteJob = function() {
+	    if($scope.jobId !== null && $scope.jobId !== undefined) {
+		var url = CONFIG.HC_SRV_URL+'delete/'+$scope.jobId;
+		$http.get(url)
+	    .then(function(response) {
+	    	$scope.jobResult = null;	  
+	    	$scope.jobId = null;	  
+	    }).catch(function (data) {	
+		console.log(data);
+		window.alert('Could not elete job');
+	    });
+	    }
+	}
 
 	if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
 	    console.log($routeParams.jobIdParam);
