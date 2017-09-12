@@ -37,6 +37,10 @@ app.config(function($routeProvider) {
 	    templateUrl:'views/list.html',
 	    controller:'ListCtrl'
     })
+    .when('/copy', {
+	    templateUrl:'views/copy.html',
+	    controller:'CopyCtrl'
+    })
 	.when('/help', {
 	    templateUrl:'views/help.html'
     });
