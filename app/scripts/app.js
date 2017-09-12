@@ -25,6 +25,18 @@ app.config(function($routeProvider) {
 	    templateUrl:'views/view.html',
 	    controller:'ViewCtrl'
     })
+	.when('/status', {
+	    templateUrl:'views/status.html',
+	    controller:'StatusCtrl'
+    })
+	.when('/status/:serverParam', {
+	    templateUrl:'views/status.html',
+	    controller:'StatusCtrl'
+    })
+	.when('/list', {
+	    templateUrl:'views/list.html',
+	    controller:'ListCtrl'
+    })
 	.when('/help', {
 	    templateUrl:'views/help.html'
     });

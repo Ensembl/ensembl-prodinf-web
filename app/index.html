@@ -26,11 +26,13 @@
 
       <nav class="navbar navbar-default" role="navigation" bs-navbar>
 	<div class="navbar-header">
-	  <a class="navbar-brand" href="#">e! Production HC Services</a>
+	  <a class="navbar-brand" href="#">e! Production Services</a>
 	</div>
 	<ul class="nav navbar-nav">
-	  <li data-match-route="/$"><a href="#/">Submit a job</a></li>
-	  <li data-match-route="/view.*"><a href="#!view">View a job</a></li>
+	  <li data-match-route="/$"><a href="#/">Submit HC job</a></li>
+	  <li data-match-route="/list.*"><a href="#!list">List HC jobs</a></li>
+	  <li data-match-route="/view.*"><a href="#!view">View HC job</a></li>
+	  <li data-match-route="/status.*"><a href="#!status">Database status</a></li>
 	  <li data-match-route="/help"><a href="#!help">Get help</a></li>
 	</ul>
       </nav>
@@ -76,8 +78,10 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/list.js"></script>
         <script src="scripts/controllers/view.js"></script>
         <script src="scripts/controllers/submit.js"></script>
+        <script src="scripts/controllers/status.js"></script>
         <script src="scripts/config.js"></script>
         <!-- endbuild -->
 </body>

@@ -1,0 +1,47 @@
+<div class="container">
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="server_name"> Server
+				name: </label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="server_name"
+					ng-model="serverName" />
+			</div>
+		</div>
+		<button type="submit" class="btn btn-default" ng-click="getStatus()">
+		<span ng-show="running" ><i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
+		{{ searchButtonText }}</button>
+	</form>
+	<div class="results" ng-hide="serverStatus == null">
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="tablekey">Host</div>
+			</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.host}}</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="tablekey">CPUs</div>
+			</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.n_cpus}}</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="tablekey">Memory</div>
+			</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.memory_available_M}}M/{{serverStatus.memory_total_M}}M</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="tablekey">Load (1, 5, 15 min)</div>
+			</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.load_1m}}, {{serverStatus.load_5m}}, {{serverStatus.load_15m}}</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="tablekey">Disk</div>
+			</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.disk_available}}/{{serverStatus.disk_total}}</div>
+		</div>
+	</div>
+</div>
