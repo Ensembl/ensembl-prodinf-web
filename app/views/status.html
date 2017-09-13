@@ -27,15 +27,15 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
-				<div class="tablekey">Disk</div>
+				<div class="tablekey">Disk usage</div>
 			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.disk_available}} free ({{serverStatus.disk_total}} total)</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.disk_used_pct}}% ({{serverStatus.disk_available_g}}G of {{serverStatus.disk_total_g}}G total)</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
-				<div class="tablekey">Memory</div>
+				<div class="tablekey">Memory usage</div>
 			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.memory_available_M}}M free ({{serverStatus.memory_total_M}}M total)</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.memory_used_pct}}% ({{serverStatus.memory_used_m}}M of {{serverStatus.memory_total_m}}M total)</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
