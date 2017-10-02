@@ -95,7 +95,8 @@ angular.module('hcSrvApp')
 	    if($scope.email!==null && $scope.email!=='') {
 		input.email = $scope.email;
 	    }
-	    if((input.hc_names === null || input.hc_names.length===0) && (input.hc_groups ===null || input.hc_groups.length===0)) {
+	    if((input.hc_names === null || input.hc_names === undefined || input.hc_names.length===0) && 
+	    		(input.hc_groups === null || input.hc_groups === undefined || input.hc_groups.length===0)) {
 		window.alert('Either HC names or groups names are required');
 	    }	
 	    console.log(input);
