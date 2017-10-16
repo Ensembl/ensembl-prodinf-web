@@ -1,0 +1,54 @@
+<div class="container">
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="job_id"> Job ID: </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="job_id" ng-model="jobId" />
+			</div>
+			<div class="col-sm-1">
+				<button type="submit" class="btn btn-default" ng-click="getResult()">View</button>
+			</div>
+			<div class="col-sm-1">
+				<button type="submit" class="btn btn-default" ng-click="deleteJob()">Delete</button>
+			</div>
+		</div>
+	</form>
+
+	<div class="results" ng-hide="jobResult == null">
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="tablekey">Source DB:</div>
+			</div>
+			<div class="col-sm-10 tablevalue">{{jobResult.input.source_db_uri}}</div>
+		</div>
+	    <div class="row">
+			<div class="col-sm-2">
+				<div class="tablekey">Target DB:</div>
+			</div>
+			<div class="col-sm-10 tablevalue">{{jobResult.input.target_db_uri}}</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-2">
+				<div class="tablekey">Job status:</div>
+			</div>
+			<div class="col-sm-10 tablevalue {{jobResult.status}}">{{jobResult.status}}</div>
+		</div>
+		<div ng-hide="jobResult.output == null">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="tablekey">Copy took:</div>
+				</div>
+				<div class="col-sm-10 tablevalue {{jobResult.output.runtime}}">{{jobResult.output.runtime}}</div>
+			</div>
+		</div>
+	    <div ng-hide="jobResult.status == 'complete' || jobResult.status == 'incomplete'">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="tablekey">Copy failed with the following error:</div>
+				</div>
+				<div class="col-sm-10 tablevalue {{jobMsg.msg}}">{{jobMsg.msg}}</div>
+			</div>
+		</div>
+
+	</div>
