@@ -33,7 +33,7 @@ angular.module('hcSrvApp')
 	    	$scope.jobId = null;	  
 	    }).catch(function (data) {	
 		console.log(data);
-		window.alert('Could not elete job');
+		window.alert('Could not delete job');
 	    });
 	    }
 	}
