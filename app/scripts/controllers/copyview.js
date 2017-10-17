@@ -2,18 +2,18 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:MainCtrl
+ * @name ensemblProdinfHcserviceApp.controller:CopyViewCtrl
  * @description # MainCtrl Controller of the ensemblProdinfHcserviceApp
  */
 
 
 angular.module('hcSrvApp')
-    .controller('ViewCtrl', function ($scope, $http, $routeParams, CONFIG) {
+    .controller('CopyViewCtrl', function ($scope, $http, $routeParams, CONFIG) {
 	
-	$scope.getResult = function() {
+	$scope.getCopyResult = function() {
 	    $scope.jobResult = null;	    
 	    if($scope.jobId !== null && $scope.jobId !== undefined) {
-		var url = CONFIG.HC_SRV_URL+'results/'+$scope.jobId;
+		var url = CONFIG.DB_SRV_URL+'results/'+$scope.jobId;
 		$http.get(url)
 		    .then(function(response) {
 			$scope.jobResult = response.data;
@@ -23,10 +23,21 @@ angular.module('hcSrvApp')
 		    });
 	    }
 	};
+
+	$scope.getCopyFailure = function() {
+		var url = CONFIG.DB_SRV_URL+'failure/'+$scope.jobId;
+		$http.get(url)
+		    .then(function(response) {
+			$scope.jobMsg = response.data;
+		    }).catch(function (data) {	
+			console.log(data);
+/**			window.alert('Could not get job failure message'); */
+		    });
+	};
 	
-	$scope.deleteJob = function() {
+	$scope.deleteCopyJob = function() {
 	    if($scope.jobId !== null && $scope.jobId !== undefined) {
-		var url = CONFIG.HC_SRV_URL+'delete/'+$scope.jobId;
+		var url = CONFIG.DB_SRV_URL+'delete/'+$scope.jobId;
 		$http.get(url)
 	    .then(function(response) {
 	    	$scope.jobResult = null;	  
@@ -41,7 +52,8 @@ angular.module('hcSrvApp')
 	if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
 	    console.log($routeParams.jobIdParam);
 	    $scope.jobId = $routeParams.jobIdParam;
-	    $scope.getResult();
+	    $scope.getCopyResult();
+	    $scope.getCopyFailure();
 	}
     }
 	       );

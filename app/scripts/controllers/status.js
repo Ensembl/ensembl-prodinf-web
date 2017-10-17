@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:MainCtrl
+ * @name ensemblProdinfHcserviceApp.controller:StatusCtrl
  * @description # MainCtrl Controller of the ensemblProdinfHcserviceApp
  */
 

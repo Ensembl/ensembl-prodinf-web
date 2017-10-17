@@ -41,6 +41,18 @@ app.config(function($routeProvider) {
 	    templateUrl:'views/copy.html',
 	    controller:'CopyCtrl'
     })
+	.when('/copyview', {
+	    templateUrl:'views/copyview.html',
+	    controller:'CopyViewCtrl'
+    })
+	.when('/copyview/:jobIdParam', {
+	    templateUrl:'views/copyview.html',
+	    controller:'CopyViewCtrl'
+    })
+    .when('/copylist', {
+	    templateUrl:'views/copylist.html',
+	    controller:'CopyListCtrl'
+    })
 	.when('/help', {
 	    templateUrl:'views/help.html'
     });

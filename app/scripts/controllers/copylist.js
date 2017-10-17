@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:ListCtrl
+ * @name ensemblProdinfHcserviceApp.controller:CopyListCtrl
  * @description # MainCtrl Controller of the ensemblProdinfHcserviceApp
  */
 
 
 angular.module('hcSrvApp')
-    .controller('ListCtrl', function ($scope, $http, $routeParams, CONFIG) {
+    .controller('CopyListCtrl', function ($scope, $http, $routeParams, CONFIG) {
 		
-		$scope.loadJobs = function() {
-			var url = CONFIG.HC_SRV_URL+'jobs';
+		$scope.loadCopyJobs = function() {
+			var url = CONFIG.DB_SRV_URL+'jobs';
 		$http.get(url)
 		    .then(function(response) {
 			$scope.jobs = response.data;
@@ -20,7 +20,7 @@ angular.module('hcSrvApp')
 			window.alert('Could not get jobs');
 		    });
 		};
-		$scope.loadJobs();
+		$scope.loadCopyJobs();
 		
     }
     	);

@@ -6,5 +6,6 @@ angular.module('app.config', [])
 	'PROD_URI': 'mysql://ensro@127.0.0.1:3306/ensembl_production',
 	'HC_SRV_URL': 'http://127.0.0.1:5001/',
 	'DB_SRV_URL': 'http://127.0.0.1:5002/',
-	'URI_USER': 'ensro'
+	'URI_USER': 'ensro',
+	'COPY_USER': 'ensadmin'
     });
