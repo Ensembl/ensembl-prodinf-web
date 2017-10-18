@@ -59,7 +59,6 @@ angular.module('hcSrvApp')
 	    console.log($routeParams.jobIdParam);
 	    $scope.jobId = $routeParams.jobIdParam;
 	    $scope.getCopyResult();
-	    if ($routeParams.)
 	    $scope.getCopyFailure();
 	}
     }
