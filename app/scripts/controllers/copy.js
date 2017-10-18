@@ -69,7 +69,7 @@ angular.module('hcSrvApp')
 
     $scope.displayAdvOptions = function() {
         $scope.displayOptions = !$scope.displayOptions;
-    }
+    };
 
 
 	$scope.submitCopyJob = function() {

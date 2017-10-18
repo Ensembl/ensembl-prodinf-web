@@ -39,7 +39,7 @@ angular.module('hcSrvApp')
 	    if($scope.jobId !== null && $scope.jobId !== undefined) {
 		var url = CONFIG.DB_SRV_URL+'delete/'+$scope.jobId;
 		$http.get(url)
-	    .then(function(response) {
+	    .then(function() {
 	    	$scope.jobResult = null;	  
 	    	$scope.jobId = null;	  
 	    }).catch(function (data) {	
@@ -47,12 +47,19 @@ angular.module('hcSrvApp')
 		window.alert('Could not delete job');
 	    });
 	    }
-	}
+	};
+
+    $scope.refresh = function() {
+      $scope.jobId = $routeParams.jobIdParam;
+	  $scope.getCopyResult();
+	  $scope.getCopyFailure();
+    };
 
 	if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
 	    console.log($routeParams.jobIdParam);
 	    $scope.jobId = $routeParams.jobIdParam;
 	    $scope.getCopyResult();
+	    if ($routeParams.)
 	    $scope.getCopyFailure();
 	}
     }
