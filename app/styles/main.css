@@ -75,19 +75,16 @@ body {
 .incomplete {
     background-color: lightblue;
 }
-.failed {
-   background-color: lightpink;
-}
-.tablevalue.success { 
+.tablevalue.passed {
     background-color: lightgreen;
 }
-.tablevalue.failure { 
+.tablevalue.failed {
     background-color: lightpink;
 }
-.panel-heading.success { 
+.panel-heading.passed {
     background-color: lightgreen;
 }
-.panel-heading.failure { 
+.panel-heading.failed {
     background-color: lightpink;
 }
 .row {

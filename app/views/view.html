@@ -58,13 +58,13 @@
 						<div class="{{result.status}} panel-heading" role="tab">
 							<h4 class="panel-title">
 								{{ test }} : {{result.status}} <a bs-collapse-toggle
-									ng-show="result.status=='failure'"> <span
+									ng-show="result.status=='failed'"> <span
 									class="glyphicon glyphicon-plus"></span>
 								</a>
 							</h4>
 						</div>
 						<div class="panel-collapse" role="tabpanel" bs-collapse-target
-							ng-show="result.status == 'failure'">
+							ng-show="result.status == 'failed'">
 							<div class="panel-body">
 								<ul>
 									<li ng-repeat="msg in result.messages track by $index">
