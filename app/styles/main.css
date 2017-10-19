@@ -75,6 +75,9 @@ body {
 .incomplete {
     background-color: lightblue;
 }
+.failed {
+   background-color: lightpink;
+}
 .tablevalue.success { 
     background-color: lightgreen;
 }
