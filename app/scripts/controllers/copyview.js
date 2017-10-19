@@ -9,7 +9,7 @@
 
 angular.module('hcSrvApp')
     .controller('CopyViewCtrl', function ($scope, $http, $routeParams, CONFIG) {
-	
+
 	$scope.getCopyResult = function() {
 	    $scope.jobResult = null;	    
 	    if($scope.jobId !== null && $scope.jobId !== undefined) {
@@ -17,6 +17,9 @@ angular.module('hcSrvApp')
 		$http.get(url)
 		    .then(function(response) {
 			$scope.jobResult = response.data;
+		    if (response.data.status === 'failed') {
+	            $scope.getCopyFailure();
+	        }
 		    }).catch(function (data) {	
 			console.log(data);
 			window.alert('Could not get result for job');
@@ -25,14 +28,15 @@ angular.module('hcSrvApp')
 	};
 
 	$scope.getCopyFailure = function() {
-		var url = CONFIG.DB_SRV_URL+'failure/'+$scope.jobId;
-		$http.get(url)
-		    .then(function(response) {
-			$scope.jobMsg = response.data;
-		    }).catch(function (data) {	
-			console.log(data);
-/**			window.alert('Could not get job failure message'); */
-		    });
+		console.log($scope.jobResult.status);
+	    var url = CONFIG.DB_SRV_URL+'failure/'+$scope.jobId;
+	    $http.get(url)
+	        .then(function(response) {
+		    $scope.jobMsg = response.data;
+	        }).catch(function (data) {
+		    console.log(data);
+	    window.alert('Could not get job failure message');
+	        });
 	};
 	
 	$scope.deleteCopyJob = function() {
@@ -50,16 +54,16 @@ angular.module('hcSrvApp')
 	};
 
     $scope.refresh = function() {
-      $scope.jobId = $routeParams.jobIdParam;
-	  $scope.getCopyResult();
-	  $scope.getCopyFailure();
+        if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
+            $scope.jobId = $routeParams.jobIdParam;
+	        $scope.getCopyResult();
+        }
     };
 
 	if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
 	    console.log($routeParams.jobIdParam);
 	    $scope.jobId = $routeParams.jobIdParam;
 	    $scope.getCopyResult();
-	    $scope.getCopyFailure();
 	}
     }
 	       );
