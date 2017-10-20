@@ -12,7 +12,6 @@
 angular.module('hcSrvApp')
     .controller('CopyCtrl', function ($scope, $http, CONFIG, $q, $location) {
     $scope.displayOptions = false;
-    $scope.TargetdbName = $scope.SourcedbName;
 
     $scope.getSourceCopyUris = function(query) {
 	    if(query===null || query === '' || $scope.SourcedbUri === null || $scope.SourcedbUri === '') {
@@ -36,6 +35,7 @@ angular.module('hcSrvApp')
 	    return $http.get(url)
 		.then(function(res) {
 		    console.log(res.data);
+		    $scope.TargetdbName = res.data;
 		    return res.data;
 		});
 	};
