@@ -75,6 +75,12 @@ body {
 .incomplete {
     background-color: lightblue;
 }
+.submitted {
+    background-color: lightblue;
+}
+.running {
+    background-color: gold;
+}
 .tablevalue.passed {
     background-color: lightgreen;
 }
