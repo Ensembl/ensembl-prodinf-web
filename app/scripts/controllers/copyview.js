@@ -56,7 +56,7 @@ angular.module('hcSrvApp')
 	$scope.stopCopy = function() {
 		window.alert('Stopping the database copy in progress, please wait');
 	    if($scope.jobId !== null && $scope.jobId !== undefined) {
-		var url = CONFIG.DB_SRV_URL+'kill_hive_job/'+$scope.jobId;
+		var url = CONFIG.DB_SRV_URL+'kill_job/'+$scope.jobId;
 		$http.get(url)
 	    .then(function() {
 	    window.alert('Successfully stopped the database copy');
