@@ -4,12 +4,14 @@
    <tbody>
      <tr>
        <th scope="col" title="ID">ID</th>
+       <th scope="col" title="Date">Date</th>
        <th scope="col" title="Status">DB</th>
        <th scope="col" title="Status">HCs</th>
        <th scope="col" title="Status">Status</th>
      </tr>
      <tr ng-repeat="job in jobs">
 		<td><a href="/#!/view/{{job.id}}">{{job.id}}</a></td>
+    <td>{{job.input.timestamp * 1000 | date:'dd-MM-yyyy HH:mm'}}</td>
 		<td>{{job.input.db_uri}}</td>
 		<td>
 		<span ng-repeat="name in job.input.hc_names">{{name}}<br/></span>

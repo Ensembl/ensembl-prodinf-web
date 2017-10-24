@@ -4,12 +4,14 @@
    <tbody>
      <tr>
        <th scope="col" title="ID">ID</th>
+       <th scope="col" title="Date">Date</th>
        <th scope="col" title="Status">Source DB</th>
        <th scope="col" title="Status">Target DB</th>
        <th scope="col" title="Status">Status</th>
      </tr>
      <tr ng-repeat="job in jobs">
 		<td><a href="/#!/copyview/{{job.id}}">{{job.id}}</a></td>
+    <td>{{job.input.timestamp * 1000 | date:'dd-MM-yyyy HH:mm'}}</td>
 		<td>{{job.input.source_db_uri}}</td>
     <td>{{job.input.target_db_uri}}</td>
 		<td>{{job.status}}</td>
