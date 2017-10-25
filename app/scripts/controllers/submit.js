@@ -98,6 +98,7 @@ angular.module('hcSrvApp')
 	    if((input.hc_names === null || input.hc_names === undefined || input.hc_names.length===0) && 
 	    		(input.hc_groups === null || input.hc_groups === undefined || input.hc_groups.length===0)) {
 		window.alert('Either HC names or groups names are required');
+	    return;
 	    }	
 	    console.log(input);
 	    var url = CONFIG.HC_SRV_URL+'submit';
