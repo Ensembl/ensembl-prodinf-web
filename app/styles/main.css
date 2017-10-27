@@ -10,6 +10,32 @@ body {
   padding: 0;
 }
 
+.progress {
+background-color:#bdd3fb;
+border-radius:4px;
+box-shadow:0 1px 1px rgba(0,0,0,.15) inset;
+height:27px;
+margin-bottom:2%;
+overflow:hidden;
+}
+.bar {
+background-color:#427ae3;
+box-shadow:0 -1px 1px rgba(0,0,0,.15) inset;
+color:#fff;
+float:left;
+height:100%;
+position:relative;
+text-align:left;
+}
+
+.bar > .job-completed {
+font-size:1.3rem;
+left:8px;
+position:absolute;
+top:3px;
+}
+
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,

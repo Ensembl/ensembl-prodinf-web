@@ -39,9 +39,22 @@
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="tablekey">Job status:</div>
+		        <div class="tablekey"></div>
 			</div>
 			<div class="col-sm-10 tablevalue {{jobResult.status}}">{{jobResult.status}}</div>
 		</div>
+		<div ng-show="jobResult.status == 'incomplete'">
+				<div class="row">
+			        <div class="col-sm-2">
+				        <div class="tablekey">Progress:</div>
+			        </div>
+		            <div class="progress">
+                        <div class="bar" style="width:{{((jobResult.progress.complete / jobResult.progress.total) * 100)}}%">
+                        <span class="job-completed">{{jobResult.progress.complete}}/{{jobResult.progress.total}} jobs complete</span>
+                       </div>
+                   </div>
+	        </div>
+	    </div>
 	    <div ng-show="jobResult.status == 'failed'">
 			<div class="row">
 			   <div class="col-sm-2">
