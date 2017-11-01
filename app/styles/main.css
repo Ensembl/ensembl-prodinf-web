@@ -11,28 +11,33 @@ body {
 }
 
 .progress {
-background-color:#bdd3fb;
-border-radius:4px;
-box-shadow:0 1px 1px rgba(0,0,0,.15) inset;
-height:27px;
-margin-bottom:2%;
-overflow:hidden;
+    background-color: #bdd3fb;
+    border-radius: 0;
+    box-shadow: none;
+    height: 29px;
+    margin-bottom: 0;
+    overflow: hidden;
+    padding: 0 !important;
+    margin-top: 1px;
 }
 .bar {
-background-color:#427ae3;
-box-shadow:0 -1px 1px rgba(0,0,0,.15) inset;
-color:#fff;
-float:left;
-height:100%;
-position:relative;
-text-align:left;
+  background-color:#427ae3;
+  box-shadow:0 -1px 1px rgba(0,0,0,.15) inset;
+  color:white;
+  text-shadow: #000 0px 0px 1px;
+  font-weight: bold;
+  float:left;
+  height:100%;
+  position:relative;
+  text-align:left;
 }
 
 .bar > .job-completed {
-font-size:1.3rem;
-left:8px;
-position:absolute;
-top:3px;
+  font-size:1.3rem;
+  left:8px;
+  position:absolute;
+  top:3px;
+  white-space: nowrap;
 }
 
 
@@ -84,10 +89,13 @@ top:3px;
     text-align : right;
     font-weight: bold;
     padding: 5px 5px 5px 5px;
+    padding-bottom: 1000px;
+    margin-bottom: -1000px;
 }
 .tablevalue { 
     text-align : left;
     padding: 5px 5px 5px 5px;
+    border-radius: 4px;
 }
 .rowkey { 
     background-color: lightgray;
@@ -121,6 +129,7 @@ top:3px;
 }
 .row {
     height: 100%;
+    overflow: hidden;
 }
 .results {
     margin: 5px 5px 5px 5px;
