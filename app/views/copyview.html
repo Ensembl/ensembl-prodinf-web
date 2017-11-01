@@ -40,8 +40,20 @@
 			<div class="col-sm-2">
 				<div class="tablekey">Job status:</div>
 			</div>
-			<div class="col-sm-10 tablevalue {{jobResult.status}}">{{jobResult.status}}</div>
+			   <div class="col-sm-10 tablevalue {{jobResult.status}}">{{jobResult.status}}: {{jobResult.progress.message}}</div>
 		</div>
+		<div ng-show="jobResult.status == 'running'">
+				<div class="row">
+			        <div class="col-sm-2">
+				        <div class="tablekey">Progress:</div>
+			        </div>
+		            <div class="col-sm-10 tablevalue progress">
+                        <div class="bar" style="width:{{((jobResult.progress.complete / jobResult.progress.total) * 100)}}%">
+                        <span class="job-completed">{{jobResult.progress.complete}}/{{jobResult.progress.total}} tasks done</span>
+                       </div>
+                   </div>
+	        </div>
+	    </div>
 		<div ng-hide="jobResult.output == null">
 			<div class="row">
 				<div class="col-sm-2">
