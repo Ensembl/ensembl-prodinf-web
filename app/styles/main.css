@@ -134,6 +134,9 @@ body {
 .results {
     margin: 5px 5px 5px 5px;
 }
+.glyphicon-loading {
+  font-size: 1.2em;
+}
 
 .glyphicon-spin {
     -webkit-animation: spin 1000ms infinite linear;

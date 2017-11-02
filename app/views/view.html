@@ -16,7 +16,9 @@
 			</div>
 		</div>
 	</form>
-
+    <span ng-show="running" ><i class="glyphicon glyphicon-refresh glyphicon-spin glyphicon-loading"></i>
+      <text class="glyphicon-loading">Loading...</text>
+    </span>
 	<div class="results" ng-hide="jobResult == null">
 		<div class="row">
 			<div class="col-sm-2">

@@ -9,14 +9,16 @@
 
 angular.module('hcSrvApp')
     .controller('CopyViewCtrl', function ($scope, $http, $routeParams, CONFIG) {
-
+    $scope.running = false;
 	$scope.getCopyResult = function() {
 	    $scope.jobResult = null;	    
 	    if($scope.jobId !== null && $scope.jobId !== undefined) {
 		var url = CONFIG.DB_SRV_URL+'results/'+$scope.jobId;
+		$scope.running = true;
 		$http.get(url)
 		    .then(function(response) {
 			$scope.jobResult = response.data;
+			$scope.running = false;
 		    if (response.data.status === 'failed') {
 	            $scope.getCopyFailure();
 	        }
@@ -30,9 +32,11 @@ angular.module('hcSrvApp')
 	$scope.getCopyFailure = function() {
 		console.log($scope.jobResult.status);
 	    var url = CONFIG.DB_SRV_URL+'failure/'+$scope.jobId;
+	    $scope.running = true;
 	    $http.get(url)
 	        .then(function(response) {
 		    $scope.jobMsg = response.data;
+		    $scope.running = false;
 	        }).catch(function (data) {
 		    console.log(data);
 	    window.alert('Could not get job failure message');
@@ -42,10 +46,12 @@ angular.module('hcSrvApp')
 	$scope.deleteCopyJob = function() {
 	    if($scope.jobId !== null && $scope.jobId !== undefined) {
 		var url = CONFIG.DB_SRV_URL+'delete/'+$scope.jobId;
+		$scope.running = true;
 		$http.get(url)
 	    .then(function() {
 	    	$scope.jobResult = null;	  
-	    	$scope.jobId = null;	  
+            $scope.jobId = null;
+            $scope.running = false;
 	    }).catch(function (data) {	
 		console.log(data);
 		window.alert('Could not delete job');
@@ -57,9 +63,11 @@ angular.module('hcSrvApp')
 		window.alert('Stopping the database copy in progress, please wait');
 	    if($scope.jobId !== null && $scope.jobId !== undefined) {
 		var url = CONFIG.DB_SRV_URL+'kill_job/'+$scope.jobId;
+		$scope.running = true;
 		$http.get(url)
 	    .then(function() {
 	    window.alert('Successfully stopped the database copy');
+	    $scope.running = false;
 	    $scope.getCopyResult();
 	    }).catch(function (data) {
 		console.log(data);
