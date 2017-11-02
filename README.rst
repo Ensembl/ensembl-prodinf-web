@@ -12,33 +12,32 @@ Installation
 `grunt` and `bower` are used as build tools. `npm` is assumed as a prerequisite. 
 
 To install:
+
 ```
 npm install
-
 npm install grunt-cli
-
 npm install bower
-
 node_modules/bower/bin/bower install
 ```
 
 Execution
 =========
 To run a test instance for development, you can use `grunt`:
+
 ```
 node_modules/grunt-cli/bin/grunt serve
 ```
 
 To build the distribtion for use with another web server:
+
 ```
 node_modules/grunt-cli/bin/grunt build
 ```
 
 To create a docker image using `nginx`:
+
 ```
 node_modules/grunt-cli/bin/grunt build
-
 grunt build
-
 docker build . -t ensembl_prodinf
 ```
