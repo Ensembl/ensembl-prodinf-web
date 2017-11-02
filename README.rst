@@ -14,8 +14,11 @@ Installation
 To install:
 ```
 npm install
+
 npm install grunt-cli
+
 npm install bower
+
 node_modules/bower/bin/bower install
 ```
 
@@ -34,6 +37,8 @@ node_modules/grunt-cli/bin/grunt build
 To create a docker image using `nginx`:
 ```
 node_modules/grunt-cli/bin/grunt build
+
 grunt build
+
 docker build . -t ensembl_prodinf
 ```
