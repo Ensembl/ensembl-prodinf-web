@@ -10,7 +10,7 @@
 angular.module('hcSrvApp')
     .controller('ListCtrl', function ($scope, $http, $routeParams, CONFIG) {
 	    $scope.sortType     = 'id'; // set the default sort type
-        $scope.sortReverse  = false;  // set the default sort order
+        $scope.sortReverse  = true;  // set the default sort order
         $scope.searchHcJob   = '';     // set the default search/filter term
         $scope.running = false; // default value for loading spinner
 		$scope.loadJobs = function() {
