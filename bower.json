@@ -12,7 +12,8 @@
     "angular-touch": "^1.4.0",
     "ng-tags-input": "^3.2.0",
     "angular-bootstrap": "^2.5.0",
-    "angular-strap": "^2.3.12"
+    "angular-strap": "^2.3.12",
+    "components-font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
@@ -25,6 +26,26 @@
         "less/bootstrap.less",
         "dist/css/bootstrap.css",
         "dist/js/bootstrap.js"
+      ]
+    },
+    "components-font-awesome": {
+      "name": "components-font-awesome",
+      "description": "Font Awesome, the iconic font designed for use with Twitter Bootstrap.",
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/components/font-awesome.git"
+      },
+      "main": [
+          "css/font-awesome.css"
+      ],
+      "license": [
+        "MIT",
+        "OFL-1.1"
+      ],
+      "ignore": [
+        "Makefile",
+        "component.json",
+        "composer.json"
       ]
     }
   }

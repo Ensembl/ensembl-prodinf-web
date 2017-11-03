@@ -17,7 +17,6 @@ npm install
 npm install grunt-cli
 npm install bower
 node_modules/bower/bin/bower install
-bower install components-font-awesome
 ```
 
 Execution
