@@ -8,7 +8,7 @@
     </div>
   </form>
   <table class="table table-bordered table-striped">
-   <tbody>
+   <thead>
      <tr>
        <th scope="col" title="ID">
            <a href="#!/list" ng-click="sortType = 'id'; sortReverse = !sortReverse">
@@ -46,6 +46,8 @@
           </a>
        </th>
      </tr>
+   </thead>
+   <tbody>
      <tr ng-repeat="job in jobs | orderBy:sortType:sortReverse | filter:searchHcJob">
 		<td><a href="/#!/view/{{job.id}}">{{job.id}}</a></td>
     <td>{{job.input.timestamp * 1000 | date:'dd-MM-yyyy HH:mm'}}</td>
