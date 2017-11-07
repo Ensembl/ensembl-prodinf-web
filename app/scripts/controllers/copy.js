@@ -17,7 +17,7 @@ angular.module('hcSrvApp')
 	    if(query===null || query === '' || $scope.SourcedbUri === null || $scope.SourcedbUri === '') {
 		return [];
 	    }
-	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_USER+'?query=' + query;
+	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_SOURCE_USER+'?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -44,7 +44,7 @@ angular.module('hcSrvApp')
 	    if(query===null || query === '' || $scope.TargetdbUri === null || $scope.TargetdbUri === '') {
 		return [];
 	    }
-	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_USER+'?query=' + query;
+	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_TARGET_USER+'?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {

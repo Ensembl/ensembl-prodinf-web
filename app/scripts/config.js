@@ -7,5 +7,6 @@ angular.module('app.config', [])
 	'HC_SRV_URL': 'http://127.0.0.1:5001/',
 	'DB_SRV_URL': 'http://127.0.0.1:5002/',
 	'URI_USER': 'ensro',
-	'COPY_USER': 'ensadmin'
+	'COPY_SOURCE_USER': 'ensro',
+	'COPY_TARGET_USER': 'ensadmin'
     });
