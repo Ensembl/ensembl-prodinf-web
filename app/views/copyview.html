@@ -16,8 +16,10 @@
 				    <button type="submit" class="btn btn-default" ng-click="stopCopy()">Cancel copy</button>
 			    </div>
 			</div>
-			<div class="col-sm-1">
-				<button type="submit" class="btn btn-default" ng-click="deleteCopyJob()">Delete job</button>
+			<div ng-hide="jobResult.status == 'running'"></div>
+				<div class="col-sm-1">
+					<button type="submit" class="btn btn-default" ng-click="deleteCopyJob()">Delete job</button>
+				</div>
 			</div>
 		</div>
 	</form>
