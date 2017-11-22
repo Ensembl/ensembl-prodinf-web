@@ -39,12 +39,21 @@
 			</div>
 			<div class="col-sm-10 tablevalue">{{jobResult.input.target_db_uri}}</div>
 		</div>
-
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">Job status:</div>
+		<div ng-hide="jobResult.status == 'failed'">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="tablekey">Job status:</div>
+				</div>
+				<div class="col-sm-10 tablevalue {{jobResult.status}}">{{jobResult.status}}: {{jobResult.progress.message}}</div>
 			</div>
-			   <div class="col-sm-10 tablevalue {{jobResult.status}}">{{jobResult.status}}: {{jobResult.progress.message}}</div>
+		</div>
+		<div ng-show="jobResult.status == 'failed'">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="tablekey">Job status:</div>
+				</div>
+				<div class="col-sm-10 tablevalue {{jobResult.status}}">{{jobResult.status}}</div>
+			</div>
 		</div>
 		<div ng-show="jobResult.status == 'running'">
 				<div class="row">
