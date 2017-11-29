@@ -49,7 +49,6 @@ angular.module('hcSrvApp')
 		$scope.running = true;
 		$http.get(url)
 	    .then(function() {
-		window.alert('Job '+$scope.jobId+' successfully deleted');
 	    	$scope.jobResult = null;	  
             $scope.jobId = null;
             $scope.running = false;
