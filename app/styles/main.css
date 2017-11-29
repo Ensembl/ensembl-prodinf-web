@@ -40,6 +40,10 @@ body {
   white-space: nowrap;
 }
 
+.table > thead > tr > th {
+   vertical-align: top;
+}
+
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -60,6 +64,10 @@ body {
   margin-bottom: 0;
   line-height: 40px;
   padding-bottom: 19px;
+}
+
+.btn {
+    margin-bottom: 15px;
 }
 
 /* Custom page footer */
