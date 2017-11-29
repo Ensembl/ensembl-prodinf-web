@@ -8,7 +8,7 @@
 
 
 angular.module('hcSrvApp')
-    .controller('ViewCtrl', function ($scope, $http, $routeParams, CONFIG) {
+    .controller('ViewCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob) {
 	$scope.running = false;
 	$scope.getResult = function() {
 	    $scope.jobResult = null;	    
@@ -63,7 +63,14 @@ angular.module('hcSrvApp')
 	$scope.refresh = function() {
       $scope.jobId = $routeParams.jobIdParam;
 	  $scope.getResult();
-    };
+	};
+
+
+	$scope.EditReSubmitJob = function() {
+		editjob.set($scope.jobResult.input);
+	    $location.url('/');
+	};
+
 
 	if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
 	    console.log($routeParams.jobIdParam);

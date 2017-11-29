@@ -26,6 +26,79 @@ angular.module('hcSrvApp')
 		    });
 		};
 		$scope.loadCopyJobs();
-		
+
+	    $scope.refresh = function() {
+			$scope.jobs=null;
+			$scope.loadCopyJobs();
+		};
+
+		$scope.deleteJobs = function() {
+			angular.forEach($scope.jobs, function (value) {
+				if (value.Selected){
+					if(value.id !== null && value.id !== undefined) {
+						var url = CONFIG.DB_SRV_URL+'delete/'+value.id;
+						$scope.running = true;
+						$http.get(url)
+						.then(function() {
+							$scope.running = false;
+						}).catch(function (data) {
+						console.log(data);
+						window.alert('Could not delete job ID '+value.id);
+						});
+					}
+				}
+			});
+			$scope.refresh();
+			$scope.refresh();
+		};
+
+		$scope.ReSubmitJobs = function() {
+			angular.forEach($scope.jobs, function (value) {
+				if (value.Selected){
+					if(value.id !== null && value.id !== undefined) {
+						var input = {
+						'source_db_uri': value.input.source_db_uri
+						};
+				
+						input.target_db_uri = value.input.target_db_uri;
+				
+						if(value.input.only_tables!==null && value.input.only_tables!=='') {
+						input.only_tables = value.input.only_tables;
+						}
+						if(value.input.skip_tables!==null && value.input.skip_tables!=='') {
+						input.skip_tables = value.input.skip_tables;
+						}
+						if(value.input.update!==null && value.input.update!=='') {
+						input.update = value.input.update;
+						}
+						if(value.input.drop!==null && value.input.drop!=='') {
+						input.drop = value.input.drop;
+						}
+						if(value.input.email!==null && value.input.email!=='') {
+						input.email = value.input.email;
+						}
+						console.log(input);
+						var url = CONFIG.DB_SRV_URL+'submit';
+						console.log('POSTing to '+url);
+						$http.post(url, input)
+						.then(function(response) {
+							console.log(response);
+							window.alert('Job submitted with ID '+response.data.job_id);
+						}).catch(function (data) {
+							window.alert('Could not submit job: '+data);
+						});
+					}
+				}
+			});
+			$scope.refresh();
+			$scope.refresh();
+		};
+
+
+		$scope.checkAll = function() {
+			angular.forEach($scope.jobs, function(value) {
+				value.Selected = $scope.selectAll;
+			});
+		};
     }
     	);
