@@ -10,12 +10,26 @@
  */
 
 angular.module('hcSrvApp')
-    .controller('CopyCtrl', function ($scope, $http, CONFIG, $q, $location) {
-    $scope.displayOptions = false;
+    .controller('CopyCtrl', function ($scope, $http, CONFIG, $q, $location, editjob) {
+	$scope.displayOptions = false;
+	$scope.jobdata = editjob.get();
+	if ($scope.jobdata!==null && $scope.jobdata !== ''){
+		var sourceuri=$scope.jobdata.source_db_uri.split('/');
+		$scope.SourcedbUri = sourceuri[0]+'/'+sourceuri[1]+'/'+sourceuri[2]+'/';
+		$scope.SourcedbName = sourceuri[3];
+		var targeturi=$scope.jobdata.target_db_uri.split('/');
+		$scope.TargetdbUri = targeturi[0]+'/'+targeturi[1]+'/'+targeturi[2]+'/';
+		$scope.TargetdbName = targeturi[3];
+        $scope.only_tables = $scope.jobdata.only_tables;
+        $scope.skip_tables = $scope.jobdata.skip_tables;
+        $scope.update = $scope.jobdata.update;
+        $scope.drop = $scope.jobdata.drop;
+        $scope.email = $scope.jobdata.email;
+	}
 
     $scope.getSourceCopyUris = function(query) {
 	    if(query===null || query === '' || $scope.SourcedbUri === null || $scope.SourcedbUri === '') {
-		return [];
+		  return [];
 	    }
 	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_SOURCE_USER+'?query=' + query;
 	    console.log(url);
@@ -28,21 +42,23 @@ angular.module('hcSrvApp')
 
 	$scope.getSourceCopyDbs = function(query) {
 	    if(query===null || query === '' || $scope.SourcedbUri === null || $scope.SourcedbUri === '') {
-		return [];
+		  return [];
 	    }
 	    var url = CONFIG.DB_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.SourcedbUri;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
-		    console.log(res.data);
-		    $scope.TargetdbName = res.data;
+			console.log(res.data);
+			if ($scope.jobdata===null || $scope.jobdata === ''){
+			  $scope.TargetdbName = res.data;
+			}
 		    return res.data;
 		});
 	};
 
 	$scope.getTargetCopyUris = function(query) {
 	    if(query===null || query === '' || $scope.TargetdbUri === null || $scope.TargetdbUri === '') {
-		return [];
+		  return [];
 	    }
 	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_TARGET_USER+'?query=' + query;
 	    console.log(url);
@@ -55,7 +71,7 @@ angular.module('hcSrvApp')
 
 	$scope.getTargetCopyDbs = function(query) {
 	    if(query===null || query === '' || $scope.TargetdbUri === null || $scope.TargetdbUri === '') {
-		return [];
+		  return [];
 	    }
 	    var url = CONFIG.DB_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.TargetdbUri;
 	    console.log(url);

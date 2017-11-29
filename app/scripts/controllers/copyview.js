@@ -8,7 +8,7 @@
 
 
 angular.module('hcSrvApp')
-    .controller('CopyViewCtrl', function ($scope, $http, $routeParams, CONFIG) {
+    .controller('CopyViewCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob) {
     $scope.running = false;
 	$scope.getCopyResult = function() {
 	    $scope.jobResult = null;	    
@@ -77,7 +77,11 @@ angular.module('hcSrvApp')
 	    }
 	};
 
-
+	$scope.EditReSubmitJob = function() {
+		editjob.set($scope.jobResult.input);		
+	    $location.url('/copy');
+	};
+	
     $scope.refresh = function() {
         if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
             $scope.jobId = $routeParams.jobIdParam;

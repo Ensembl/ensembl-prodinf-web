@@ -57,3 +57,19 @@ app.config(function($routeProvider) {
 	    templateUrl:'views/help.html'
     });
 });
+
+app.factory('editjob', function() {
+	var jobData = null;
+	function set(data) {
+		jobData = data;
+	}
+	function get() {
+	 return jobData;
+	}
+   
+	return {
+	 set: set,
+	 get: get
+	};
+   
+});

@@ -10,11 +10,26 @@
  */
 
 angular.module('hcSrvApp')
-    .controller('SubmitCtrl', function ($scope, $http, CONFIG, $q, $location) {
-	$scope.staging_uri = CONFIG.STAGING_URI;
-	$scope.production_uri = CONFIG.PROD_URI;
-	$scope.compara_uri = CONFIG.COMPARA_URI;
-	$scope.live_uri = CONFIG.LIVE_URI;
+    .controller('SubmitCtrl', function ($scope, $http, CONFIG, $q, $location,editjob) {
+	$scope.jobdata = editjob.get();
+	if ($scope.jobdata===null || $scope.jobdata === ''){
+		$scope.staging_uri = CONFIG.STAGING_URI;
+		$scope.production_uri = CONFIG.PROD_URI;
+		$scope.compara_uri = CONFIG.COMPARA_URI;
+		$scope.live_uri = CONFIG.LIVE_URI;
+	}
+	else{
+		var uri=$scope.jobdata.db_uri.split('/');
+		$scope.dbUri = uri[0]+'/'+uri[1]+'/'+uri[2]+'/';
+		$scope.dbName = uri[3];
+		$scope.hcNames = $scope.jobdata.hc_names;
+		$scope.hcGroups = $scope.jobdata.hc_groups;
+		$scope.email = $scope.jobdata.email;
+		$scope.staging_uri = $scope.jobdata.staging_uri;
+		$scope.production_uri = $scope.jobdata.production_uri;
+		$scope.compara_uri = $scope.jobdata.compara_uri;
+		$scope.live_uri = $scope.jobdata.live_uri;
+	}
 
 	$scope.getUris = function(query) {
 	    if(query===null || query === '' || $scope.dbUri === null || $scope.dbUri === '') {
