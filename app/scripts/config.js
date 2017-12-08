@@ -8,5 +8,6 @@ angular.module('app.config', [])
 	'DB_SRV_URL': 'http://127.0.0.1:5002/',
 	'URI_USER': 'ensro',
 	'COPY_SOURCE_USER': 'ensro',
-	'COPY_TARGET_USER': 'ensadmin'
+	'COPY_TARGET_USER': 'ensadmin',
+	'DATA_FILES_PATH' : '/nfs/panda/ensembl/production/ensemblftp/data_files/'
     });

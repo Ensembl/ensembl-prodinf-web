@@ -77,6 +77,9 @@ angular.module('hcSrvApp')
 							if(value.input.hc_groups!==null) {
 								input.hc_groups = value.input.hc_groups;
 							}
+							if(value.input.data_files_path!==null){
+								input.data_files_path = value.input.data_files_path;
+							}
 							if(value.input.email!==null && value.input.email!=='') {
 							input.email = value.input.email;
 							}

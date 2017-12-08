@@ -17,6 +17,7 @@ angular.module('hcSrvApp')
 		$scope.production_uri = CONFIG.PROD_URI;
 		$scope.compara_uri = CONFIG.COMPARA_URI;
 		$scope.live_uri = CONFIG.LIVE_URI;
+		$scope.data_files_path = CONFIG.DATA_FILES_PATH;
 	}
 	else{
 		var uri=$scope.jobdata.db_uri.split('/');
@@ -24,6 +25,7 @@ angular.module('hcSrvApp')
 		$scope.dbName = uri[3];
 		$scope.hcNames = $scope.jobdata.hc_names;
 		$scope.hcGroups = $scope.jobdata.hc_groups;
+		$scope.data_files_path = $scope.jobdata.data_files_path;
 		$scope.email = $scope.jobdata.email;
 		$scope.staging_uri = $scope.jobdata.staging_uri;
 		$scope.production_uri = $scope.jobdata.production_uri;
@@ -106,7 +108,10 @@ angular.module('hcSrvApp')
 	    }
 	    if($scope.hcGroups!==null) {
 	    	input.hc_groups = $scope.hcGroups;
-	    }
+		}
+	    if($scope.data_files_path!==null && $scope.data_files_path!=='') {
+			input.data_files_path = $scope.data_files_path;
+		}
 	    if($scope.email!==null && $scope.email!=='') {
 		input.email = $scope.email;
 	    }
@@ -128,7 +133,7 @@ angular.module('hcSrvApp')
 		    	$scope.dbUri = null;
 		    	$scope.dbName = null;
 		    	$scope.hcNames = null;
-		    	$scope.hcGroups = null;
+				$scope.hcGroups = null;
 		    	$location.url('/view/'+$scope.jobId);
 		    } 
 		}).catch(function (data) {		  
