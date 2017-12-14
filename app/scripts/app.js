@@ -2,60 +2,63 @@
 
 /**
  * @ngdoc overview
- * @name ensemblProdinfHcserviceApp
+ * @name ensemblProdinfserviceApp
  * @description
- * # ensemblProdinfHcserviceApp
+ * # ensemblProdinfserviceApp
  *
  * Main module of the application.
  */
 
-var app = angular.module('hcSrvApp', ['app.config','ngTagsInput','ngRoute', 'mgcrea.ngStrap']);
+var app = angular.module('ProdSrvApp', ['app.config','ngTagsInput','ngRoute', 'mgcrea.ngStrap']);
 
 app.config(function($routeProvider) {
     $routeProvider
-	.when('/', {
-	    templateUrl:'views/submit.html',
-	    controller:'SubmitCtrl'
+	.when('/hc_submit', {
+	    templateUrl:'views/hc_submit.html',
+	    controller:'HCSubmitCtrl'
     })
-	.when('/view', {
-	    templateUrl:'views/view.html',
-	    controller:'ViewCtrl'
+	.when('/hc_result', {
+	    templateUrl:'views/hc_result.html',
+	    controller:'HCResultCtrl'
     })
-	.when('/view/:jobIdParam', {
-	    templateUrl:'views/view.html',
-	    controller:'ViewCtrl'
+	.when('/hc_result/:jobIdParam', {
+	    templateUrl:'views/hc_result.html',
+	    controller:'HCResultCtrl'
     })
-	.when('/status', {
-	    templateUrl:'views/status.html',
-	    controller:'StatusCtrl'
+	.when('/database_server_status', {
+	    templateUrl:'views/database_server_status.html',
+	    controller:'DatabaseServerStatusCtrl'
     })
-	.when('/status/:serverParam', {
-	    templateUrl:'views/status.html',
-	    controller:'StatusCtrl'
+	.when('/database_server_status/:serverParam', {
+	    templateUrl:'views/database_server_status.html',
+	    controller:'DatabaseServerStatusCtrl'
     })
-	.when('/list', {
-	    templateUrl:'views/list.html',
-	    controller:'ListCtrl'
+	.when('/hc_list', {
+	    templateUrl:'views/hc_list.html',
+	    controller:'HCListCtrl'
     })
-    .when('/copy', {
-	    templateUrl:'views/copy.html',
-	    controller:'CopyCtrl'
+    .when('/copy_submit', {
+	    templateUrl:'views/copy_submit.html',
+	    controller:'CopySubmitCtrl'
     })
-	.when('/copyview', {
-	    templateUrl:'views/copyview.html',
-	    controller:'CopyViewCtrl'
+	.when('/copy_result', {
+	    templateUrl:'views/copy_result.html',
+	    controller:'CopyResultCtrl'
     })
-	.when('/copyview/:jobIdParam', {
-	    templateUrl:'views/copyview.html',
-	    controller:'CopyViewCtrl'
+	.when('/copy_result/:jobIdParam', {
+	    templateUrl:'views/copy_result.html',
+	    controller:'CopyResultCtrl'
     })
-    .when('/copylist', {
-	    templateUrl:'views/copylist.html',
+    .when('/copy_list', {
+	    templateUrl:'views/copy_list.html',
 	    controller:'CopyListCtrl'
     })
 	.when('/help', {
 	    templateUrl:'views/help.html'
-    });
+	})
+	.when('/', {
+		templateUrl:'views/homepage.html'
+	});
 });
 
 app.factory('editjob', function() {

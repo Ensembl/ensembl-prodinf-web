@@ -19,42 +19,42 @@
    <thead>
      <tr>
        <th scope="col" title="ID">
-           <a href="#!/list" ng-click="sortType = 'id'; sortReverse = !sortReverse">
+           <a href="#!/hc_list" ng-click="sortType = 'id'; sortReverse = !sortReverse">
                 ID
                 <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
                 <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>
             </a>
        </th>
        <th scope="col" title="Date">
-           <a href="#!/list" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+           <a href="#!/hc_list" ng-click="sortType = 'date'; sortReverse = !sortReverse">
                Date
                <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
                <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
           </a>
        </th>
        <th scope="col" title="DB">
-           <a href="#!/list" ng-click="sortType = 'db'; sortReverse = !sortReverse">
+           <a href="#!/hc_list" ng-click="sortType = 'db'; sortReverse = !sortReverse">
                DB
                <span ng-show="sortType == 'db' && !sortReverse" class="fa fa-caret-down"></span>
                <span ng-show="sortType == 'db' && sortReverse" class="fa fa-caret-up"></span>
           </a>
       </th>
        <th scope="col" title="HCs">
-           <a href="#!/list" ng-click="sortType = 'hc'; sortReverse = !sortReverse">
+           <a href="#!/hc_list" ng-click="sortType = 'hc'; sortReverse = !sortReverse">
                HCs
                <span ng-show="sortType == 'hc' && !sortReverse" class="fa fa-caret-down"></span>
                <span ng-show="sortType == 'hc' && sortReverse" class="fa fa-caret-up"></span>
           </a>
        </th>
        <th scope="col" title="Status">
-           <a href="#!/list" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+           <a href="#!/hc_list" ng-click="sortType = 'status'; sortReverse = !sortReverse">
                Status
                <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
                <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
           </a>
        </th>
        <th scope="col" title="Select">
-          <a href="#!/list" ng-click="sortType = 'select'; sortReverse = !sortReverse">
+          <a href="#!/hc_list" ng-click="sortType = 'select'; sortReverse = !sortReverse">
             Select
                <span ng-show="sortType == 'select' && !sortReverse" class="fa fa-caret-down"></span>
                <span ng-show="sortType == 'select' && sortReverse" class="fa fa-caret-up"></span>
@@ -65,7 +65,7 @@
    </thead>
    <tbody>
      <tr ng-repeat="job in jobs | orderBy:sortType:sortReverse | filter:searchHcJob">
-		<td><a href="/#!/view/{{job.id}}">{{job.id}}</a></td>
+		<td><a href="/#!/hc_result/{{job.id}}">{{job.id}}</a></td>
     <td>{{job.input.timestamp * 1000 | date:'dd-MM-yyyy HH:mm'}}</td>
 		<td>{{job.input.db_uri}}</td>
 		<td>

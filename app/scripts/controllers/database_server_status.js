@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:StatusCtrl
- * @description # MainCtrl Controller of the ensemblProdinfHcserviceApp
+ * @name ensemblProdinfserviceApp.controller:DatabaseServerStatusCtrl
+ * @description # DatabaseServerStatusCtrl Controller of the ensemblProdinfserviceApp
  */
 
 
-angular.module('hcSrvApp')
-    .controller('StatusCtrl', function ($scope, $http, $routeParams, CONFIG) {
+angular.module('ProdSrvApp')
+    .controller('DatabaseServerStatusCtrl', function ($scope, $http, $routeParams, CONFIG) {
         $scope.searchButtonText = 'Submit';
 		$scope.running = false;
     	$scope.getStatus = function() {

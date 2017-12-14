@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:MainCtrl
+ * @name ensemblProdinfHcserviceApp.controller:HCResultCtrl
  * @description # MainCtrl Controller of the ensemblProdinfHcserviceApp
  */
 
 
-angular.module('hcSrvApp')
-    .controller('ViewCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob) {
+angular.module('ProdSrvApp')
+    .controller('HCResultCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob) {
 	$scope.running = false;
 	$scope.getResult = function() {
 	    $scope.jobResult = null;	    
@@ -67,7 +67,7 @@ angular.module('hcSrvApp')
 
 	$scope.EditReSubmitJob = function() {
 		editjob.set($scope.jobResult.input);
-	    $location.url('/');
+	    $location.url('/hc_submit');
 	};
 
 

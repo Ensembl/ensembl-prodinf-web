@@ -3,14 +3,14 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:SubmitCtrl
+ * @name ensemblProdinfserviceApp.controller:HCSubmitCtrl
  * @description
- * # MainCtrl
- * Controller of the ensemblProdinfHcserviceApp
+ * # HCSubmitCtrl
+ * Controller of the ensemblProdinfserviceApp
  */
 
-angular.module('hcSrvApp')
-    .controller('SubmitCtrl', function ($scope, $http, CONFIG, $q, $location,editjob) {
+angular.module('ProdSrvApp')
+    .controller('HCSubmitCtrl', function ($scope, $http, CONFIG, $q, $location,editjob) {
 	$scope.jobdata = editjob.get();
 	if ($scope.jobdata===null || $scope.jobdata === ''){
 		$scope.staging_uri = CONFIG.STAGING_URI;
@@ -134,7 +134,7 @@ angular.module('hcSrvApp')
 		    	$scope.dbName = null;
 		    	$scope.hcNames = null;
 				$scope.hcGroups = null;
-		    	$location.url('/view/'+$scope.jobId);
+		    	$location.url('/hc_result/'+$scope.jobId);
 		    } 
 		}).catch(function (data) {		  
 		    window.alert('Could not submit job: '+data);

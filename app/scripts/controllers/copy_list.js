@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:CopyListCtrl
- * @description # MainCtrl Controller of the ensemblProdinfHcserviceApp
+ * @name ensemblProdinfserviceApp.controller:CopyListCtrl
+ * @description # CopyListCtrl Controller of the ensemblProdinfserviceApp
  */
 
 
-angular.module('hcSrvApp')
+angular.module('ProdSrvApp')
     .controller('CopyListCtrl', function ($scope, $http, $routeParams, CONFIG) {
         $scope.sortType     = 'id'; // set the default sort type
         $scope.sortReverse  = true;  // set the default sort order

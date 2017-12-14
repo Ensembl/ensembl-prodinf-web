@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="hcSrvApp">
+  <body ng-app="ProdSrvApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -25,18 +25,26 @@
     <!-- Add your site or application content here -->
     <div class="header">
 
-      <nav class="navbar navbar-default" role="navigation" bs-navbar>
+  <nav class="navbar navbar-default" role="navigation" bs-navbar>
 	<div class="navbar-header">
 	  <a class="navbar-brand" href="#">e! Production Services</a>
 	</div>
 	<ul class="nav navbar-nav">
-	  <li data-match-route="/$"><a href="#/">Submit HC job</a></li>
-	  <li data-match-route="/list.*"><a href="#!list">List HC jobs</a></li>
-	  <li data-match-route="/view.*"><a href="#!view">View HC job</a></li>
-	  <li data-match-route="/status.*"><a href="#!status">Database server status</a></li>
-	  <li data-match-route="/copy.*"><a href="#!copy">Copy databases</a></li>
-    <li data-match-route="/copylist.*"><a href="#!copylist">List Copy jobs</a></li>
-    <li data-match-route="/copyview.*"><a href="#!copyview">View Copy job</a></li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Healthcheck<b class="caret"></b></a>
+      <ul class="dropdown-menu"> 
+        <li data-match-route="/hc_submit"><a href="#!hc_submit">Submit HC job</a></li>
+        <li data-match-route="/hc_list.*"><a href="#!hc_list">List HC jobs</a></li>
+        <li data-match-route="/hc_result.*"><a href="#!hc_result">View HC job</a></li>
+      </ul>
+    </li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Copy database<b class="caret"></b></a>
+      <ul class="dropdown-menu"> 
+        <li data-match-route="/copy_submit.*"><a href="#!copy_submit">Submit copy job</a></li>
+        <li data-match-route="/copy_list.*"><a href="#!copy_list">List copy jobs</a></li>
+        <li data-match-route="/copy_result.*"><a href="#!copy_result">View copy job</a></li>
+      </ul>
+    </li>
+    <li data-match-route="/database_server_status.*"><a href="#!database_server_status">Database server status</a></li>
 	  <li data-match-route="/help"><a href="#!help">Get help</a></li>
 	</ul>
       </nav>
@@ -82,13 +90,13 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/list.js"></script>
-        <script src="scripts/controllers/view.js"></script>
-        <script src="scripts/controllers/submit.js"></script>
-        <script src="scripts/controllers/status.js"></script>
-        <script src="scripts/controllers/copy.js"></script>
-        <script src="scripts/controllers/copyview.js"></script>
-        <script src="scripts/controllers/copylist.js"></script>
+        <script src="scripts/controllers/hc_list.js"></script>
+        <script src="scripts/controllers/hc_result.js"></script>
+        <script src="scripts/controllers/hc_submit.js"></script>
+        <script src="scripts/controllers/database_server_status.js"></script>
+        <script src="scripts/controllers/copy_submit.js"></script>
+        <script src="scripts/controllers/copy_result.js"></script>
+        <script src="scripts/controllers/copy_list.js"></script>
         <script src="scripts/config.js"></script>
         <!-- endbuild -->
 </body>

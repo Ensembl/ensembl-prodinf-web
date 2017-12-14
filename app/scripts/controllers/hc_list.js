@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:ListCtrl
- * @description # MainCtrl Controller of the ensemblProdinfHcserviceApp
+ * @name ensemblProdinfserviceApp.controller:HCListCtrl
+ * @description # HCListCtrl Controller of the ensemblProdinfserviceApp
  */
 
 
-angular.module('hcSrvApp')
-    .controller('ListCtrl', function ($scope, $http, $routeParams, CONFIG) {
+angular.module('ProdSrvApp')
+    .controller('HCListCtrl', function ($scope, $http, $routeParams, CONFIG) {
 	    $scope.sortType     = 'id'; // set the default sort type
         $scope.sortReverse  = true;  // set the default sort order
         $scope.searchHcJob   = '';     // set the default search/filter term

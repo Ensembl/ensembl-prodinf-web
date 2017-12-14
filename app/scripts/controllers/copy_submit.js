@@ -3,14 +3,14 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:CopyCtrl
+ * @name ensemblProdinfserviceApp.controller:CopySubmitCtrl
  * @description
- * # MainCtrl
- * Controller of the ensemblProdinfHcserviceApp
+ * # CopySubmitCtrl
+ * Controller of the ensemblProdinfserviceApp
  */
 
-angular.module('hcSrvApp')
-    .controller('CopyCtrl', function ($scope, $http, CONFIG, $q, $location, editjob) {
+angular.module('ProdSrvApp')
+    .controller('CopySubmitCtrl', function ($scope, $http, CONFIG, $q, $location, editjob) {
 	$scope.displayOptions = false;
 	$scope.jobdata = editjob.get();
 	if ($scope.jobdata!==null && $scope.jobdata !== ''){
@@ -142,7 +142,7 @@ angular.module('hcSrvApp')
 		    	$scope.jobId = response.data.job_id;
 		    	$scope.source_db_uri = null;
 		    	$scope.target_db_uri = null;
-		    	$location.url('/copyview/'+$scope.jobId);
+		    	$location.url('/copy_result/'+$scope.jobId);
 		    } 
 		}).catch(function (data) {		  
 		    window.alert('Could not submit job: '+data);

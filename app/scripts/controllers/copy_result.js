@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfHcserviceApp.controller:CopyViewCtrl
- * @description # MainCtrl Controller of the ensemblProdinfHcserviceApp
+ * @name ensemblProdinfserviceApp.controller:CopyResultCtrl
+ * @description # CopyResultCtrl Controller of the ensemblProdinfserviceApp
  */
 
 
-angular.module('hcSrvApp')
-    .controller('CopyViewCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob) {
+angular.module('ProdSrvApp')
+    .controller('CopyResultCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob) {
     $scope.running = false;
 	$scope.getCopyResult = function() {
 	    $scope.jobResult = null;	    
@@ -78,7 +78,7 @@ angular.module('hcSrvApp')
 
 	$scope.EditReSubmitJob = function() {
 		editjob.set($scope.jobResult.input);		
-	    $location.url('/copy');
+	    $location.url('/copy_submit');
 	};
 	
     $scope.refresh = function() {
