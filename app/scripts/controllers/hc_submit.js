@@ -76,32 +76,73 @@ angular.module('ProdSrvApp')
 	$scope.submitJob = function() {
 	    /*jshint camelcase: false */
 	    $scope.jobResult = null;
-	    $scope.jobId = null;
+		$scope.jobId = null;
+
+        var urlpattern = new RegExp('^(mysql:\/\/){1}'+ /* engine:// */
+		'(.+){1}'+ /* user */
+		'(:.+){0,1}'+ /* :password (optional) */
+		'(@){1}'+ /* @ */
+		'(.+){1}'+ /* server_name */
+		'(:){1}'+ /* : */
+		'(\\d+){1}'+ /* port */
+		'(\/){1}$'); /* end_of_url/ */
+
+		var dburlpattern = new RegExp('^(mysql:\/\/){1}'+ /* engine:// */
+		'(.+){1}'+ /* user */
+		'(:.+){0,1}'+ /* :password (optional) */
+		'(@){1}'+ /* @ */
+		'(.+){1}'+ /* server_name */
+		'(:){1}'+ /* : */
+		'(\\d+){1}'+ /* port */
+		'(\/){1}'+ /* end_of_url/ */
+		'(.+){1}$'); /* database_name */
+
+		var emailpattern = new RegExp('^(.+){1}(@){1}(.+){1}');
 	    
 	    if($scope.dbUri === null || $scope.dbUri === '') {
-		window.alert('DB URI required');
-		return;
-	    }
+			window.alert('DB URI required');
+			return;
+		}
+		if (!urlpattern.test($scope.dbUri)){
+			window.alert('DB URI should follow this pattern  mysql://user(:pass)@server:port/ ');
+			return;
+		}
 	    if($scope.dbName === null || $scope.dbName === '') {
-		window.alert('DB name required');
-		return;
+		    window.alert('DB name required');
+			return;
 	    }
 	    var input = {
 		'db_uri': $scope.dbUri+$scope.dbName
 	    };
 
 	    if($scope.staging_uri!==null && $scope.staging_uri!=='') {
-		input.staging_uri = $scope.staging_uri;
-	    }
+			input.staging_uri = $scope.staging_uri;
+		}
+		if (!urlpattern.test($scope.staging_uri)){
+			window.alert('Staging URI should follow this pattern  mysql://user(:pass)@server:port/ ');
+			return;
+		}
 	    if($scope.live_uri!==null && $scope.live_uri!=='') {
-		input.live_uri = $scope.live_uri;
-	    }
+			input.live_uri = $scope.live_uri;
+		}
+		if (!urlpattern.test($scope.live_uri)){
+			window.alert('Live URI should follow this pattern  mysql://user(:pass)@server:port/ ');
+			return;
+		}
 	    if($scope.production_uri!==null && $scope.production_uri!=='') {
 	    	input.production_uri = $scope.production_uri;
-	    }
+		}
+		if (!dburlpattern.test($scope.production_uri)){
+			window.alert('Production URI should follow this pattern  mysql://user(:pass)@server:port/prod_db_name ');
+			return;
+		}
 	    if($scope.compara_uri!==null && $scope.compara_uri!=='') {
 	    	input.compara_uri = $scope.compara_uri;
-	    }	   
+		}
+		if (!dburlpattern.test($scope.compara_uri)){
+			window.alert('Compara URI should follow this pattern  mysql://user(:pass)@server:port/compara_db_name ');
+			return;
+		}  
 	    
 	    if($scope.hcNames!==null) {
 	    	input.hc_names = $scope.hcNames;
@@ -113,10 +154,16 @@ angular.module('ProdSrvApp')
 			input.data_files_path = $scope.data_files_path;
 		}
 	    if($scope.email!==null && $scope.email!=='') {
-		input.email = $scope.email;
-	    }
+			if (emailpattern.test($scope.email)){
+				input.email = $scope.email;
+			}
+			else {
+				window.alert('Email should follow the pattern john.doe@ebi.ac.uk');
+				return;
+			}
+		}
 	    if((input.hc_names === null || input.hc_names === undefined || input.hc_names.length===0) && 
-	    		(input.hc_groups === null || input.hc_groups === undefined || input.hc_groups.length===0)) {
+	    	(input.hc_groups === null || input.hc_groups === undefined || input.hc_groups.length===0)) {
 		window.alert('Either HC names or groups names are required');
 	    return;
 	    }	

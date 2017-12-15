@@ -92,22 +92,41 @@ angular.module('ProdSrvApp')
 	    /*jshint camelcase: false */
 	    $scope.jobResult = null;
 	    $scope.jobId = null;
-	    
+
+        var urlpattern = new RegExp('^(mysql:\/\/){1}'+ /* engine:// */
+		'(.+){1}'+ /* user */
+		'(:.+){0,1}'+ /* :password (optional) */
+		'(@){1}'+ /* @ */
+		'(.+){1}'+ /* server_name */
+		'(:){1}'+ /* : */
+		'(\\d+){1}'+ /* port */
+		'(\/){1}$'); /* end_of_url/ */
+
+		var emailpattern = new RegExp('^(.+){1}(@){1}(.+){1}');
+
 	    if($scope.SourcedbUri === null || $scope.SourcedbUri === '') {
-		window.alert('Source DB URI required');
-		return;
-	    }
+			window.alert('Source DB URI required');
+			return;
+		}
+		if (!urlpattern.test($scope.SourcedbUri)){
+			window.alert('Source URI should follow this pattern  mysql://user(:pass)@server:port/ ');
+			return;
+		}
 	    if($scope.TargetdbUri === null || $scope.TargetdbUri === '') {
-		window.alert('Target DB URI required');
-		return;
-	    }
+			window.alert('Target DB URI required');
+			return;
+		}
+		if (!urlpattern.test($scope.TargetdbUri)){
+			window.alert('Target URI should follow this pattern mysql://user:pass@server:port/ ');
+			return;
+		}
 	    if($scope.SourcedbName === null || $scope.SourcedbName === '') {
-		window.alert('Source DB name required');
-		return;
+			window.alert('Source DB name required');
+			return;
 	    }
 	    if($scope.TargetdbName === null || $scope.TargetdbName === '') {
-		window.alert('Target DB name required');
-		return;
+			window.alert('Target DB name required');
+			return;
 	    }
 	    var input = {
 		'source_db_uri': $scope.SourcedbUri+$scope.SourcedbName
@@ -116,20 +135,26 @@ angular.module('ProdSrvApp')
 	    input.target_db_uri = $scope.TargetdbUri+$scope.TargetdbName;
 
 	    if($scope.only_tables!==null && $scope.only_tables!=='') {
-		input.only_tables = $scope.only_tables;
+			input.only_tables = $scope.only_tables;
 	    }
 	    if($scope.skip_tables!==null && $scope.skip_tables!=='') {
-		input.skip_tables = $scope.skip_tables;
+			input.skip_tables = $scope.skip_tables;
 	    }
 	    if($scope.update!==null && $scope.update!=='') {
-		input.update = $scope.update;
+			input.update = $scope.update;
 	    }
 	    if($scope.drop!==null && $scope.drop!=='') {
-		input.drop = $scope.drop;
+			input.drop = $scope.drop;
 	    }
 	    if($scope.email!==null && $scope.email!=='') {
-		input.email = $scope.email;
-	    }
+			if (emailpattern.test($scope.email)){
+				input.email = $scope.email;
+			}
+			else {
+				window.alert('Email should follow the pattern john.doe@ebi.ac.uk');
+				return;
+			}
+		}
 	    console.log(input);
 	    var url = CONFIG.DB_SRV_URL+'submit';
 	    console.log('POSTing to '+url);
@@ -148,5 +173,5 @@ angular.module('ProdSrvApp')
 		    window.alert('Could not submit job: '+data);
 		});
 	};
-    }
+}
 	       );
