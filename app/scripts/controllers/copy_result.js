@@ -9,70 +9,73 @@
 
 angular.module('ProdSrvApp')
     .controller('CopyResultCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob) {
-    $scope.running = false;
+	$scope.running = false;
+	var jobidregex=new RegExp('^(\\d+){1}$');
 	$scope.getCopyResult = function() {
 	    $scope.jobResult = null;	    
-	    if($scope.jobId !== null && $scope.jobId !== undefined) {
-		var url = CONFIG.DB_SRV_URL+'results/'+$scope.jobId;
-		$scope.running = true;
-		$http.get(url)
-		    .then(function(response) {
-			$scope.jobResult = response.data;
-			$scope.running = false;
-		    if (response.data.status === 'failed') {
-	            $scope.getCopyFailure();
-	        }
-		    }).catch(function (data) {	
-			console.log(data);
-			window.alert('Could not get result for job');
-		    });
+	    if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
+			var url = CONFIG.DB_SRV_URL+'results/'+$scope.jobId;
+			$scope.running = true;
+			$http.get(url)
+				.then(function(response) {
+				$scope.jobResult = response.data;
+				$scope.running = false;
+				if (response.data.status === 'failed') {
+					$scope.getCopyFailure();
+				}
+				}).catch(function (data) {	
+				console.log(data);
+				window.alert('Could not get result for job');
+				});
 	    }
 	};
 
 	$scope.getCopyFailure = function() {
-		console.log($scope.jobResult.status);
-	    var url = CONFIG.DB_SRV_URL+'failure/'+$scope.jobId;
-	    $scope.running = true;
-	    $http.get(url)
-	        .then(function(response) {
-		    $scope.jobMsg = response.data;
-		    $scope.running = false;
-	        }).catch(function (data) {
-		    console.log(data);
-	    window.alert('Could not get job failure message');
-	        });
+		if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
+			console.log($scope.jobResult.status);
+			var url = CONFIG.DB_SRV_URL+'failure/'+$scope.jobId;
+			$scope.running = true;
+			$http.get(url)
+				.then(function(response) {
+				$scope.jobMsg = response.data;
+				$scope.running = false;
+				}).catch(function (data) {
+				console.log(data);
+			window.alert('Could not get job failure message');
+				});
+		}
 	};
 	
 	$scope.deleteCopyJob = function() {
-	    if($scope.jobId !== null && $scope.jobId !== undefined) {
-		var url = CONFIG.DB_SRV_URL+'delete/'+$scope.jobId;
-		$scope.running = true;
-		$http.get(url)
-	    .then(function() {
-	    	$scope.jobResult = null;	  
-            $scope.jobId = null;
-            $scope.running = false;
-	    }).catch(function (data) {	
-		console.log(data);
-		window.alert('Could not delete job');
-	    });
+	    if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
+			var url = CONFIG.DB_SRV_URL+'delete/'+$scope.jobId;
+			$scope.running = true;
+			$http.get(url)
+			.then(function() {
+				$scope.jobResult = null;	  
+				$scope.jobId = null;
+				$scope.running = false;
+			}).catch(function (data) {	
+			console.log(data);
+			window.alert('Could not delete job');
+			});
 	    }
 	};
 
 	$scope.stopCopy = function() {
-		window.alert('Stopping the database copy in progress, please wait');
-	    if($scope.jobId !== null && $scope.jobId !== undefined) {
-		var url = CONFIG.DB_SRV_URL+'kill_job/'+$scope.jobId;
-		$scope.running = true;
-		$http.get(url)
-	    .then(function() {
-	    window.alert('Successfully stopped the database copy');
-	    $scope.running = false;
-	    $scope.getCopyResult();
-	    }).catch(function (data) {
-		console.log(data);
-		window.alert('Could not stop the database copy');
-	    });
+		if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
+			window.alert('Stopping the database copy in progress, please wait');
+			var url = CONFIG.DB_SRV_URL+'kill_job/'+$scope.jobId;
+			$scope.running = true;
+			$http.get(url)
+			.then(function() {
+			window.alert('Successfully stopped the database copy');
+			$scope.running = false;
+			$scope.getCopyResult();
+			}).catch(function (data) {
+			console.log(data);
+			window.alert('Could not stop the database copy');
+			});
 	    }
 	};
 
@@ -82,10 +85,7 @@ angular.module('ProdSrvApp')
 	};
 	
     $scope.refresh = function() {
-        if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
-            $scope.jobId = $routeParams.jobIdParam;
 	        $scope.getCopyResult();
-        }
     };
 
 	if($routeParams.jobIdParam !== null && $routeParams.jobIdParam !== undefined) {
@@ -93,5 +93,5 @@ angular.module('ProdSrvApp')
 	    $scope.jobId = $routeParams.jobIdParam;
 	    $scope.getCopyResult();
 	}
-    }
-	       );
+}
+);

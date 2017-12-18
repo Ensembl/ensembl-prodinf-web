@@ -30,7 +30,7 @@ angular.module('ProdSrvApp')
     $scope.getSourceCopyUris = function(query) {
 	    if(query===null || query === '' || $scope.SourcedbUri === null || $scope.SourcedbUri === '') {
 		  return [];
-	    }
+		}
 	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_SOURCE_USER+'?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
@@ -43,7 +43,7 @@ angular.module('ProdSrvApp')
 	$scope.getSourceCopyDbs = function(query) {
 	    if(query===null || query === '' || $scope.SourcedbUri === null || $scope.SourcedbUri === '') {
 		  return [];
-	    }
+		}
 	    var url = CONFIG.DB_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.SourcedbUri;
 	    console.log(url);
 	    return $http.get(url)
@@ -59,7 +59,7 @@ angular.module('ProdSrvApp')
 	$scope.getTargetCopyUris = function(query) {
 	    if(query===null || query === '' || $scope.TargetdbUri === null || $scope.TargetdbUri === '') {
 		  return [];
-	    }
+		}
 	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_TARGET_USER+'?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
@@ -72,7 +72,7 @@ angular.module('ProdSrvApp')
 	$scope.getTargetCopyDbs = function(query) {
 	    if(query===null || query === '' || $scope.TargetdbUri === null || $scope.TargetdbUri === '') {
 		  return [];
-	    }
+		}
 	    var url = CONFIG.DB_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.TargetdbUri;
 	    console.log(url);
 	    return $http.get(url)
@@ -135,10 +135,24 @@ angular.module('ProdSrvApp')
 	    input.target_db_uri = $scope.TargetdbUri+$scope.TargetdbName;
 
 	    if($scope.only_tables!==null && $scope.only_tables!=='') {
-			input.only_tables = $scope.only_tables;
+			if (new RegExp('^([^ ]+){1}$').test($scope.only_tables) || new RegExp('^([^ ]+){1}(,){1}([^ ]+){1}$').test($scope.only_tables))
+			{
+			  input.only_tables = $scope.only_tables;
+			}
+			else{
+				window.alert('List of tables need to be comma separated, eg: table1,table2,table3');
+				return;
+			}
 	    }
 	    if($scope.skip_tables!==null && $scope.skip_tables!=='') {
-			input.skip_tables = $scope.skip_tables;
+			if (new RegExp('^([^ ]+){1}$').test($scope.skip_tables) || new RegExp('^([^ ]+){1}(,){1}([^ ]+){1}$').test($scope.skip_tables))
+			{
+			  input.skip_tables = $scope.skip_tables;
+			}
+			else{
+				window.alert('List of tables need to be comma separated, eg: table1,table2,table3');
+				return;
+			}
 	    }
 	    if($scope.update!==null && $scope.update!=='') {
 			input.update = $scope.update;
