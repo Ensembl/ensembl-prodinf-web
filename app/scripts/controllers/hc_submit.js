@@ -153,7 +153,7 @@ angular.module('ProdSrvApp')
 	    if($scope.data_files_path!==null && $scope.data_files_path!=='') {
 			input.data_files_path = $scope.data_files_path;
 		}
-	    if($scope.email!==null && $scope.email!=='') {
+	    if($scope.email!==null && $scope.email!==undefined) {
 			if (emailpattern.test($scope.email)){
 				input.email = $scope.email;
 			}
