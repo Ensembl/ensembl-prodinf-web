@@ -35,5 +35,10 @@ To create a docker image using `nginx`:
 ```
 node_modules/grunt-cli/bin/grunt build
 grunt build
-docker build . -t ensembl_prodinf
+docker build . -t ensembl_prodinf/www
+```
+
+To run the Docker image, specifying values `from config.js` to override at run time e.g.:
+```
+docker run -p:8001:80 --env HC_SRV_URL=http://ens-prod-1.ebi.ac.uk:4001/ --env DB_SRV_URL=http://ens-prod-1.ebi.ac.uk:4002/ ensembl_prodinf/www
 ```
