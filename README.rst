@@ -40,5 +40,15 @@ docker build . -t ensembl_prodinf/www
 
 To run the Docker image, specifying values `from config.js` to override at run time e.g.:
 ```
-docker run -p:8001:80 --env HC_SRV_URL=http://ens-prod-1.ebi.ac.uk:4001/ --env DB_SRV_URL=http://ens-prod-1.ebi.ac.uk:4002/ ensembl_prodinf/www
+docker run -p:8001:80 --env HC_SRV_URI=http://ens-prod-1.ebi.ac.uk:4001/ --env DB_SRV_URI=http://ens-prod-1.ebi.ac.uk:4002/ ensembl_prodinf/www
 ```
+
+To use Docker Compose to run a set of nodes for HC job management (this requires images from ensembl-prodinf-srv), first ensure you have:
+* built `ensembl_prodinf/www` and `ensembl_prodinf/hc_app`
+* created a .env file containing the value for your HC hive as `HC_HIVE_URI`
+then start Docker Compose:
+```
+docker-compose up
+```
+The website will be available on 0.0.0.0:8000 and the Flask server on 0.0.0.0:4001.
+

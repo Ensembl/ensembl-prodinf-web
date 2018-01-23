@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    image: "ensembl_prodinf/www"
+    environment:
+     - HC_SRV_URL=/hc/
+    ports:
+     - "8000:80"
+  flask_hc:
+    image: "ensembl_prodinf/hc_app"
+    environment:
+     - HIVE_URI=$HC_HIVE_URI
+    ports:
+     - "4001:4001"

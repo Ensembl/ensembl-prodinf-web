@@ -11,4 +11,4 @@ for env in HC_SRV_URL LIVE_URI STAGING_URI COMPARA_URI PROD_URI DB_SRV_URL URI_U
 done
 
 echo "Starting Web Server"
-nginx -g 'daemon off;'
+nginx -g 'daemon off;' -c /nginx.conf
