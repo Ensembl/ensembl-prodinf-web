@@ -45,7 +45,12 @@ docker run -p:8001:80 --env HC_SRV_URI=http://ens-prod-1.ebi.ac.uk:4001/ --env D
 
 To use Docker Compose to run a set of nodes for HC job management (this requires images from ensembl-prodinf-srv), first ensure you have:
 * built `ensembl_prodinf/www` and `ensembl_prodinf/hc_app`
-* created a .env file containing the value for your HC hive as `HC_HIVE_URI`
+* created a .env file containing the following values (see `example.env` for an example):
+ * HC_HIVE_URI - hive for your HC pipeline
+ * SMTP_SERVER - SMTP server used by email alerter
+ * EMAIL_RETRY_WAIT - time for email alerter to wait between checking jobs (optional)
+ * FROM_EMAIL_ADDRESS - email address to use in alert mails (optional)
+
 then start Docker Compose:
 ```
 docker-compose up

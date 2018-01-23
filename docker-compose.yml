@@ -2,13 +2,36 @@ version: '3'
 services:
   web:
     image: "ensembl_prodinf/www"
+    depends_on:
+     - "flask_hc"
     environment:
      - HC_SRV_URL=/hc/
     ports:
      - "8000:80"
   flask_hc:
     image: "ensembl_prodinf/hc_app"
+    depends_on:
+     - "celery_email"
     environment:
      - HIVE_URI=$HC_HIVE_URI
+     - CELERY_BROKER_URL=pyamqp://ensprod:ensprod@rabbit:5672
+     - CELERY_RESULT_BACKEND=rpc://ensprod:ensprod@rabbit:5672
     ports:
      - "4001:4001"
+  celery_email:
+    image: "ensembl_prodinf/celery_email"
+    depends_on:
+     - "rabbit"
+    environment:
+     - CELERY_BROKER_URL=pyamqp://ensprod:ensprod@172.17.0.1:5672
+     - CELERY_RESULT_BACKEND=rpc://ensprod:ensprod@172.17.0.1:5672
+     - SMTP_SERVER=$SMTP_SERVER
+     - RETRY_WAIT=$EMAIL_RETRY_WAIT
+  rabbit:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_DEFAULT_USER: "ensprod"
+      RABBITMQ_DEFAULT_PASS: "ensprod"
+    ports:
+     - "15672:15672"
+     - "5672:5672"
