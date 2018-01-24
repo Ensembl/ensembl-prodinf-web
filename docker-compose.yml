@@ -18,13 +18,27 @@ services:
      - CELERY_RESULT_BACKEND=rpc://ensprod:ensprod@rabbit:5672
     ports:
      - "4001:4001"
+  flask_db:
+    image: "ensembl_prodinf/db_app"
+    volumes:
+     - "$SSH_KEYS_VOL:/ssh_keys"
+     - "$SERVER_URIS_VOL:/server_uris"
+    depends_on:
+     - "celery_email"
+    environment:
+     - HIVE_URI=$DB_HIVE_URI
+     - SERVER_URIS_FILE=/server_uris/$SERVER_URIS_FILE
+     - CELERY_BROKER_URL=pyamqp://ensprod:ensprod@rabbit:5672
+     - CELERY_RESULT_BACKEND=rpc://ensprod:ensprod@rabbit:5672
+    ports:
+     - "4002:4002"
   celery_email:
     image: "ensembl_prodinf/celery_email"
     depends_on:
      - "rabbit"
     environment:
-     - CELERY_BROKER_URL=pyamqp://ensprod:ensprod@172.17.0.1:5672
-     - CELERY_RESULT_BACKEND=rpc://ensprod:ensprod@172.17.0.1:5672
+     - CELERY_BROKER_URL=pyamqp://ensprod:ensprod@rabbit:5672
+     - CELERY_RESULT_BACKEND=rpc://ensprod:ensprod@rabbit:5672
      - SMTP_SERVER=$SMTP_SERVER
      - RETRY_WAIT=$EMAIL_RETRY_WAIT
   rabbit:

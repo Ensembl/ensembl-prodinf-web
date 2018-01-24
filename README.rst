@@ -43,13 +43,21 @@ To run the Docker image, specifying values `from config.js` to override at run t
 docker run -p:8001:80 --env HC_SRV_URI=http://ens-prod-1.ebi.ac.uk:4001/ --env DB_SRV_URI=http://ens-prod-1.ebi.ac.uk:4002/ ensembl_prodinf/www
 ```
 
-To use Docker Compose to run a set of nodes for HC job management (this requires images from ensembl-prodinf-srv), first ensure you have:
-* built `ensembl_prodinf/www` and `ensembl_prodinf/hc_app`
+To use Docker Compose to run a set of nodes for HC and DB job management (this requires images from ensembl-prodinf-srv), first ensure you have:
+* built the following images:
+ * `ensembl_prodinf/www`
+ * `ensembl_prodinf/hc_app`
+ * `ensembl_prodinf/db_app`
+ * `ensembl_prodinf/celery_email`
 * created a .env file containing the following values (see `example.env` for an example):
  * HC_HIVE_URI - hive for your HC pipeline
  * SMTP_SERVER - SMTP server used by email alerter
  * EMAIL_RETRY_WAIT - time for email alerter to wait between checking jobs (optional)
  * FROM_EMAIL_ADDRESS - email address to use in alert mails (optional)
+ * SSH_KEYS_VOL - local folder containing keys specified in `ssh_config`
+ * SERVER_URIS_VOL - local folder containing server URIs files used by db endpoint
+ * SERVER_URIS_FILE - name of server URI file to use (relative to `SERVER_URIS_VOL`)
+
 
 then start Docker Compose:
 ```
