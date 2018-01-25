@@ -3,28 +3,29 @@ services:
   web:
     image: "ensembl_prodinf/www"
     depends_on:
-     - "flask_hc"
+     - "flask-hc"
+     - "flask-db"
     environment:
      - HC_SRV_URL=/hc/
     ports:
      - "8000:80"
-  flask_hc:
+  flask-hc:
     image: "ensembl_prodinf/hc_app"
     depends_on:
-     - "celery_email"
+     - "celery-email"
     environment:
      - HIVE_URI=$HC_HIVE_URI
      - CELERY_BROKER_URL=pyamqp://ensprod:ensprod@rabbit:5672
      - CELERY_RESULT_BACKEND=rpc://ensprod:ensprod@rabbit:5672
     ports:
      - "4001:4001"
-  flask_db:
+  flask-db:
     image: "ensembl_prodinf/db_app"
     volumes:
      - "$SSH_KEYS_VOL:/ssh_keys"
      - "$SERVER_URIS_VOL:/server_uris"
     depends_on:
-     - "celery_email"
+     - "celery-email"
     environment:
      - HIVE_URI=$DB_HIVE_URI
      - SERVER_URIS_FILE=/server_uris/$SERVER_URIS_FILE
@@ -32,7 +33,7 @@ services:
      - CELERY_RESULT_BACKEND=rpc://ensprod:ensprod@rabbit:5672
     ports:
      - "4002:4002"
-  celery_email:
+  celery-email:
     image: "ensembl_prodinf/celery_email"
     depends_on:
      - "rabbit"
