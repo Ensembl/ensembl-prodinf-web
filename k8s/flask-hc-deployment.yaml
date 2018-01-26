@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.1.0 (36652f6)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: flask-hc
+  name: flask-hc
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: flask-hc
+    spec:
+      containers:
+      - env:
+        - name: CELERY_BROKER_URL
+          value: pyamqp://ensprod:ensprod@rabbit:5672
+        - name: CELERY_RESULT_BACKEND
+          value: rpc://ensprod:ensprod@rabbit:5672
+        - name: HIVE_URI
+          value: ${HC_HIVE_URI}
+        image: ensembl_prodinf/hc_app
+        imagePullPolicy: Never
+        name: flask-hc
+        ports:
+        - containerPort: 4001
+        resources: {}
+      restartPolicy: Always
+status: {}

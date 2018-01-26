@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.1.0 (36652f6)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: flask-hc
+  name: flask-hc
+spec:
+  ports:
+  - name: "4001"
+    port: 4001
+    targetPort: 4001
+  selector:
+    io.kompose.service: flask-hc
+status:
+  loadBalancer: {}

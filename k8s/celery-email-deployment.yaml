@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.1.0 (36652f6)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: celery-email
+  name: celery-email
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: celery-email
+    spec:
+      containers:
+      - env:
+        - name: CELERY_BROKER_URL
+          value: pyamqp://ensprod:ensprod@rabbit:5672
+        - name: CELERY_RESULT_BACKEND
+          value: rpc://ensprod:ensprod@rabbit:5672
+        - name: RETRY_WAIT
+          value: ${EMAIL_RETRY_WAIT}
+        - name: SMTP_SERVER
+          value: ${SMTP_SERVER}
+        image: ensembl_prodinf/celery_email
+        name: celery-email
+        imagePullPolicy: Never
+        resources: {}
+      restartPolicy: Always
+status: {}
