@@ -44,6 +44,13 @@
         <li data-match-route="/copy_result.*"><a href="#!copy_result">View copy job</a></li>
       </ul>
     </li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Metadata load<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li data-match-route="/metadata_submit.*"><a href="#!metadata_submit">Submit a database to load into metadata</a></li>
+        <li data-match-route="/metadata_list.*"><a href="#!metadata_list">List metadata jobs</a></li>
+        <li data-match-route="/metadata_result.*"><a href="#!metadata_result">View metadata job</a></li>
+      </ul>
+    </li>
     <li data-match-route="/database_server_status.*"><a href="#!database_server_status">Database server status</a></li>
 	  <li data-match-route="/help"><a href="#!help">Get help</a></li>
 	</ul>
@@ -97,6 +104,9 @@
         <script src="scripts/controllers/copy_submit.js"></script>
         <script src="scripts/controllers/copy_result.js"></script>
         <script src="scripts/controllers/copy_list.js"></script>
+        <script src="scripts/controllers/metadata_submit.js"></script>
+        <script src="scripts/controllers/metadata_result.js"></script>
+        <script src="scripts/controllers/metadata_list.js"></script>
         <script src="scripts/config.js"></script>
         <!-- endbuild -->
 </body>
