@@ -52,6 +52,22 @@ app.config(function($routeProvider) {
     .when('/copy_list', {
 	    templateUrl:'views/copy_list.html',
 	    controller:'CopyListCtrl'
+	})
+	.when('/database_handover_submit', {
+		templateUrl:'views/database_handover_submit.html',
+	    controller:'HandoverSubmitCtrl'
+    })
+	.when('/metadata_result', {
+	    templateUrl:'views/metadata_result.html',
+	    controller:'MetadataResultCtrl'
+    })
+	.when('/metadata_result/:jobIdParam', {
+	    templateUrl:'views/metadata_result.html',
+	    controller:'MetadataResultCtrl'
+    })
+    .when('/metadata_list', {
+	    templateUrl:'views/metadata_list.html',
+	    controller:'MetadataListCtrl'
     })
 	.when('/help', {
 	    templateUrl:'views/help.html'

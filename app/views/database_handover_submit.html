@@ -1,0 +1,59 @@
+<div class="container">
+	  <form class="form-horizontal">
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="ServerUri">
+	      Database server URI:
+	    </label>
+	    <div class="col-sm-10">
+				<input type="text" class="form-control" id="ServerUri" ng-model="ServerUri" bs-options="serveruri for serveruri in getServerUris($viewValue)" placeholder="Enter Sever URI, e.g: mysql://ensro@mysql-ens-general-dev-1:4484/" bs-typeahead>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="dbName">
+	      Database:
+	    </label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="dbName" ng-model="dbName" bs-options="dbName for dbName in getDbs($viewValue)" minLength="3" bs-typeahead>
+	    </div>
+		</div>
+		<div class="form-group">
+	    <label class="col-sm-2 control-label" for="UpdateType">
+	      Update type:
+	    </label>
+	    <div class="col-sm-10">
+	      <select ng-model="UpdateType" id="UpdateType">
+	        <option value="Other">Other
+	        <option value="New assembly">New assembly
+	        <option value="New genebuild">New genebuild
+				  <option value="Xrefs update">Xrefs update
+	      </select>
+	    </div>
+		</div>
+		<div class="form-group">
+				<label class="col-sm-2 control-label" for="email">
+					Email:
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="email" ng-model="email" minLength="10"/>
+				</div>
+		</div>
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label" for="comment">
+	      Comment:
+	    </label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="comment" ng-model="comment" md-maxlength="150" rows="2"/>
+	    </div>
+	  </div>
+	  <div class="col-sm-12">
+	    <button type="submit" class="btn btn-default pull-right" ng-click="submitMetadataJob()">Submit</button>
+	  </div>
+	  <div class="col-sm-12">
+	    <label class="pull-right">Submit more:
+	      <input type="checkbox" ng-model="keepValues" id="keepValues"/>
+	    </label>
+	  </div>
+	  </form>
+</div>
+
