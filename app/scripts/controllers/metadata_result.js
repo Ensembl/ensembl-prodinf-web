@@ -64,7 +64,7 @@ angular.module('ProdSrvApp')
 
 	$scope.EditReSubmitJob = function() {
 		editjob.set($scope.jobResult.input);		
-	    $location.url('/metadata_submit');
+	    $location.url('/database_handover_submit');
 	};
 	
     $scope.refresh = function() {

@@ -3,14 +3,14 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfserviceApp.controller:MetadataSubmitCtrl
+ * @name ensemblProdinfserviceApp.controller:HandoverSubmitCtrl
  * @description
- * # MetadataSubmitCtrl
+ * # HandoverSubmitCtrl
  * Controller of the ensemblProdinfserviceApp
  */
 
 angular.module('ProdSrvApp')
-    .controller('MetadataSubmitCtrl', function ($scope, $http, CONFIG, $q, $location, editjob) {
+    .controller('HandoverSubmitCtrl', function ($scope, $http, CONFIG, $q, $location, editjob) {
 	$scope.displayOptions = false;
 	$scope.jobdata = editjob.get();
 	$scope.UpdateType = 'Other';

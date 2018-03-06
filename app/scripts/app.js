@@ -53,9 +53,9 @@ app.config(function($routeProvider) {
 	    templateUrl:'views/copy_list.html',
 	    controller:'CopyListCtrl'
 	})
-	.when('/metadata_submit', {
-	    templateUrl:'views/metadata_submit.html',
-	    controller:'MetadataSubmitCtrl'
+	.when('/database_handover_submit', {
+		templateUrl:'views/database_handover_submit.html',
+	    controller:'HandoverSubmitCtrl'
     })
 	.when('/metadata_result', {
 	    templateUrl:'views/metadata_result.html',
