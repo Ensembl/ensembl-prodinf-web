@@ -41,10 +41,24 @@
        <th scope="col" title="Email">
            <a href="#!/metadata_list" ng-click="sortType = 'email'; sortReverse = !sortReverse">
                Email
-               <span ng-show="sortType == 'targetdb' && !sortReverse" class="fa fa-caret-down"></span>
-               <span ng-show="sortType == 'targetdb' && sortReverse" class="fa fa-caret-up"></span>
+               <span ng-show="sortType == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+               <span ng-show="sortType == 'email' && sortReverse" class="fa fa-caret-up"></span>
           </a>
        </th>
+       <th scope="col" title="Update_type">
+          <a href="#!/metadata_list" ng-click="sortType = 'update_type'; sortReverse = !sortReverse">
+            Update type
+              <span ng-show="sortType == 'update_type' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'update_type' && sortReverse" class="fa fa-caret-up"></span>
+         </a>
+      </th>
+      <th scope="col" title="Comment">
+          <a href="#!/metadata_list" ng-click="sortType = 'comment'; sortReverse = !sortReverse">
+              Comment
+              <span ng-show="sortType == 'comment' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'comment' && sortReverse" class="fa fa-caret-up"></span>
+         </a>
+      </th>
        <th scope="col" title="Status">
            <a href="#!/metadata_list" ng-click="sortType = 'status'; sortReverse = !sortReverse">
                Status
@@ -69,6 +83,8 @@
     <td>{{job.input.timestamp * 1000 | date:'dd-MM-yyyy HH:mm'}}</td>
 		<td>{{job.input.database_uri}}</td>
     <td>{{job.input.email}}</td>
+    <td>{{job.input.update_type}}</td>
+    <td>{{job.input.comment}}</td>
     <td>{{job.status}}</td>
     <td><input type="checkbox" ng-model="job.Selected" ></td>
      </tr>

@@ -13,11 +13,14 @@ angular.module('ProdSrvApp')
     .controller('MetadataSubmitCtrl', function ($scope, $http, CONFIG, $q, $location, editjob) {
 	$scope.displayOptions = false;
 	$scope.jobdata = editjob.get();
+	$scope.UpdateType = 'Other';
 	if ($scope.jobdata!==null && $scope.jobdata !== ''){
 		var serveruri=$scope.jobdata.database_uri.split('/');
 		$scope.ServerUri = serveruri[0]+'/'+serveruri[1]+'/'+serveruri[2]+'/';
 		$scope.dbName = serveruri[3];
-        $scope.email = $scope.jobdata.email;
+		$scope.email = $scope.jobdata.email;
+		$scope.UpdateType = $scope.jobdata.update_type;
+		$scope.comment = $scope.jobdata.comment;
 	}
 
     $scope.getServerUris = function(query) {
@@ -73,6 +76,14 @@ angular.module('ProdSrvApp')
 			window.alert('Email required');
 			return;
 		}
+		if($scope.UpdateType === null || $scope.UpdateType === '') {
+			window.alert('Update type required');
+			return;
+		}
+		if($scope.comment === null || $scope.comment === '') {
+			window.alert('Comment required');
+			return;
+		}
 		if (!urlpattern.test($scope.ServerUri)){
 			window.alert('Server URI should follow this pattern  mysql://user(:pass)@server:port/ ');
 			return;
@@ -92,6 +103,8 @@ angular.module('ProdSrvApp')
 			return;
 		}
 		input.metadata_uri=CONFIG.METADATA_URI;
+		input.update_type=$scope.UpdateType;
+		input.comment=$scope.comment;
 	    console.log(input);
 	    var url = CONFIG.METADATA_SRV_URL+'submit';
 	    console.log('POSTing to '+url);
@@ -104,6 +117,8 @@ angular.module('ProdSrvApp')
 		    	$scope.jobId = response.data.job_id;
 		    	$scope.database_uri = null;
 				$scope.metadata_uri = null; 
+				$scope.update_type = null;
+				$scope.comment = null;
 		    	$location.url('/metadata_result/'+$scope.jobId);
 		    } 
 		}).catch(function (data) {		  

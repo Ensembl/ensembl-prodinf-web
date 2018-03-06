@@ -63,6 +63,8 @@ angular.module('ProdSrvApp')
 						input.email = value.input.email;
 						}
 						input.metadata_uri=CONFIG.METADATA_URI;
+						input.update_type=value.input.update_type;
+						input.comment=value.input.comment;
 						console.log(input);
 						var url = CONFIG.METADATA_SRV_URL+'submit';
 						console.log('POSTing to '+url);
