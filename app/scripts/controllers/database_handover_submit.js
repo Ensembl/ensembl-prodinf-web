@@ -21,6 +21,7 @@ angular.module('ProdSrvApp')
 		$scope.email = $scope.jobdata.email;
 		$scope.UpdateType = $scope.jobdata.update_type;
 		$scope.comment = $scope.jobdata.comment;
+		$scope.source = $scope.jobdata.source;
 	}
 
     $scope.getServerUris = function(query) {
@@ -105,6 +106,7 @@ angular.module('ProdSrvApp')
 		input.metadata_uri=CONFIG.METADATA_URI;
 		input.update_type=$scope.UpdateType;
 		input.comment=$scope.comment;
+		input.source="Handover";
 	    console.log(input);
 	    var url = CONFIG.METADATA_SRV_URL+'submit';
 	    console.log('POSTing to '+url);
@@ -119,6 +121,7 @@ angular.module('ProdSrvApp')
 				$scope.metadata_uri = null; 
 				$scope.update_type = null;
 				$scope.comment = null;
+				$scope.source = null;
 		    	$location.url('/metadata_result/'+$scope.jobId);
 		    } 
 		}).catch(function (data) {		  
