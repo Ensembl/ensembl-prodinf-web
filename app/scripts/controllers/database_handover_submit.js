@@ -106,7 +106,7 @@ angular.module('ProdSrvApp')
 		input.metadata_uri=CONFIG.METADATA_URI;
 		input.update_type=$scope.UpdateType;
 		input.comment=$scope.comment;
-		input.source="Handover";
+		input.source='Handover';
 	    console.log(input);
 	    var url = CONFIG.METADATA_SRV_URL+'submit';
 	    console.log('POSTing to '+url);
