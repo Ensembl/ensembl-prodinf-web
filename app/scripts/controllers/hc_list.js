@@ -80,6 +80,9 @@ angular.module('ProdSrvApp')
 							if(value.input.data_files_path!==null){
 								input.data_files_path = value.input.data_files_path;
 							}
+							if(value.input.tag!==null){
+								input.tag = value.input.tag;
+							}
 							if(value.input.email!==null && value.input.email!=='') {
 							input.email = value.input.email;
 							}

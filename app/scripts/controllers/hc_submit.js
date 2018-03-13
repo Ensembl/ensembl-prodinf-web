@@ -31,6 +31,7 @@ angular.module('ProdSrvApp')
 		$scope.production_uri = $scope.jobdata.production_uri;
 		$scope.compara_uri = $scope.jobdata.compara_uri;
 		$scope.live_uri = $scope.jobdata.live_uri;
+		$scope.tag = $scope.jobdata.tag;
 	}
 
 	$scope.getUris = function(query) {
@@ -153,6 +154,9 @@ angular.module('ProdSrvApp')
 	    if($scope.data_files_path!==null && $scope.data_files_path!=='') {
 			input.data_files_path = $scope.data_files_path;
 		}
+		if($scope.tag!==null) {
+			input.tag = $scope.tag;
+		}
 	    if($scope.email!==null && $scope.email!==undefined) {
 			if (emailpattern.test($scope.email)){
 				input.email = $scope.email;
@@ -181,6 +185,7 @@ angular.module('ProdSrvApp')
 		    	$scope.dbName = null;
 		    	$scope.hcNames = null;
 				$scope.hcGroups = null;
+				$scope.tag = null;
 		    	$location.url('/hc_result/'+$scope.jobId);
 		    } 
 		}).catch(function (data) {		  

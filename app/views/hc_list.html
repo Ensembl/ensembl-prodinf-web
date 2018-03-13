@@ -53,6 +53,13 @@
                <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
           </a>
        </th>
+       <th scope="col" title="Tag">
+        <a href="#!/hc_list" ng-click="sortType = 'tag'; sortReverse = !sortReverse">
+            Tag
+            <span ng-show="sortType == 'tag' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'tag' && sortReverse" class="fa fa-caret-up"></span>
+       </a>
+    </th>
        <th scope="col" title="Select">
           <a href="#!/hc_list" ng-click="sortType = 'select'; sortReverse = !sortReverse">
             Select
@@ -73,6 +80,7 @@
 		<span ng-repeat="name in job.input.hc_groups">{{name}}<br/></span>
 		</td>
     <td>{{job.status}}</td>
+    <td>{{job.input.tag}}</td>
     <td><input type="checkbox" ng-model="job.Selected" ></td>
      </tr>
 	 </tbody>
