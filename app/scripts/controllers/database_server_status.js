@@ -14,7 +14,7 @@ angular.module('ProdSrvApp')
     	$scope.getStatus = function() {
     	    $scope.serverStatus = null;	    
     	    if($scope.serverName !== null && $scope.serverName !== undefined) {
-    		var url = CONFIG.DB_SRV_URL+'status/'+$scope.serverName;
+    		var url = CONFIG.DB_SRV_URL+'hosts/'+$scope.serverName;
 			$scope.searchButtonText = 'Fetching';
 			$scope.running = true;
     		$http.get(url)

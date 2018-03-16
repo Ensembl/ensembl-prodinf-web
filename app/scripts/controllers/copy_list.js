@@ -36,9 +36,9 @@ angular.module('ProdSrvApp')
 			angular.forEach($scope.jobs, function (value) {
 				if (value.Selected){
 					if(value.id !== null && value.id !== undefined) {
-						var url = CONFIG.DB_SRV_URL+'delete/'+value.id;
+						var url = CONFIG.DB_SRV_URL+'jobs/'+value.id;
 						$scope.running = true;
-						$http.get(url)
+						$http.delete(url)
 						.then(function() {
 							$scope.running = false;
 						}).catch(function (data) {
@@ -78,7 +78,7 @@ angular.module('ProdSrvApp')
 						input.email = value.input.email;
 						}
 						console.log(input);
-						var url = CONFIG.DB_SRV_URL+'submit';
+						var url = CONFIG.DB_SRV_URL+'jobs';
 						console.log('POSTing to '+url);
 						$http.post(url, input)
 						.then(function(response) {

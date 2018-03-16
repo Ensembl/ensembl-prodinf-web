@@ -14,7 +14,7 @@ angular.module('ProdSrvApp')
 	$scope.getCopyResult = function() {
 	    $scope.jobResult = null;	    
 	    if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
-			var url = CONFIG.DB_SRV_URL+'results/'+$scope.jobId;
+			var url = CONFIG.DB_SRV_URL+'jobs/'+$scope.jobId;
 			$scope.running = true;
 			$http.get(url)
 				.then(function(response) {
@@ -33,7 +33,7 @@ angular.module('ProdSrvApp')
 	$scope.getCopyFailure = function() {
 		if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
 			console.log($scope.jobResult.status);
-			var url = CONFIG.DB_SRV_URL+'failure/'+$scope.jobId;
+			var url = CONFIG.DB_SRV_URL+'jobs/'+$scope.jobId+'?failure=1';
 			$scope.running = true;
 			$http.get(url)
 				.then(function(response) {
@@ -48,9 +48,9 @@ angular.module('ProdSrvApp')
 	
 	$scope.deleteCopyJob = function() {
 	    if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
-			var url = CONFIG.DB_SRV_URL+'delete/'+$scope.jobId;
+			var url = CONFIG.DB_SRV_URL+'jobs/'+$scope.jobId;
 			$scope.running = true;
-			$http.get(url)
+			$http.delete(url)
 			.then(function() {
 				$scope.jobResult = null;	  
 				$scope.jobId = null;
@@ -65,9 +65,9 @@ angular.module('ProdSrvApp')
 	$scope.stopCopy = function() {
 		if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
 			window.alert('Stopping the database copy in progress, please wait');
-			var url = CONFIG.DB_SRV_URL+'kill_job/'+$scope.jobId;
+			var url = CONFIG.DB_SRV_URL+'jobs/'+$scope.jobId+'?kill=1';
 			$scope.running = true;
-			$http.get(url)
+			$http.delete(url)
 			.then(function() {
 			window.alert('Successfully stopped the database copy');
 			$scope.running = false;

@@ -38,7 +38,7 @@ angular.module('ProdSrvApp')
 	    if(query===null || query === '' || $scope.dbUri === null || $scope.dbUri === '') {
 		return [];
 	    }
-	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.URI_USER+'?query=' + query;
+	    var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.URI_USER+'?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -51,7 +51,7 @@ angular.module('ProdSrvApp')
 	    if(query===null || query === '' || $scope.dbUri === null || $scope.dbUri === '') {
 		return [];
 	    }
-	    var url = CONFIG.DB_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.dbUri;
+	    var url = CONFIG.DB_SRV_URL+'databases?query=' + query + '&db_uri='+$scope.dbUri;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -172,7 +172,7 @@ angular.module('ProdSrvApp')
 	    return;
 	    }	
 	    console.log(input);
-	    var url = CONFIG.HC_SRV_URL+'submit';
+	    var url = CONFIG.HC_SRV_URL+'jobs';
 	    console.log('POSTing to '+url);
 	    $http.post(url, input)
 		.then(function(response) {

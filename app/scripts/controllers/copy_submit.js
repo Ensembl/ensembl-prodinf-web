@@ -31,7 +31,7 @@ angular.module('ProdSrvApp')
 	    if(query===null || query === '' || $scope.SourcedbUri === null || $scope.SourcedbUri === '') {
 		  return [];
 		}
-	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_SOURCE_USER+'?query=' + query;
+	    var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.COPY_SOURCE_USER+'?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -44,7 +44,7 @@ angular.module('ProdSrvApp')
 	    if(query===null || query === '' || $scope.SourcedbUri === null || $scope.SourcedbUri === '') {
 		  return [];
 		}
-	    var url = CONFIG.DB_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.SourcedbUri;
+	    var url = CONFIG.DB_SRV_URL+'databases?query=' + query + '&db_uri='+$scope.SourcedbUri;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -60,7 +60,7 @@ angular.module('ProdSrvApp')
 	    if(query===null || query === '' || $scope.TargetdbUri === null || $scope.TargetdbUri === '') {
 		  return [];
 		}
-	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_TARGET_USER+'?query=' + query;
+	    var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.COPY_TARGET_USER+'?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -73,7 +73,7 @@ angular.module('ProdSrvApp')
 	    if(query===null || query === '' || $scope.TargetdbUri === null || $scope.TargetdbUri === '') {
 		  return [];
 		}
-	    var url = CONFIG.DB_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.TargetdbUri;
+	    var url = CONFIG.DB_SRV_URL+'databases?query=' + query + '&db_uri='+$scope.TargetdbUri;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -170,7 +170,7 @@ angular.module('ProdSrvApp')
 			}
 		}
 	    console.log(input);
-	    var url = CONFIG.DB_SRV_URL+'submit';
+	    var url = CONFIG.DB_SRV_URL+'jobs';
 	    console.log('POSTing to '+url);
 	    $http.post(url, input)
 		.then(function(response) {
@@ -181,7 +181,7 @@ angular.module('ProdSrvApp')
 		    	$scope.jobId = response.data.job_id;
 		    	$scope.source_db_uri = null;
 		    	$scope.target_db_uri = null;
-		    	$location.url('/copy_result/'+$scope.jobId);
+		    	$location.url('/jobs/'+$scope.jobId);
 		    } 
 		}).catch(function (data) {		  
 		    window.alert('Could not submit job: '+data);

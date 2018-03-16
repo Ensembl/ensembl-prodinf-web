@@ -28,7 +28,7 @@ angular.module('ProdSrvApp')
 	    if(query===null || query === '' || $scope.ServerUri === null || $scope.ServerUri === '') {
 		  return [];
 		}
-	    var url = CONFIG.DB_SRV_URL+'list_servers/'+CONFIG.COPY_SOURCE_USER+'?query=' + query;
+	    var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.COPY_SOURCE_USER+'?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -41,7 +41,7 @@ angular.module('ProdSrvApp')
 	    if(query===null || query === '' || $scope.ServerUri === null || $scope.ServerUri === '') {
 		  return [];
 		}
-	    var url = CONFIG.DB_SRV_URL+'list_databases?query=' + query + '&db_uri='+$scope.ServerUri;
+	    var url = CONFIG.DB_SRV_URL+'databases?query=' + query + '&db_uri='+$scope.ServerUri;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {

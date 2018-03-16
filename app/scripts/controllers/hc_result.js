@@ -14,7 +14,7 @@ angular.module('ProdSrvApp')
 	$scope.getResult = function() {
 		$scope.jobResult = null;
 	    if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
-			var url = CONFIG.HC_SRV_URL+'results/'+$scope.jobId;
+			var url = CONFIG.HC_SRV_URL+'jobs/'+$scope.jobId;
 			$scope.running = true;
 			$http.get(url)
 				.then(function(response) {
@@ -33,7 +33,7 @@ angular.module('ProdSrvApp')
 	$scope.getFailure = function() {
 		console.log($scope.jobResult.status);
 	    if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
-			var url = CONFIG.HC_SRV_URL+'failures/'+$scope.jobId;
+			var url = CONFIG.HC_SRV_URL+'jobs/'+$scope.jobId+'?failure=1';
 			$scope.running = true;
 			$http.get(url)
 				.then(function(response) {
@@ -48,9 +48,9 @@ angular.module('ProdSrvApp')
 	
 	$scope.deleteJob = function() {
 	    if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
-			var url = CONFIG.HC_SRV_URL+'delete/'+$scope.jobId;
+			var url = CONFIG.HC_SRV_URL+'jobs/'+$scope.jobId;
 			$scope.running = true;
-			$http.get(url)
+			$http.delete(url)
 			.then(function() {
 				$scope.jobResult = null;	  
 				$scope.jobId = null;
