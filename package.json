@@ -44,7 +44,8 @@
   "version": "1.0.0",
   "main": "Gruntfile.js",
   "dependencies": {
-    "bower": "^1.8.0"
+    "bower": "^1.8.2",
+    "grunt-cli": "^1.2.0"
   },
   "repository": {
     "type": "git",
