@@ -108,7 +108,7 @@ angular.module('ProdSrvApp')
 		input.comment=$scope.comment;
 		input.source='Handover';
 	    console.log(input);
-	    var url = CONFIG.METADATA_SRV_URL+'submit';
+	    var url = CONFIG.METADATA_SRV_URL+'jobs';
 	    console.log('POSTing to '+url);
 	    $http.post(url, input)
 		.then(function(response) {
