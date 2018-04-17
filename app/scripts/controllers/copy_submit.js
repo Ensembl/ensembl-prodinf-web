@@ -180,8 +180,8 @@ angular.module('ProdSrvApp')
 		    } else {
 		    	$scope.jobId = response.data.job_id;
 		    	$scope.source_db_uri = null;
-		    	$scope.target_db_uri = null;
-		    	$location.url('/jobs/'+$scope.jobId);
+				$scope.target_db_uri = null;
+				$location.url('/copy_result/'+$scope.jobId);
 		    } 
 		}).catch(function (data) {		  
 		    window.alert('Could not submit job: '+data);
