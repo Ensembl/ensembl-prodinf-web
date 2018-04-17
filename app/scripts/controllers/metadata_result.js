@@ -33,7 +33,7 @@ angular.module('ProdSrvApp')
 	$scope.getMetadataFailure = function() {
 		if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
 			console.log($scope.jobResult.status);
-			var url = CONFIG.METADATA_SRV_URL+'jobs/'+$scope.jobId+'?failure=1';
+			var url = CONFIG.METADATA_SRV_URL+'jobs/'+$scope.jobId+'?format=failures';
 			$scope.running = true;
 			$http.get(url)
 				.then(function(response) {

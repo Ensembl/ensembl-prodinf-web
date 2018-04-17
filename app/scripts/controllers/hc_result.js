@@ -33,7 +33,7 @@ angular.module('ProdSrvApp')
 	$scope.getFailure = function() {
 		console.log($scope.jobResult.status);
 	    if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
-			var url = CONFIG.HC_SRV_URL+'jobs/'+$scope.jobId+'?failure=1';
+			var url = CONFIG.HC_SRV_URL+'jobs/'+$scope.jobId+'?format=failures';
 			$scope.running = true;
 			$http.get(url)
 				.then(function(response) {
