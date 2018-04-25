@@ -10,6 +10,5 @@ angular.module('app.config', [])
 	'COPY_SOURCE_USER': 'ensro',
 	'COPY_TARGET_USER': 'ensadmin',
 	'DATA_FILES_PATH' : '/nfs/panda/ensembl/production/ensemblftp/data_files/',
-	'METADATA_URI' : 'mysql://ensro@127.0.0.1:3306/ensembl_metadata',
 	'METADATA_SRV_URL': 'http://127.0.0.1:5003/',
     });

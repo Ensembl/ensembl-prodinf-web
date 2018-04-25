@@ -103,7 +103,6 @@ angular.module('ProdSrvApp')
 			window.alert('Email should follow the pattern john.doe@ebi.ac.uk');
 			return;
 		}
-		input.metadata_uri=CONFIG.METADATA_URI;
 		input.update_type=$scope.UpdateType;
 		input.comment=$scope.comment;
 		input.source='Handover';
@@ -118,7 +117,6 @@ angular.module('ProdSrvApp')
 		    } else {
 		    	$scope.jobId = response.data.job_id;
 		    	$scope.database_uri = null;
-				$scope.metadata_uri = null; 
 				$scope.update_type = null;
 				$scope.comment = null;
 				$scope.source = null;

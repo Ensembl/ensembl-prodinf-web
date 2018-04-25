@@ -62,7 +62,6 @@ angular.module('ProdSrvApp')
 						if(value.input.email!==null && value.input.email!=='') {
 						input.email = value.input.email;
 						}
-						input.metadata_uri=CONFIG.METADATA_URI;
 						input.update_type=value.input.update_type;
 						input.comment=value.input.comment;
 						input.source='Handover';
