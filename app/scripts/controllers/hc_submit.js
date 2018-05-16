@@ -61,7 +61,7 @@ angular.module('ProdSrvApp')
 	};
 
 	$scope.getHcNames = function(query) {
-	    var url = CONFIG.HC_SRV_URL+'hclist?query=' + query;
+	    var url = CONFIG.HC_SRV_URL+'healthchecks/tests?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
@@ -71,7 +71,7 @@ angular.module('ProdSrvApp')
 	};
 
 	$scope.getHcGroups = function(query) {
-	    var url = CONFIG.HC_SRV_URL+'hcgroups?query=' + query;
+	    var url = CONFIG.HC_SRV_URL+'healthchecks/groups?query=' + query;
 	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
