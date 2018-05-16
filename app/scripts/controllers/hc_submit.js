@@ -60,19 +60,25 @@ angular.module('ProdSrvApp')
 		});
 	};
 
-	$scope.loadHcNames = function(query, url) {
-	    var lQuery = query.toLowerCase();
-	    var d = $q.defer();
-	    $http.get(url).then(function (response) {
-		d.resolve(response.data.filter(function(name) {
-		    return name.toLowerCase().indexOf(lQuery)!==-1;
-		}));
-	    }
-	    ).catch(function(data) {
-		window.alert('Could not look up database names: '+data);
-	    });
-	    return d.promise;
+	$scope.getHcNames = function(query) {
+	    var url = CONFIG.HC_SRV_URL+'hclist?query=' + query;
+	    console.log(url);
+	    return $http.get(url)
+		.then(function(res) {
+		    console.log(res.data);
+		    return res.data;
+		});
 	};
+
+	$scope.getHcGroups = function(query) {
+	    var url = CONFIG.HC_SRV_URL+'hcgroups?query=' + query;
+	    console.log(url);
+	    return $http.get(url)
+		.then(function(res) {
+		    console.log(res.data);
+			return res.data;
+		});
+    };
 
 	$scope.submitJob = function() {
 	    /*jshint camelcase: false */
