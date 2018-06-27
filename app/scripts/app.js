@@ -57,17 +57,17 @@ app.config(function($routeProvider) {
 		templateUrl:'views/database_handover_submit.html',
 	    controller:'HandoverSubmitCtrl'
     })
-	.when('/metadata_result', {
-	    templateUrl:'views/metadata_result.html',
-	    controller:'MetadataResultCtrl'
+	.when('/database_handover_result', {
+	    templateUrl:'views/database_handover_result.html',
+	    controller:'HandoverResultCtrl'
     })
-	.when('/metadata_result/:jobIdParam', {
-	    templateUrl:'views/metadata_result.html',
-	    controller:'MetadataResultCtrl'
+	.when('/database_handover_result/:handoverTokenParam', {
+	    templateUrl:'views/database_handover_result.html',
+	    controller:'HandoverResultCtrl'
     })
-    .when('/metadata_list', {
-	    templateUrl:'views/metadata_list.html',
-	    controller:'MetadataListCtrl'
+    .when('/database_handover_list', {
+	    templateUrl:'views/database_handover_list.html',
+	    controller:'HandoverListCtrl'
     })
 	.when('/help', {
 	    templateUrl:'views/help.html'

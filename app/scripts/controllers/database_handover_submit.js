@@ -15,11 +15,11 @@ angular.module('ProdSrvApp')
 	$scope.jobdata = editjob.get();
 	$scope.UpdateType = 'Other';
 	if ($scope.jobdata!==null && $scope.jobdata !== ''){
-		var serveruri=$scope.jobdata.database_uri.split('/');
+		var serveruri=$scope.jobdata.src_uri.split('/');
 		$scope.ServerUri = serveruri[0]+'/'+serveruri[1]+'/'+serveruri[2]+'/';
 		$scope.dbName = serveruri[3];
-		$scope.email = $scope.jobdata.email;
-		$scope.UpdateType = $scope.jobdata.update_type;
+		$scope.email = $scope.jobdata.contact;
+		$scope.UpdateType = $scope.jobdata.type;
 		$scope.comment = $scope.jobdata.comment;
 		$scope.source = $scope.jobdata.source;
 	}
@@ -53,7 +53,7 @@ angular.module('ProdSrvApp')
 		});
 	};
 
-	$scope.submitMetadataJob = function() {
+	$scope.submitDatabaseHandoverJob = function() {
 	    /*jshint camelcase: false */
 	    $scope.jobResult = null;
 	    $scope.jobId = null;
@@ -94,33 +94,34 @@ angular.module('ProdSrvApp')
 			return;
 	    }
 	    var input = {
-		'database_uri': $scope.ServerUri+$scope.dbName
+		'src_uri': $scope.ServerUri+$scope.dbName
 		};		
 		if (emailpattern.test($scope.email)){
-			input.email = $scope.email;
+			input.contact = $scope.email;
 		}
 		else {
 			window.alert('Email should follow the pattern john.doe@ebi.ac.uk');
 			return;
 		}
-		input.update_type=$scope.UpdateType;
+		input.type=$scope.UpdateType;
 		input.comment=$scope.comment;
 		input.source='Handover';
 	    console.log(input);
-	    var url = CONFIG.METADATA_SRV_URL+'jobs';
+	    var url = CONFIG.HANDOVER_SRV_URL+'handovers';
 	    console.log('POSTing to '+url);
 	    $http.post(url, input)
 		.then(function(response) {
 		    console.log(response);
 		    if($scope.keepValues === true) {
-		    	window.alert('Job submitted with ID '+response.data.job_id);
+		    	window.alert('Job submitted with handover token '+response.data);
 		    } else {
-		    	$scope.jobId = response.data.job_id;
-		    	$scope.database_uri = null;
+		    	$scope.handover_token = response.data;
+				$scope.src_uri = null;
+				$scope.contact = null;
 				$scope.update_type = null;
 				$scope.comment = null;
 				$scope.source = null;
-		    	$location.url('/metadata_result/'+$scope.jobId);
+		    	$location.url('/database_handover_result/'+$scope.handover_token);
 		    } 
 		}).catch(function (data) {		  
 		    window.alert('Could not submit job: '+data);

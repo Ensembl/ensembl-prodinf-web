@@ -2,19 +2,19 @@
 
 /**
  * @ngdoc function
- * @name ensemblProdinfserviceApp.controller:MetadataListCtrl
- * @description # MetadataListCtrl Controller of the ensemblProdinfserviceApp
+ * @name ensemblProdinfserviceApp.controller:HandoverListCtrl
+ * @description # HandoverListCtrl Controller of the ensemblProdinfserviceApp
  */
 
 
 angular.module('ProdSrvApp')
-    .controller('MetadataListCtrl', function ($scope, $http, $routeParams, CONFIG) {
-        $scope.sortType     = 'id'; // set the default sort type
+    .controller('HandoverListCtrl', function ($scope, $http, $routeParams, CONFIG) {
+        $scope.sortType     = 'report_time'; // set the default sort type
         $scope.sortReverse  = true;  // set the default sort order
-        $scope.searchMetadataLoadJob   = '';     // set the default search/filter term
+        $scope.searchHandoverDatabase   = '';     // set the default search/filter term
         $scope.running = false; // default value for loading spinner
-		$scope.loadMetadataJobs = function() {
-			var url = CONFIG.METADATA_SRV_URL+'jobs';
+		$scope.loadHandoverJobs = function() {
+			var url = CONFIG.HANDOVER_SRV_URL+'handovers';
 			$scope.running = true;
 		    $http.get(url)
 		    .then(function(response) {
@@ -25,25 +25,26 @@ angular.module('ProdSrvApp')
 			window.alert('Could not get jobs');
 		    });
 		};
-		$scope.loadMetadataJobs();
+		$scope.loadHandoverJobs();
 
 	    $scope.refresh = function() {
 			$scope.jobs=null;
-			$scope.loadMetadataJobs();
+			$scope.loadHandoverJobs();
 		};
 
 		$scope.deleteJobs = function() {
 			angular.forEach($scope.jobs, function (value) {
 				if (value.Selected){
-					if(value.id !== null && value.id !== undefined) {
-						var url = CONFIG.METADATA_SRV_URL+'jobs/'+value.id;
+					if(value.handover_token !== null && value.handover_token !== undefined) {
+						var url = CONFIG.HANDOVER_SRV_URL+'handovers/'+value.handover_token;
 						$scope.running = true;
+						console.log(url);
 						$http.delete(url)
 						.then(function() {
 							$scope.running = false;
 						}).catch(function (data) {
 						console.log(data);
-						window.alert('Could not delete job ID '+value.id);
+						window.alert('Could not delete job ID '+value.handover_token);
 						});
 					}
 				}
@@ -55,23 +56,23 @@ angular.module('ProdSrvApp')
 		$scope.ReSubmitJobs = function() {
 			angular.forEach($scope.jobs, function (value) {
 				if (value.Selected){
-					if(value.id !== null && value.id !== undefined) {
+					if(value.handover_token !== null && value.handover_token !== undefined) {
 						var input = {
-						'database_uri': value.input.database_uri
+						'src_uri': value.src_uri
 						};
-						if(value.input.email!==null && value.input.email!=='') {
-						input.email = value.input.email;
+						if(value.contact!==null && value.contact!=='') {
+						input.contact = value.contact;
 						}
-						input.update_type=value.input.update_type;
-						input.comment=value.input.comment;
+						input.type=value.type;
+						input.comment=value.comment;
 						input.source='Handover';
 						console.log(input);
-						var url = CONFIG.METADATA_SRV_URL+'jobs';
+						var url = CONFIG.HANDOVER_SRV_URL+'handovers';
 						console.log('POSTing to '+url);
 						$http.post(url, input)
 						.then(function(response) {
 							console.log(response);
-							window.alert('Job submitted with ID '+response.data.job_id);
+							window.alert('Job submitted with handover token '+response.data);
 						}).catch(function (data) {
 							window.alert('Could not submit job: '+data);
 						});
