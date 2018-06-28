@@ -22,6 +22,7 @@ angular.module('ProdSrvApp')
 		$scope.UpdateType = $scope.jobdata.type;
 		$scope.comment = $scope.jobdata.comment;
 		$scope.source = $scope.jobdata.source;
+		$scope.email_notification = $scope.jobdata.email_notification;
 	}
 
     $scope.getServerUris = function(query) {
@@ -92,7 +93,7 @@ angular.module('ProdSrvApp')
 	    if($scope.dbName === null || $scope.dbName === '') {
 			window.alert('DB name required');
 			return;
-	    }
+		}
 	    var input = {
 		'src_uri': $scope.ServerUri+$scope.dbName
 		};		
@@ -106,6 +107,9 @@ angular.module('ProdSrvApp')
 		input.type=$scope.UpdateType;
 		input.comment=$scope.comment;
 		input.source='Handover';
+		if($scope.email_notification!==null && $scope.email_notification!=='') {
+			input.email_notification = $scope.email_notification;
+	    }
 	    console.log(input);
 	    var url = CONFIG.HANDOVER_SRV_URL+'handovers';
 	    console.log('POSTing to '+url);
