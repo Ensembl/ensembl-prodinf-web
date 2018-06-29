@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 
-var app = angular.module('ProdSrvApp', ['app.config','ngTagsInput','ngRoute', 'mgcrea.ngStrap']);
+var app = angular.module('ProdSrvApp', ['app.config','ngTagsInput','ngRoute', 'mgcrea.ngStrap', 'ngSanitize']);
 
 app.config(function($routeProvider) {
     $routeProvider

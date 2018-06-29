@@ -53,5 +53,27 @@ angular.module('ProdSrvApp')
 	    $scope.handoverToken = $routeParams.handoverTokenParam;
 	    $scope.getHandoverResult();
 	}
+
+   $scope.checkStatus = function(input) {
+	   var sucess = new RegExp('^(.+)Handover'+'(.+){1}'+'successful$');
+	   var failure = new RegExp('^(.+)failed(.+)$');
+	   if (sucess.test(input)){
+		   return ('complete');
+	   }
+	   else if(failure.test(input)){
+		   return ('failed');
+	   }
+	   else{
+           return ('running');
+	   }
+   };
+
+   $scope.urlify = function(text) {
+		var urlRegex = /(https?:\/\/[^\s]+)/g;
+		var fixedUrl = text.replace('http://127.0.0.1',$location.$$protocol+ '://' + $location.$$host);
+        return fixedUrl.replace(urlRegex, function(url) {
+            return '<a href="' + url + '">' + url + '</a>';
+        });
+   };
 }
 );

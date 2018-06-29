@@ -138,6 +138,9 @@ body {
 .running {
     background-color: gold;
 }
+.failed{
+    background-color: lightpink;
+}
 .tablevalue.passed {
     background-color: lightgreen;
 }

@@ -36,12 +36,31 @@
 				</div>
 				<div class="col-sm-10 tablevalue">{{jobResult[0].contact}}</div>
 			</div>
-			<div class="row">
-				<div class="col-sm-2">
-					<div class="tablekey">Job status:</div>
+			<div ng-if="checkStatus(jobResult[0].message) == 'complete'">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="tablekey">Job status:</div>
+					</div>
+					<div class="col-sm-10 tablevalue complete">{{jobResult[0].message}}</div>
 				</div>
-				<div class="col-sm-10 tablevalue {{jobResult[0].message}}">{{jobResult[0].message}}</div>
 			</div>
+			<div ng-if="checkStatus(jobResult[0].message) == 'failed'">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="tablekey">Job status:</div>
+					</div>
+					<div class="col-sm-10 tablevalue failed"  ng-bind-html="urlify(jobResult[0].message)"></div>
+				</div>
+			</div>
+			<div ng-if="checkStatus(jobResult[0].message) == 'running'">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="tablekey">Job status:</div>
+					</div>
+					<div class="col-sm-10 tablevalue running" ng-bind-html="urlify(jobResult[0].message)"></div>
+				</div>
+			</div>
+			<div ng-if="checkStatus(jobResult[0].message) == 'running'">
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="tablekey">Progress:</div>
