@@ -83,6 +83,19 @@ angular.module('ProdSrvApp')
 			$scope.refresh();
 		};
 
+        $scope.checkStatus = function(input) {
+			var sucess = new RegExp('^(.+)Handover'+'(.+){1}'+'successful$');
+			var failure = new RegExp('^(.+)failed(.+)$');
+			if (sucess.test(input)){
+				return ('complete');
+			}
+			else if(failure.test(input)){
+				return ('failed');
+			}
+			else{
+				return ('running');
+			}
+		};
 
 		$scope.checkAll = function() {
 			angular.forEach($scope.jobs, function(value) {
