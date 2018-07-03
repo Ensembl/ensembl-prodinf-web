@@ -69,11 +69,17 @@ angular.module('ProdSrvApp')
    };
 
    $scope.urlify = function(text) {
+	    var url = new RegExp('(.+)http://127.0.0.1(.+)');
 		var urlRegex = /(https?:\/\/[^\s]+)/g;
-		var fixedUrl = text.replace('http://127.0.0.1',$location.$$protocol+ '://' + $location.$$host);
-        return fixedUrl.replace(urlRegex, function(url) {
-            return '<a href="' + url + '">' + url + '</a>';
-        });
+		if (url.test(text)){
+		    var fixedUrl = text.replace('http://127.0.0.1',$location.$$protocol+ '://' + $location.$$host);
+            return fixedUrl.replace(urlRegex, function(url) {
+                return '<a href="' + url + '">' + url + '</a>';
+		    });
+		}
+		else {
+			return(text);
+		}
    };
 }
 );
