@@ -47,9 +47,6 @@ angular.module('ProdSrvApp')
 	    return $http.get(url)
 		.then(function(res) {
 			console.log(res.data);
-			if ($scope.jobdata===null || $scope.jobdata === ''){
-			  $scope.dbName = res.data;
-			}
 		    return res.data;
 		});
 	};
