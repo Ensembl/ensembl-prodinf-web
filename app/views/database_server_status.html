@@ -28,13 +28,13 @@
 			<div class="col-sm-2">
 				<div class="tablekey">Disk usage</div>
 			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.disk_used_pct}}% ({{serverStatus.disk_available_g}}G of {{serverStatus.disk_total_g}}G total)</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.disk_used_pct}}% used ({{serverStatus.disk_used_g}}G used of {{serverStatus.disk_total_g}}G total) {{serverStatus.disk_available_g}}G available</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="tablekey">Memory usage</div>
 			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.memory_used_pct}}% ({{serverStatus.memory_used_m}}M of {{serverStatus.memory_total_m}}M total)</div>
+			<div class="col-sm-10 tablevalue">{{serverStatus.memory_used_pct}}% used ({{serverStatus.memory_used_m}}M used of {{serverStatus.memory_total_m}}M total)</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-2">
