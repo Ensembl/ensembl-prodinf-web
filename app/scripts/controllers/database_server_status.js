@@ -12,9 +12,9 @@ angular.module('ProdSrvApp')
         $scope.searchButtonText = 'Submit';
 		$scope.running = false;
     	$scope.getStatus = function() {
-    	    $scope.serverStatus = null;	    
-    	    if($scope.serverName !== null && $scope.serverName !== undefined) {
-    		var url = CONFIG.DB_SRV_URL+'hosts/'+$scope.serverName;
+			$scope.serverStatus = null;
+            if($scope.ServerName !== null && $scope.ServerName !== undefined) {
+            var url = CONFIG.DB_SRV_URL+'hosts/'+$scope.ServerName.split('@')[1].split(':')[0];
 			$scope.searchButtonText = 'Fetching';
 			$scope.running = true;
     		$http.get(url)
@@ -28,6 +28,19 @@ angular.module('ProdSrvApp')
     		    });
     	    }
     	};
+
+		$scope.getServerNames = function(query) {
+			if(query===null || query === '' || $scope.ServerName === null || $scope.ServerName === '') {
+			  return [];
+			}
+			var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.URI_USER+'?query=' + query;
+			console.log(url);
+			return $http.get(url)
+			.then(function(res) {
+				console.log(res.data);
+				return res.data;
+			});
+		};
 
     	if($routeParams.serverParam !== null && $routeParams.serverParam !== undefined) {
     	    console.log($routeParams.serverParam);
