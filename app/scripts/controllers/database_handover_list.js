@@ -86,10 +86,11 @@ angular.module('ProdSrvApp')
         $scope.checkStatus = function(input) {
 			var sucess = new RegExp('^(.+)Handover'+'(.+){1}'+'successful$');
 			var failure = new RegExp('^(.+)failed(.+)$');
+			var problems = new RegExp('^(.+)problems(.+)$');
 			if (sucess.test(input)){
 				return ('complete');
 			}
-			else if(failure.test(input)){
+			else if(failure.test(input) || problems.test(input)){
 				return ('failed');
 			}
 			else{
