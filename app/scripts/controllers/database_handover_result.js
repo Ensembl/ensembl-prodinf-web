@@ -70,7 +70,7 @@ angular.module('ProdSrvApp')
    };
 
    $scope.urlify = function(text) {
-	    var url = new RegExp('(.+)http://127.0.0.1(.+)');
+	    var url = new RegExp('(.+)http://(.+)');
 		var urlRegex = /(https?:\/\/[^\s]+)/g;
 		if (url.test(text)){
 		    var fixedUrl = text.replace('http://127.0.0.1',$location.$$protocol+ '://' + $location.$$host);
