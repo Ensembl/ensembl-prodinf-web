@@ -51,7 +51,12 @@
         <li data-match-route="/database_handover_result.*"><a href="#!database_handover_result">View handover database detail</a></li>
       </ul>
     </li>
-    <li data-match-route="/database_server_status.*"><a href="#!database_server_status">Database server status</a></li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Database server monitor<b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li data-match-route="/database_server_status.*"><a href="#!database_server_status">Database server status</a></li>
+        <li data-match-route="/database_server_size.*"><a href="#!database_server_size">Database size</a></li>
+      </ul>
+    </li>
 	  <li data-match-route="/help"><a href="#!help">Get help</a></li>
 	</ul>
       </nav>
@@ -101,6 +106,7 @@
         <script src="scripts/controllers/hc_result.js"></script>
         <script src="scripts/controllers/hc_submit.js"></script>
         <script src="scripts/controllers/database_server_status.js"></script>
+        <script src="scripts/controllers/database_server_size.js"></script>
         <script src="scripts/controllers/copy_submit.js"></script>
         <script src="scripts/controllers/copy_result.js"></script>
         <script src="scripts/controllers/copy_list.js"></script>

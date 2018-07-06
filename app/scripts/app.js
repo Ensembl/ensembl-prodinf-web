@@ -32,6 +32,10 @@ app.config(function($routeProvider) {
 	.when('/database_server_status/:serverParam', {
 	    templateUrl:'views/database_server_status.html',
 	    controller:'DatabaseServerStatusCtrl'
+	})
+	.when('/database_server_size', {
+	    templateUrl:'views/database_server_size.html',
+	    controller:'DatabaseServerSizeCtrl'
     })
 	.when('/hc_list', {
 	    templateUrl:'views/hc_list.html',
