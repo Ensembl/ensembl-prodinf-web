@@ -9,18 +9,16 @@
 
 angular.module('ProdSrvApp')
     .controller('DatabaseServerStatusCtrl', function ($scope, $http, $routeParams, CONFIG) {
-        $scope.searchButtonText = 'Submit';
 		$scope.running = false;
     	$scope.getStatus = function() {
 			$scope.serverStatus = null;
             if($scope.ServerName !== null && $scope.ServerName !== undefined) {
-            var url = CONFIG.DB_SRV_URL+'hosts/'+$scope.ServerName.split('@')[1].split(':')[0];
-			$scope.searchButtonText = 'Fetching';
+			var FinalServerName = $scope.splitUrl($scope.ServerName);
+            var url = CONFIG.DB_SRV_URL+'hosts/'+FinalServerName;
 			$scope.running = true;
     		$http.get(url)
     		    .then(function(response) {
     			$scope.serverStatus = response.data;
-                $scope.searchButtonText = 'Submit';
     			$scope.running = false;
     		    }).catch(function (data) {	
     			console.log(data);
@@ -40,6 +38,22 @@ angular.module('ProdSrvApp')
 				console.log(res.data);
 				return res.data;
 			});
+		};
+
+		$scope.splitUri = function(value){
+			var urlpattern = new RegExp('^(mysql:\/\/){1}'+ /* engine:// */
+			'(.+){1}'+ /* user */
+			'(:.+){0,1}'+ /* :password (optional) */
+			'(@){1}'+ /* @ */
+			'(.+){1}'+ /* server_name */
+			'(:){1}'+ /* : */
+			'(\\d+){1}'+ /* port */
+			'(\/){1}$'); /* end_of_url/ */
+			if (urlpattern.test(value))
+			{
+				value = value.split('@')[1].split(':')[0];
+			}
+			return value;
 		};
 
     	if($routeParams.serverParam !== null && $routeParams.serverParam !== undefined) {
