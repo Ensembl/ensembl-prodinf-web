@@ -169,6 +169,7 @@ angular.module('ProdSrvApp')
 				return;
 			}
 		}
+		input.result_url = $location.$$protocol+ '://' + $location.$$host +':'+$location.$$port + '/#!/copy_result/';
 	    console.log(input);
 	    var url = CONFIG.DB_SRV_URL+'jobs';
 	    console.log('POSTing to '+url);

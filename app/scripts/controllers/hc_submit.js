@@ -176,7 +176,8 @@ angular.module('ProdSrvApp')
 	    	(input.hc_groups === null || input.hc_groups === undefined || input.hc_groups.length===0)) {
 		window.alert('Either HC names or groups names are required');
 	    return;
-	    }	
+		}
+		input.result_url = $location.$$protocol+ '://' + $location.$$host +':'+$location.$$port + '/#!/hc_result/';
 	    console.log(input);
 	    var url = CONFIG.HC_SRV_URL+'jobs';
 	    console.log('POSTing to '+url);
