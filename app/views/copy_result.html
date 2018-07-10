@@ -67,6 +67,14 @@
 					<div class="col-sm-10 tablevalue {{jobResult.output.runtime}}">{{jobResult.output.runtime}}</div>
 				</div>
 			</div>
+			<div ng-hide="jobResult.output == null">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="tablekey">Copy completed on:</div>
+					</div>
+					<div class="col-sm-10 tablevalue {{jobResult.when_completed}}">{{jobResult.when_completed}}</div>
+				</div>
+			</div>
 			<div ng-show="jobResult.status == 'failed'">
 				<div class="row">
 					<div class="col-sm-2">
