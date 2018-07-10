@@ -11,6 +11,7 @@ angular.module('ProdSrvApp')
     .controller('HCResultCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob) {
 	$scope.running = false;
 	var jobidregex=new RegExp('^(\\d+){1}$');
+	$scope.Hide   = '';
 	$scope.getResult = function() {
 		$scope.jobResult = null;
 	    if($scope.jobId !== null && $scope.jobId !== undefined && jobidregex.test($scope.jobId)) {
@@ -65,6 +66,11 @@ angular.module('ProdSrvApp')
 	$scope.refresh = function() {
 	  $scope.getResult();
 	};
+
+
+    $scope.toggle = function() {
+        $scope.Hide = !$scope.Hide;
+    };
 
 
 	$scope.EditReSubmitJob = function() {
