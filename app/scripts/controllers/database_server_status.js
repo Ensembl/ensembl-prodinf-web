@@ -13,7 +13,7 @@ angular.module('ProdSrvApp')
     	$scope.getStatus = function() {
 			$scope.serverStatus = null;
             if($scope.ServerName !== null && $scope.ServerName !== undefined) {
-			var FinalServerName = $scope.splitUrl($scope.ServerName);
+			var FinalServerName = $scope.splitUri($scope.ServerName);
             var url = CONFIG.DB_SRV_URL+'hosts/'+FinalServerName;
 			$scope.running = true;
     		$http.get(url)
