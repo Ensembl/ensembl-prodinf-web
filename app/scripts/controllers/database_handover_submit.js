@@ -78,8 +78,8 @@ angular.module('ProdSrvApp')
 			window.alert('Update type required');
 			return;
 		}
-		if($scope.comment === null || $scope.comment === '') {
-			window.alert('Comment required');
+		if($scope.description === null || $scope.description === '') {
+			window.alert('Description required');
 			return;
 		}
 		if (!urlpattern.test($scope.ServerUri)){
@@ -101,7 +101,7 @@ angular.module('ProdSrvApp')
 			return;
 		}
 		input.type=$scope.UpdateType;
-		input.comment=$scope.comment;
+		input.comment=$scope.description;
 		input.source='Handover';
 	    console.log(input);
 	    var url = CONFIG.HANDOVER_SRV_URL+'handovers';
@@ -116,7 +116,7 @@ angular.module('ProdSrvApp')
 				$scope.src_uri = null;
 				$scope.contact = null;
 				$scope.update_type = null;
-				$scope.comment = null;
+				$scope.description = null;
 				$scope.source = null;
 		    	$location.url('/database_handover_result/'+$scope.handover_token);
 		    } 
