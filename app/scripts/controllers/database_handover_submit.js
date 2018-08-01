@@ -20,7 +20,7 @@ angular.module('ProdSrvApp')
 		$scope.dbName = serveruri[3];
 		$scope.email = $scope.jobdata.contact;
 		$scope.UpdateType = $scope.jobdata.type;
-		$scope.comment = $scope.jobdata.comment;
+		$scope.description = $scope.jobdata.comment;
 		$scope.source = $scope.jobdata.source;
 	}
 
