@@ -8,7 +8,8 @@
 
 
 angular.module('ProdSrvApp')
-    .controller('CopyListCtrl', function ($scope, $http, $routeParams, CONFIG) {
+    .controller('CopyListCtrl', function ($scope, $http, $routeParams, CONFIG, $filter) {
+			  var filter = $filter('filter');
         $scope.sortType     = 'id'; // set the default sort type
         $scope.sortReverse  = true;  // set the default sort order
         $scope.searchDbCopyJob   = '';     // set the default search/filter term
@@ -96,7 +97,8 @@ angular.module('ProdSrvApp')
 
 
 		$scope.checkAll = function() {
-			angular.forEach($scope.jobs, function(value) {
+			var filtered = filter($scope.jobs, $scope.searchDbCopyJob);
+			angular.forEach(filtered, function(value) {
 				value.Selected = $scope.selectAll;
 			});
 		};

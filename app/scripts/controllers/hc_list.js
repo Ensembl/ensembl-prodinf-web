@@ -8,7 +8,8 @@
 
 
 angular.module('ProdSrvApp')
-    .controller('HCListCtrl', function ($scope, $http, $routeParams, CONFIG) {
+    .controller('HCListCtrl', function ($scope, $http, $routeParams, CONFIG, $filter) {
+			var filter = $filter('filter');
 	    $scope.sortType     = 'id'; // set the default sort type
         $scope.sortReverse  = true;  // set the default sort order
         $scope.searchHcJob   = '';     // set the default search/filter term
@@ -105,7 +106,8 @@ angular.module('ProdSrvApp')
 
 
 		$scope.checkAll = function() {
-			angular.forEach($scope.jobs, function(value) {
+			var filtered = filter($scope.jobs, $scope.searchHcJob);
+			angular.forEach(filtered, function(value) {
 				value.Selected = $scope.selectAll;
 			});
 		  };
