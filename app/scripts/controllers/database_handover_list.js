@@ -8,7 +8,8 @@
 
 
 angular.module('ProdSrvApp')
-    .controller('HandoverListCtrl', function ($scope, $http, $routeParams, CONFIG) {
+    .controller('HandoverListCtrl', function ($scope, $http, $routeParams, CONFIG, $filter) {
+		var filter = $filter('filter');
         $scope.sortType     = 'report_time'; // set the default sort type
         $scope.sortReverse  = true;  // set the default sort order
         $scope.searchHandoverDatabase   = '';     // set the default search/filter term
@@ -99,7 +100,8 @@ angular.module('ProdSrvApp')
 		};
 
 		$scope.checkAll = function() {
-			angular.forEach($scope.jobs, function(value) {
+			var filtered = filter($scope.jobs, $scope.searchHandoverDatabase);
+			angular.forEach(filtered, function(value) {
 				value.Selected = $scope.selectAll;
 			});
 		};
