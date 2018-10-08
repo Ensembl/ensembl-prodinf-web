@@ -11,5 +11,6 @@ angular.module('app.config', [])
 	'COPY_TARGET_USER': 'ensadmin',
 	'DATA_FILES_PATH' : '/nfs/panda/ensembl/production/ensemblftp/data_files/',
 	'METADATA_SRV_URL': 'http://127.0.0.1:5003/',
-	'HANDOVER_SRV_URL': 'http://127.0.0.1:5004/'
+	'HANDOVER_SRV_URL': 'http://127.0.0.1:5004/',
+	'WEBSITE_NAME': 'Production team private self service'
     });
