@@ -79,7 +79,7 @@ app.config(function($routeProvider) {
 	.when('/', {
 		templateUrl:'views/homepage.html',
 		controller:'HomepageCtrl'
-	})
+	});
 });
 
 // create the controller and inject Angular's $scope
