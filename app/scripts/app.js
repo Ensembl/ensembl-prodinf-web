@@ -77,9 +77,16 @@ app.config(function($routeProvider) {
 	    templateUrl:'views/help.html'
 	})
 	.when('/', {
-		templateUrl:'views/homepage.html'
-	});
+		templateUrl:'views/homepage.html',
+		controller:'HomepageCtrl'
+	})
 });
+
+// create the controller and inject Angular's $scope
+app.controller('mainController', function($scope,CONFIG) {
+	$scope.websiteName = CONFIG.WEBSITE_NAME;
+});
+
 
 app.factory('editjob', function() {
 	var jobData = null;
