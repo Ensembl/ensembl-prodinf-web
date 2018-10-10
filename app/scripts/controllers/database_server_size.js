@@ -32,7 +32,7 @@ angular.module('ProdSrvApp')
 					$scope.running = false;
 					},function (response) {
 						$scope.running = false;
-						window.alert("Could not get database size for server: "+response.data.error);
+						window.alert('Could not get database size for server: '+response.data.error);
 						console.log(response);
 					});
     	    }

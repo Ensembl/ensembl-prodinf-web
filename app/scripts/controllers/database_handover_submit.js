@@ -121,7 +121,7 @@ angular.module('ProdSrvApp')
 		    	$location.url('/database_handover_result/'+$scope.handover_token);
 		    } 
 		},function (response) {
-			window.alert("Handover failed: "+response.data.error);
+			window.alert('Handover failed: '+response.data.error);
 			console.log(response);
 		});
 	};
