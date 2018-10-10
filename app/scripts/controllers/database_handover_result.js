@@ -19,6 +19,9 @@ angular.module('ProdSrvApp')
 				.then(function(response) {
 				$scope.jobResult = response.data;
 				$scope.running = false;
+			},function (response) {
+				window.alert('Could not retrieve job result: '+response.data.error);
+				$scope.running = false;
 			});
 	    }
 	};
@@ -32,9 +35,9 @@ angular.module('ProdSrvApp')
 				$scope.jobResult = null;	  
 				$scope.handoverToken = null;
 				$scope.running = false;
-			}).catch(function (data) {	
-			console.log(data);
-			window.alert('Could not delete job');
+			},function (response) {
+				window.alert('Could not delete job: '+response.data.error);
+				$scope.running = false;
 			});
 	    }
 	};

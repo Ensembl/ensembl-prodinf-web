@@ -19,12 +19,12 @@ angular.module('ProdSrvApp')
 			$scope.running = true;
 		    $http.get(url)
 		    .then(function(response) {
-			$scope.jobs = response.data;
-			$scope.running = false;
-		    }).catch(function (data) {	
-			console.log(data);
-			window.alert('Could not get jobs');
-		    });
+			    $scope.jobs = response.data;
+			    $scope.running = false;
+		    },function (response) {
+					window.alert('Could not retrieve jobs: '+response.data.error);
+					$scope.running = false;
+				});
 		};
 		$scope.loadHandoverJobs();
 
@@ -43,9 +43,9 @@ angular.module('ProdSrvApp')
 						$http.delete(url)
 						.then(function() {
 							$scope.running = false;
-						}).catch(function (data) {
-						console.log(data);
-						window.alert('Could not delete job ID '+value.handover_token);
+						},function (response) {
+							window.alert('Could not delete job:'+response.data.error);
+							$scope.running = false;
 						});
 					}
 				}
@@ -74,8 +74,9 @@ angular.module('ProdSrvApp')
 						.then(function(response) {
 							console.log(response);
 							window.alert('Job submitted with handover token '+response.data);
-						}).catch(function (data) {
-							window.alert('Could not submit job: '+data);
+						},function (response) {
+							window.alert('Could not submit job'+response.data.error);
+							$scope.running = false;
 						});
 					}
 				}

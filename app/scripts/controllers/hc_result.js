@@ -24,9 +24,9 @@ angular.module('ProdSrvApp')
 				if (response.data.status === 'failed') {
 					$scope.getFailure();
 				}
-				}).catch(function (data) {	
-				console.log(data);
-				window.alert('Could not get result for job');
+				},function (response) {
+					window.alert('Could not get result for job: '+response.data.error);
+					$scope.running = false;
 				});
 	    }
 	};
@@ -40,9 +40,9 @@ angular.module('ProdSrvApp')
 				.then(function(response) {
 				$scope.jobMsgs = response.data;
 				$scope.running = false;
-				}).catch(function (data) {
-				console.log(data);
-			window.alert('Could not get job failure message');
+				},function (response) {
+					window.alert('Could not get job failure: '+response.data.error);
+					$scope.running = false;
 				});
 		}
 	};
@@ -56,9 +56,9 @@ angular.module('ProdSrvApp')
 				$scope.jobResult = null;	  
 				$scope.jobId = null;
 				$scope.running = false;
-			}).catch(function (data) {	
-			console.log(data);
-			window.alert('Could not delete job');
+			},function (response) {
+				window.alert('Could not delete job: '+response.data.error);
+				$scope.running = false;
 			});
 	    }
 	};

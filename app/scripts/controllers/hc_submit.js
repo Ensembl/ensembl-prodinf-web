@@ -195,8 +195,9 @@ angular.module('ProdSrvApp')
 				$scope.tag = null;
 		    	$location.url('/hc_result/'+$scope.jobId);
 		    } 
-		}).catch(function (data) {		  
-		    window.alert('Could not submit job: '+data);
+		},function (response) {
+			window.alert('Could not submit job: '+response.data.error);
+			$scope.running = false;
 		});
 	};
     }
