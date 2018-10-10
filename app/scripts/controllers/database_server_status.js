@@ -20,10 +20,11 @@ angular.module('ProdSrvApp')
     		    .then(function(response) {
     			$scope.serverStatus = response.data;
     			$scope.running = false;
-    		    }).catch(function (data) {	
-    			console.log(data);
-    			window.alert('Could not get status for server');
-    		    });
+                },function (response) {
+                    $scope.running = false;
+					window.alert("Could not get status for server: "+response.data.error);
+					console.log(response)
+				});
     	    }
     	};
 

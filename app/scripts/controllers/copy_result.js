@@ -23,9 +23,9 @@ angular.module('ProdSrvApp')
 				if (response.data.status === 'failed') {
 					$scope.getCopyFailure();
 				}
-				}).catch(function (data) {	
-				console.log(data);
-				window.alert('Could not get result for job');
+				},function (response) {
+					window.alert('Could not retrieve job: '+response.data.error);
+					$scope.running = false;
 				});
 	    }
 	};
@@ -39,9 +39,9 @@ angular.module('ProdSrvApp')
 				.then(function(response) {
 				$scope.jobMsg = response.data;
 				$scope.running = false;
-				}).catch(function (data) {
-				console.log(data);
-			window.alert('Could not get job failure message');
+				},function (response) {
+					window.alert('Could not get job failures: '+response.data.error);
+					$scope.running = false;
 				});
 		}
 	};
@@ -55,9 +55,9 @@ angular.module('ProdSrvApp')
 				$scope.jobResult = null;	  
 				$scope.jobId = null;
 				$scope.running = false;
-			}).catch(function (data) {	
-			console.log(data);
-			window.alert('Could not delete job');
+			},function (response) {
+				window.alert('Could not delete job: '+response.data.error);
+				$scope.running = false;
 			});
 	    }
 	};
@@ -72,9 +72,9 @@ angular.module('ProdSrvApp')
 			window.alert('Successfully stopped the database copy');
 			$scope.running = false;
 			$scope.getCopyResult();
-			}).catch(function (data) {
-			console.log(data);
-			window.alert('Could not stop the database copy');
+			},function (response) {
+				window.alert('Could not stop the database copy: '+response.data.error);
+				$scope.running = false;
 			});
 	    }
 	};

@@ -120,8 +120,9 @@ angular.module('ProdSrvApp')
 				$scope.source = null;
 		    	$location.url('/database_handover_result/'+$scope.handover_token);
 		    } 
-		}).catch(function (data) {		  
-		    window.alert('Could not submit job: '+data);
+		},function (response) {
+			window.alert("Handover failed: "+response.data.error);
+			console.log(response)
 		});
 	};
 }

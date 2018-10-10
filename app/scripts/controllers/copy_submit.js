@@ -50,9 +50,9 @@ angular.module('ProdSrvApp')
 		.then(function(res) {
 			console.log(res.data);
 			if ($scope.jobdata===null || $scope.jobdata === ''){
-			  $scope.TargetdbName = res.data;
+				$scope.TargetdbName = res.data;
 			}
-		    return res.data;
+			return res.data;
 		});
 	};
 
@@ -184,8 +184,9 @@ angular.module('ProdSrvApp')
 				$scope.target_db_uri = null;
 				$location.url('/copy_result/'+$scope.jobId);
 		    } 
-		}).catch(function (data) {		  
-		    window.alert('Could not submit job: '+data);
+		},function (response) {
+			window.alert('Could not submit job: '+response.data.error);
+			$scope.running = false;
 		});
 	};
 }
