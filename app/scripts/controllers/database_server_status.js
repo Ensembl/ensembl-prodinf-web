@@ -23,7 +23,7 @@ angular.module('ProdSrvApp')
                 },function (response) {
                     $scope.running = false;
 					window.alert("Could not get status for server: "+response.data.error);
-					console.log(response)
+					console.log(response);
 				});
     	    }
     	};

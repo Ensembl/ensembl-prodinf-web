@@ -122,7 +122,7 @@ angular.module('ProdSrvApp')
 		    } 
 		},function (response) {
 			window.alert("Handover failed: "+response.data.error);
-			console.log(response)
+			console.log(response);
 		});
 	};
 }
