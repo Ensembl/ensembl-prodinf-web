@@ -103,3 +103,27 @@ app.factory('editjob', function() {
 	};
    
 });
+
+app.factory('hidepassword', function() {
+	return {
+		hide: function(data) {
+			var dburlpattern = new RegExp('^(mysql:\/\/){1}'+ /* engine:// */
+			'(\\w+){1}'+ /* user */
+			'(:)?'+ /* : (optional) */
+			'(.+)?'+ /* password (optional) */
+			'(@){1}'+ /* @ */
+			'(.+){1}'+ /* server_name */
+			'(:){1}'+ /* : */
+			'(\\d+){1}'+ /* port */
+			'(\/){1}'+ /* end_of_url/ */
+			'(.+)?$'); /* database_name */
+			var urlnopassword = dburlpattern.exec(data);
+			if (urlnopassword !== null && urlnopassword[4] !== undefined){
+				return data.replace(urlnopassword[4],'xxxxx');
+			}
+			else{
+				return data;
+			}
+		}
+	};
+});

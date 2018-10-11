@@ -5,7 +5,7 @@
 	      Database server URI:
 	    </label>
 	    <div class="col-sm-10">
-				<input type="text" class="form-control" id="ServerUri" ng-model="ServerUri" bs-options="serveruri for serveruri in getServerUris($viewValue)" placeholder="Enter Server URI, e.g: mysql://ensro@mysql-ens-general-dev-1:4484/" bs-typeahead>
+				<input type="text" class="form-control" id="ServerUri" ng-model="ServerUri" bs-options="hidePassword(serveruri) for serveruri in getServerUris($viewValue)" placeholder="Enter Server URI, e.g: mysql://ensro@mysql-ens-general-dev-1:4484/" bs-typeahead>
 	    </div>
 	  </div>
 

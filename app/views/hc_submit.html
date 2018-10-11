@@ -5,7 +5,7 @@
 	      Test server URI:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="dbUri" ng-model="dbUri" bs-options="uri for uri in getUris($viewValue)" placeholder="Enter URI, e.g: mysql://ensro@mysql-ens-general-dev-1:4484/" bs-typeahead>
+	      <input type="text" class="form-control" id="dbUri" ng-model="dbUri" bs-options="hidePassword(uri) for uri in getUris($viewValue)" placeholder="Enter URI, e.g: mysql://ensro@mysql-ens-general-dev-1:4484/" bs-typeahead>
 	    </div>
 	  </div>
 
@@ -45,7 +45,7 @@
 	      Staging URI:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="staging_uri" ng-model="staging_uri" bs-options="dbName for dbName in getUris($viewValue)" minLength="3" bs-typeahead>
+	      <input type="text" class="form-control" id="staging_uri" ng-model="staging_uri" bs-options="hidePassword(dbName) for dbName in getUris($viewValue)" minLength="3" bs-typeahead>
 	    </div>	    
 	  </div>
 	  
@@ -54,7 +54,7 @@
 	      Live URI:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="live_uri" ng-model="live_uri" bs-options="dbName for dbName in getUris($viewValue)" minLength="3" bs-typeahead>
+	      <input type="text" class="form-control" id="live_uri" ng-model="live_uri" bs-options="hidePassword(dbName) for dbName in getUris($viewValue)" minLength="3" bs-typeahead>
 	    </div>
 	  </div>
 	  
@@ -63,7 +63,7 @@
 	      Compara Master URI:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="compara_uri" ng-model="compara_uri" bs-options="dbName for dbName in getUris($viewValue)" minLength="3" bs-typeahead>
+	      <input type="text" class="form-control" id="compara_uri" ng-model="compara_uri" bs-options="hidePassword(dbName) for dbName in getUris($viewValue)" minLength="3" bs-typeahead>
 	    </div>
 	  </div>
 	  <div class="form-group">
@@ -71,7 +71,7 @@
 	      Production URI:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="production_uri" ng-model="production_uri" bs-options="dbName for dbName in getUris($viewValue)" minLength="3" bs-typeahead>
+	      <input type="text" class="form-control" id="production_uri" ng-model="production_uri" bs-options="hidePassword(dbName) for dbName in getUris($viewValue)" minLength="3" bs-typeahead>
 	    </div>
 		</div>
 		<div class="form-group">
@@ -79,7 +79,7 @@
 				Data files path:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="data_files_path" ng-model="data_files_path" minLength="3" bs-typeahead>
+	      <input type="text" class="form-control" id="data_files_path" ng-model="data_files_path" minLength="3">
 	    </div>
 		</div>
 		<div class="form-group">
@@ -87,7 +87,7 @@
 				Tag:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="tag" ng-model="tag" minLength="3" bs-typeahead>
+	      <input type="text" class="form-control" id="tag" ng-model="tag" minLength="3">
 	    </div>
 	  </div>
 	  <div class="form-group">
@@ -95,7 +95,7 @@
 	      Email:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="email" ng-model="email" minLength="10" bs-typeahead/>
+	      <input type="text" class="form-control" id="email" ng-model="email" minLength="10"/>
 	    </div>
 	  </div>
 	  <div class="col-sm-12">

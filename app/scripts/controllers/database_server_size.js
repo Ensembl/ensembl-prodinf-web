@@ -8,8 +8,8 @@
 
 
 angular.module('ProdSrvApp')
-    .controller('DatabaseServerSizeCtrl', function ($scope, $http, $routeParams, CONFIG) {
-	  	$scope.running = false;
+    .controller('DatabaseServerSizeCtrl', function ($scope, $http, CONFIG) {
+			$scope.running = false;
 		  $scope.dirName = '/instances';
     	$scope.getDatabaseSize = function() {
 			$scope.databaseSize = null;
@@ -43,10 +43,8 @@ angular.module('ProdSrvApp')
 			  return [];
 			}
 			var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.URI_USER+'?query=' + query;
-			console.log(url);
 			return $http.get(url)
 			.then(function(res) {
-				console.log(res.data);
 				return res.data;
 			});
 		};
@@ -56,10 +54,8 @@ angular.module('ProdSrvApp')
 			  return [];
 			}
 			var url = CONFIG.DB_SRV_URL+'databases?query=' + query + '&db_uri='+$scope.ServerName;
-			console.log(url);
 			return $http.get(url)
 			.then(function(res) {
-				console.log(res.data);
 				return res.data;
 			});
 		};

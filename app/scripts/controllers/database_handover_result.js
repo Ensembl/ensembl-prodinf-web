@@ -8,8 +8,11 @@
 
 
 angular.module('ProdSrvApp')
-    .controller('HandoverResultCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob) {
+    .controller('HandoverResultCtrl', function ($scope, $http, $routeParams, CONFIG, $location, editjob, hidepassword) {
 	$scope.running = false;
+	$scope.hidePassword = function(data) {
+		return hidepassword.hide(data);
+	};
 	$scope.getHandoverResult = function() {
 	    $scope.jobResult = null;	    
 	    if($scope.handoverToken !== null && $scope.handoverToken !== undefined) {
@@ -21,6 +24,7 @@ angular.module('ProdSrvApp')
 				$scope.running = false;
 			},function (response) {
 				window.alert('Could not retrieve job result: '+response.data.error);
+				console.log(response);
 				$scope.running = false;
 			});
 	    }
@@ -37,6 +41,7 @@ angular.module('ProdSrvApp')
 				$scope.running = false;
 			},function (response) {
 				window.alert('Could not delete job: '+response.data.error);
+				console.log(response);
 				$scope.running = false;
 			});
 	    }
@@ -52,7 +57,6 @@ angular.module('ProdSrvApp')
     };
 
 	if($routeParams.handoverTokenParam !== null && $routeParams.handoverTokenParam !== undefined) {
-	    console.log($routeParams.handoverTokenParam);
 	    $scope.handoverToken = $routeParams.handoverTokenParam;
 	    $scope.getHandoverResult();
 	}

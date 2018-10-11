@@ -23,13 +23,13 @@
 				<div class="col-sm-2">
 					<div class="tablekey">Source DB:</div>
 				</div>
-				<div class="col-sm-10 tablevalue">{{jobResult.input.source_db_uri}}</div>
+				<div class="col-sm-10 tablevalue">{{hidePassword(jobResult.input.source_db_uri)}}</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-2">
 					<div class="tablekey">Target DB:</div>
 				</div>
-				<div class="col-sm-10 tablevalue">{{jobResult.input.target_db_uri}}</div>
+				<div class="col-sm-10 tablevalue">{{hidePassword(jobResult.input.target_db_uri)}}</div>
 			</div>
 			<div ng-hide="jobResult.status == 'failed'">
 				<div class="row">

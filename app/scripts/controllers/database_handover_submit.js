@@ -10,8 +10,11 @@
  */
 
 angular.module('ProdSrvApp')
-    .controller('HandoverSubmitCtrl', function ($scope, $http, CONFIG, $q, $location, editjob) {
+    .controller('HandoverSubmitCtrl', function ($scope, $http, CONFIG, $q, $location, editjob, hidepassword) {
 	$scope.displayOptions = false;
+	$scope.hidePassword = function(data) {
+		return hidepassword.hide(data);
+	};
 	$scope.jobdata = editjob.get();
 	$scope.UpdateType = 'Other';
 	if ($scope.jobdata!==null && $scope.jobdata !== ''){
@@ -29,10 +32,8 @@ angular.module('ProdSrvApp')
 		  return [];
 		}
 	    var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.COPY_SOURCE_USER+'?query=' + query;
-	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
-		    console.log(res.data);
 		    return res.data;
 		});
 	};
@@ -42,10 +43,8 @@ angular.module('ProdSrvApp')
 		  return [];
 		}
 	    var url = CONFIG.DB_SRV_URL+'databases?query=' + query + '&db_uri='+$scope.ServerUri;
-	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
-			console.log(res.data);
 		    return res.data;
 		});
 	};
@@ -56,8 +55,9 @@ angular.module('ProdSrvApp')
 	    $scope.jobId = null;
 
         var urlpattern = new RegExp('^(mysql:\/\/){1}'+ /* engine:// */
-		'(.+){1}'+ /* user */
-		'(:.+){0,1}'+ /* :password (optional) */
+		'(\\w+){1}'+ /* user */
+		'(:)?'+ /* : (optional) */
+		'(.+)?'+ /* password (optional) */
 		'(@){1}'+ /* @ */
 		'(.+){1}'+ /* server_name */
 		'(:){1}'+ /* : */
@@ -103,12 +103,9 @@ angular.module('ProdSrvApp')
 		input.type=$scope.UpdateType;
 		input.comment=$scope.description;
 		input.source='Handover';
-	    console.log(input);
 	    var url = CONFIG.HANDOVER_SRV_URL+'handovers';
-	    console.log('POSTing to '+url);
 	    $http.post(url, input)
 		.then(function(response) {
-		    console.log(response);
 		    if($scope.keepValues === true) {
 		    	window.alert('Job submitted with handover token '+response.data);
 		    } else {
