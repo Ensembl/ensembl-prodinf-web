@@ -76,7 +76,8 @@ angular.module('ProdSrvApp')
 			.then(function() {
 			window.alert('Successfully stopped the database copy');
 			$scope.running = false;
-			$scope.getCopyResult();
+			$scope.jobResult = null;
+			$scope.jobId = null;
 			},function (response) {
 				window.alert('Could not stop the database copy: '+response.data.error);
 				console.log(response);
