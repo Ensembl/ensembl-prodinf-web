@@ -8,7 +8,7 @@
 
 
 angular.module('ProdSrvApp')
-    .controller('HomepageCtrl', function ($scope, $http, $routeParams, CONFIG) {
+    .controller('HomepageCtrl', function ($scope, CONFIG) {
         $scope.websiteName     = CONFIG.WEBSITE_NAME;
 		}
     	);

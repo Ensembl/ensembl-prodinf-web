@@ -8,12 +8,15 @@
 
 
 angular.module('ProdSrvApp')
-    .controller('HandoverListCtrl', function ($scope, $http, $routeParams, CONFIG, $filter) {
+    .controller('HandoverListCtrl', function ($scope, $http, CONFIG, $filter, hidepassword) {
 		var filter = $filter('filter');
-        $scope.sortType     = 'report_time'; // set the default sort type
-        $scope.sortReverse  = true;  // set the default sort order
-        $scope.searchHandoverDatabase   = '';     // set the default search/filter term
-        $scope.running = false; // default value for loading spinner
+		$scope.hidePassword = function(data) {
+			return hidepassword.hide(data);
+		};
+		$scope.sortType     = 'report_time'; // set the default sort type
+		$scope.sortReverse  = true;  // set the default sort order
+		$scope.searchHandoverDatabase   = '';     // set the default search/filter term
+		$scope.running = false; // default value for loading spinner
 		$scope.loadHandoverJobs = function() {
 			var url = CONFIG.HANDOVER_SRV_URL+'handovers';
 			$scope.running = true;
@@ -23,6 +26,7 @@ angular.module('ProdSrvApp')
 			    $scope.running = false;
 		    },function (response) {
 					window.alert('Could not retrieve jobs: '+response.data.error);
+					console.log(response);
 					$scope.running = false;
 				});
 		};
@@ -39,12 +43,12 @@ angular.module('ProdSrvApp')
 					if(value.handover_token !== null && value.handover_token !== undefined) {
 						var url = CONFIG.HANDOVER_SRV_URL+'handovers/'+value.handover_token;
 						$scope.running = true;
-						console.log(url);
 						$http.delete(url)
 						.then(function() {
 							$scope.running = false;
 						},function (response) {
 							window.alert('Could not delete job:'+response.data.error);
+							console.log(response);
 							$scope.running = false;
 						});
 					}
@@ -67,15 +71,13 @@ angular.module('ProdSrvApp')
 						input.type=value.type;
 						input.comment=value.comment;
 						input.source='Handover';
-						console.log(input);
 						var url = CONFIG.HANDOVER_SRV_URL+'handovers';
-						console.log('POSTing to '+url);
 						$http.post(url, input)
 						.then(function(response) {
-							console.log(response);
 							window.alert('Job submitted with handover token '+response.data);
 						},function (response) {
 							window.alert('Could not submit job'+response.data.error);
+							console.log(response);
 							$scope.running = false;
 						});
 					}

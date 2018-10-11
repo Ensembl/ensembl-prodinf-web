@@ -33,10 +33,8 @@ angular.module('ProdSrvApp')
 			  return [];
 			}
 			var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.URI_USER+'?query=' + query;
-			console.log(url);
 			return $http.get(url)
 			.then(function(res) {
-				console.log(res.data);
 				return res.data;
 			});
 		};
@@ -58,7 +56,6 @@ angular.module('ProdSrvApp')
 		};
 
     	if($routeParams.serverParam !== null && $routeParams.serverParam !== undefined) {
-    	    console.log($routeParams.serverParam);
     	    $scope.serverName = $routeParams.serverParam;
     	    $scope.getStatus();
     	}

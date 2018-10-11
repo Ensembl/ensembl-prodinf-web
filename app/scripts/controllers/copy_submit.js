@@ -10,8 +10,11 @@
  */
 
 angular.module('ProdSrvApp')
-    .controller('CopySubmitCtrl', function ($scope, $http, CONFIG, $q, $location, editjob) {
+    .controller('CopySubmitCtrl', function ($scope, $http, CONFIG, $location, editjob, hidepassword) {
 	$scope.displayOptions = false;
+	$scope.hidePassword = function(data) {
+		return hidepassword.hide(data);
+	};
 	$scope.jobdata = editjob.get();
 	if ($scope.jobdata!==null && $scope.jobdata !== ''){
 		var sourceuri=$scope.jobdata.source_db_uri.split('/');
@@ -32,10 +35,8 @@ angular.module('ProdSrvApp')
 		  return [];
 		}
 	    var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.COPY_SOURCE_USER+'?query=' + query;
-	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
-		    console.log(res.data);
 		    return res.data;
 		});
 	};
@@ -45,10 +46,8 @@ angular.module('ProdSrvApp')
 		  return [];
 		}
 	    var url = CONFIG.DB_SRV_URL+'databases?query=' + query + '&db_uri='+$scope.SourcedbUri;
-	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
-			console.log(res.data);
 			if ($scope.jobdata===null || $scope.jobdata === ''){
 				$scope.TargetdbName = res.data;
 			}
@@ -61,10 +60,8 @@ angular.module('ProdSrvApp')
 		  return [];
 		}
 	    var url = CONFIG.DB_SRV_URL+'servers/'+CONFIG.COPY_TARGET_USER+'?query=' + query;
-	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
-		    console.log(res.data);
 		    return res.data;
 		});
 	};
@@ -74,10 +71,8 @@ angular.module('ProdSrvApp')
 		  return [];
 		}
 	    var url = CONFIG.DB_SRV_URL+'databases?query=' + query + '&db_uri='+$scope.TargetdbUri;
-	    console.log(url);
 	    return $http.get(url)
 		.then(function(res) {
-		    console.log(res.data);
 		    return res.data;
 		});
 	};
@@ -94,8 +89,9 @@ angular.module('ProdSrvApp')
 	    $scope.jobId = null;
 
         var urlpattern = new RegExp('^(mysql:\/\/){1}'+ /* engine:// */
-		'(.+){1}'+ /* user */
-		'(:.+){0,1}'+ /* :password (optional) */
+		'(\\w+){1}'+ /* user */
+		'(:)?'+ /* : (optional) */
+		'(.+)?'+ /* password (optional) */
 		'(@){1}'+ /* @ */
 		'(.+){1}'+ /* server_name */
 		'(:){1}'+ /* : */
@@ -170,12 +166,9 @@ angular.module('ProdSrvApp')
 			}
 		}
 		input.result_url = $location.$$protocol+ '://' + $location.$$host +':'+$location.$$port + '/#!/copy_result/';
-	    console.log(input);
 	    var url = CONFIG.DB_SRV_URL+'jobs';
-	    console.log('POSTing to '+url);
 	    $http.post(url, input)
 		.then(function(response) {
-		    console.log(response);
 		    if($scope.keepValues === true) {
 		    	window.alert('Job submitted with ID '+response.data.job_id);
 		    } else {
@@ -186,6 +179,7 @@ angular.module('ProdSrvApp')
 		    } 
 		},function (response) {
 			window.alert('Could not submit job: '+response.data.error);
+			console.log(response);
 			$scope.running = false;
 		});
 	};

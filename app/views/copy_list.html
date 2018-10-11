@@ -66,8 +66,8 @@
      <tr ng-repeat="job in jobs | orderBy:sortType:sortReverse | filter:searchDbCopyJob" >
     <td><a href="/#!/copy_result/{{job.id}}">{{job.id}}</a></td>
     <td>{{job.input.timestamp * 1000 | date:'dd-MM-yyyy HH:mm'}}</td>
-		<td>{{job.input.source_db_uri}}</td>
-    <td>{{job.input.target_db_uri}}</td>
+		<td>{{hidePassword(job.input.source_db_uri)}}</td>
+    <td>{{hidePassword(job.input.target_db_uri)}}</td>
     <td>{{job.status}}</td>
     <td><input type="checkbox" ng-model="job.Selected" ></td>
      </tr>

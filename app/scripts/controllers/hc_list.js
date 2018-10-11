@@ -8,12 +8,15 @@
 
 
 angular.module('ProdSrvApp')
-    .controller('HCListCtrl', function ($scope, $http, $routeParams, CONFIG, $filter) {
+    .controller('HCListCtrl', function ($scope, $http, CONFIG, $filter, hidepassword) {
 			var filter = $filter('filter');
+			$scope.hidePassword = function(data) {
+				return hidepassword.hide(data);
+			};
 	    $scope.sortType     = 'id'; // set the default sort type
-        $scope.sortReverse  = true;  // set the default sort order
-        $scope.searchHcJob   = '';     // set the default search/filter term
-        $scope.running = false; // default value for loading spinner
+			$scope.sortReverse  = true;  // set the default sort order
+			$scope.searchHcJob   = '';     // set the default search/filter term
+			$scope.running = false; // default value for loading spinner
 		$scope.loadJobs = function() {
 			var url = CONFIG.HC_SRV_URL+'jobs';
 			$scope.running = true;
@@ -23,6 +26,7 @@ angular.module('ProdSrvApp')
 			$scope.running = false;
 		    },function (response) {
 					window.alert('Could not retrieve jobs: '+response.data.error);
+					console.log(response);
 					$scope.running = false;
 				});
 		};
@@ -44,6 +48,7 @@ angular.module('ProdSrvApp')
 							$scope.running = false;
 						},function (response) {
 							window.alert('Could not delete job: '+response.data.error);
+							console.log(response);
 							$scope.running = false;
 						});
 					}
@@ -87,15 +92,13 @@ angular.module('ProdSrvApp')
 							if(value.input.email!==null && value.input.email!=='') {
 							input.email = value.input.email;
 							}
-							console.log(input);
 							var url = CONFIG.HC_SRV_URL+'jobs';
-							console.log('POSTing to '+url);
 							$http.post(url, input)
 							.then(function(response) {
-								console.log(response);
 							    window.alert('Job submitted with ID '+response.data.job_id);
 							},function (response) {
 								window.alert('Could not submit job: '+response.data.error);
+								console.log(response);
 								$scope.running = false;
 							});
 					}
