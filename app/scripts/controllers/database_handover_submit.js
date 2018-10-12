@@ -106,9 +106,8 @@ angular.module('ProdSrvApp')
 	    var url = CONFIG.HANDOVER_SRV_URL+'handovers';
 	    $http.post(url, input)
 		.then(function(response) {
-		    if($scope.keepValues === true) {
-		    	window.alert('Job submitted with handover token '+response.data);
-		    } else {
+			window.alert('Job submitted with handover token '+response.data);
+		    if($scope.keepValues !== true) {
 		    	$scope.handover_token = response.data;
 				$scope.src_uri = null;
 				$scope.contact = null;
