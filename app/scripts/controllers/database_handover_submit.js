@@ -16,13 +16,11 @@ angular.module('ProdSrvApp')
 		return hidepassword.hide(data);
 	};
 	$scope.jobdata = editjob.get();
-	$scope.UpdateType = 'Other';
 	if ($scope.jobdata!==null && $scope.jobdata !== ''){
 		var serveruri=$scope.jobdata.src_uri.split('/');
 		$scope.ServerUri = serveruri[0]+'/'+serveruri[1]+'/'+serveruri[2]+'/';
 		$scope.dbName = serveruri[3];
 		$scope.email = $scope.jobdata.contact;
-		$scope.UpdateType = $scope.jobdata.type;
 		$scope.description = $scope.jobdata.comment;
 		$scope.source = $scope.jobdata.source;
 	}
@@ -74,10 +72,6 @@ angular.module('ProdSrvApp')
 			window.alert('Email required');
 			return;
 		}
-		if($scope.UpdateType === null || $scope.UpdateType === '') {
-			window.alert('Update type required');
-			return;
-		}
 		if($scope.description === null || $scope.description === '') {
 			window.alert('Description required');
 			return;
@@ -100,7 +94,6 @@ angular.module('ProdSrvApp')
 			window.alert('Email should follow the pattern john.doe@ebi.ac.uk');
 			return;
 		}
-		input.type=$scope.UpdateType;
 		input.comment=$scope.description;
 		input.source='Handover';
 	    var url = CONFIG.HANDOVER_SRV_URL+'handovers';
@@ -111,7 +104,6 @@ angular.module('ProdSrvApp')
 		    	$scope.handover_token = response.data;
 				$scope.src_uri = null;
 				$scope.contact = null;
-				$scope.update_type = null;
 				$scope.description = null;
 				$scope.source = null;
 		    	$location.url('/database_handover_result/'+$scope.handover_token);
