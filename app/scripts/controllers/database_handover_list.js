@@ -68,7 +68,6 @@ angular.module('ProdSrvApp')
 						if(value.contact!==null && value.contact!=='') {
 						input.contact = value.contact;
 						}
-						input.type=value.type;
 						input.comment=value.comment;
 						input.source='Handover';
 						var url = CONFIG.HANDOVER_SRV_URL+'handovers';
