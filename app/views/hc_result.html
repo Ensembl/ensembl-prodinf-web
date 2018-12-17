@@ -25,8 +25,6 @@
 			</div>
 			<div class="col-sm-10 tablevalue">{{hidePassword(jobResult.input.db_uri)}}</div>
 		</div>
-
-
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="tablekey">HCs:</div>
@@ -36,7 +34,14 @@
 				<span ng-repeat="name in jobResult.input.hc_groups">{{name}}<br /></span>
 			</div>
 		</div>
-
+		<div ng-hide="jobResult.output == null">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="tablekey">Completed on:</div>
+				</div>
+				<div class="col-sm-10 tablevalue {{jobResult.when_completed}}">{{jobResult.when_completed}}</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-2">
 				<div class="tablekey">Job status:</div>
