@@ -45,13 +45,6 @@
                <span ng-show="sortType == 'contact' && sortReverse" class="fa fa-caret-up"></span>
           </a>
        </th>
-       <th scope="col" title="Type">
-          <a href="#!/database_handover_list" ng-click="sortType = 'type'; sortReverse = !sortReverse">
-            Update type
-              <span ng-show="sortType == 'type' && !sortReverse" class="fa fa-caret-down"></span>
-              <span ng-show="sortType == 'type' && sortReverse" class="fa fa-caret-up"></span>
-         </a>
-      </th>
       <th scope="col" title="Comment">
           <a href="#!/database_handover_list" ng-click="sortType = 'comment'; sortReverse = !sortReverse">
               Comment
@@ -82,7 +75,6 @@
     <td>{{job.report_time | date:'dd-MM-yyyy HH:mm'}}</td>
 		<td>{{job.src_uri}}</td>
     <td>{{job.contact}}</td>
-    <td>{{job.type}}</td>
     <td>{{job.comment}}</td>
     <td>{{checkStatus(job.current_message)}}</td>
     <td><input type="checkbox" ng-model="job.Selected" ></td>
