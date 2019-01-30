@@ -30,8 +30,8 @@
 	      Target database:
 	    </label>
 	    <div class="col-sm-10">
-	      <input type="text" class="form-control" id="TargetdbName" ng-model="TargetdbName" bs-options="TargetdbName for TargetdbName in getTargetCopyDbs($viewValue)" minLength="3" bs-typeahead>
-	    </div>
+	      <input type="text" class="form-control" id="TargetdbName" ng-model="TargetdbName" minLength="3">
+			</div>
 	  </div>
 	  <button ng-click="displayAdvOptions()">Display advanced options</button>
       <div ng-show="displayOptions">

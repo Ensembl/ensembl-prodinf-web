@@ -66,17 +66,6 @@ angular.module('ProdSrvApp')
 		});
 	};
 
-	$scope.getTargetCopyDbs = function(query) {
-	    if(query===null || query === '' || $scope.TargetdbUri === null || $scope.TargetdbUri === '') {
-		  return [];
-		}
-	    var url = CONFIG.DB_SRV_URL+'databases?query=' + query + '&db_uri='+$scope.TargetdbUri;
-	    return $http.get(url)
-		.then(function(res) {
-		    return res.data;
-		});
-	};
-
 
     $scope.displayAdvOptions = function() {
         $scope.displayOptions = !$scope.displayOptions;
