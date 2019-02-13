@@ -5,6 +5,7 @@ This project provides a simple Angular web app which uses the services provided 
 Configuration
 =============
 Some default server values are provided in `app/scripts/config.js` which you may wish to update. In particular, you should modify the HC_SRV and DB_SRV urls.
+If you want to use Nginx, You will need to setup your server port and app ports inside `nginx.conf`
 
 Installation
 ========
@@ -29,6 +30,11 @@ node_modules/grunt-cli/bin/grunt serve
 To build the distribtion for use with another web server:
 ```
 node_modules/grunt-cli/bin/grunt build
+```
+
+OR To start a nginx server:
+```
+./start_nginx_server.sh
 ```
 
 To create a docker image using `nginx`:
