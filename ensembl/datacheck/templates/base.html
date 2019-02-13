@@ -1,0 +1,52 @@
+
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+  Datacheck Catalog
+{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='catalog.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/production.png') }}">
+{% endblock styles %}
+
+{% block content %}
+  {% set repo_url = 'https://github.com/Ensembl/ensembl-datacheck/tree/master/lib/Bio/EnsEMBL/DataCheck/Checks/' %}
+
+  <a id="top"></a>
+
+  <div class="container">
+    <h2><img src="/static/img/production.png" /> Datacheck Catalog</h2>
+  </div>
+
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <span class="navbar-brand">List by:</span>
+      </div>
+      <ul class="nav navbar-nav">
+        <li {% if request.endpoint.endswith('names') %} class="active" {% endif %}><a href="/names" >Name</a></li>
+        <li {% if request.endpoint.endswith('groups') %} class="active" {% endif %}><a href="/groups" >Group</a></li>
+        <li {% if request.endpoint.endswith('types') %} class="active" {% endif %}><a href="/types" >Type</a></li>
+      </ul>
+
+      {% if request.endpoint.endswith('groups') %}
+        <ul class="nav navbar-right navbar-nav" style="margin-right: 0px;">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">Jump to group <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              {% for group in datachecks | sort %}
+                <li><a class="dropdown-item" href="#{{ group }}">{{ group }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul>
+      {% endif %}
+    </nav>
+  </div>
+
+  <div class="container">
+    {% block datacheck_table %}{% endblock %}
+  </div>
+{% endblock %}

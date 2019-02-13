@@ -1,0 +1,14 @@
+.bg-purple {
+  background-color: rgba(128, 0, 102, 1);
+  color: white;
+}
+
+.bg-light-purple {
+  background-color: rgba(128, 0, 102, 0.66);
+  color: white;
+}
+
+.top_link {
+  float: right;
+  color: white;
+}
