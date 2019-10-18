@@ -28,6 +28,7 @@ angular.module('ProdSrvApp')
         $scope.update = $scope.jobdata.update;
 				$scope.drop = $scope.jobdata.drop;
 				$scope.convert_innodb = $scope.jobdata.convert_innodb;
+				$scope.skip_optimize = $scope.jobdata.skip_optimize;
         $scope.email = $scope.jobdata.email;
 	}
 
@@ -148,6 +149,9 @@ angular.module('ProdSrvApp')
 			}
 			if($scope.convert_innodb!==null && $scope.convert_innodb!=='') {
 				input.convert_innodb = $scope.convert_innodb;
+			}
+			if($scope.skip_optimize!==null && $scope.skip_optimize!=='') {
+				input.skip_optimize = $scope.skip_optimize;
 			}
 	    if($scope.email!==null && $scope.email!==undefined) {
 			if (emailpattern.test($scope.email)){

@@ -83,6 +83,9 @@ angular.module('ProdSrvApp')
 						if(value.input.convert_innodb!==null && value.input.convert_innodb!=='') {
 							input.convert_innodb = value.input.convert_innodb;
 						}
+						if(value.input.skip_optimize!==null && value.input.skip_optimize!=='') {
+							input.skip_optimize = value.input.skip_optimize;
+						}
 						if(value.input.email!==null && value.input.email!=='') {
 						input.email = value.input.email;
 						}
