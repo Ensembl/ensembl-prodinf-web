@@ -1,120 +1,124 @@
-<div class="container">
-	<form>
-		<div>
-			<button type="submit" class="btn btn-default" ng-click="refresh()">Refresh</button>
-			<button type="submit" class="btn btn-default" ng-click="EditReSubmitJob()">Edit and Re-submit jobs</button>
-			<button type="submit" class="btn btn-default" ng-click="deleteJob()">Delete job</button>
-			<button type="submit" class="btn btn-default" ng-click="toggle()">Only show failures</button>
-	  </div>
-  </form>
-	<form>
-		<div>
-			<label class="control-label" for="job_id"> Job ID: </label>
-			<input type="text" class="form-control" id="job_id" ng-model="jobId" />
-			<button type="submit" class="btn btn-default" ng-click="getResult()">View</button>
-		</div>
-	</form>
-	<form>
-    <span ng-show="running" ><i class="glyphicon glyphicon-refresh glyphicon-spin glyphicon-loading"></i>
+<div class="container-fluid">
+    <form>
+        <div>
+            <button type="submit" class="btn btn-default" ng-click="refresh()">Refresh</button>
+            <button type="submit" class="btn btn-default" ng-click="EditReSubmitJob()">Edit and Re-submit jobs</button>
+            <button type="submit" class="btn btn-default" ng-click="deleteJob()">Delete job</button>
+            <button type="submit" class="btn btn-default" ng-click="toggle()">Only show failures</button>
+        </div>
+    </form>
+    <form>
+        <div>
+            <label class="control-label" for="job_id"> Job ID: </label>
+            <input type="text" class="form-control" id="job_id" ng-model="jobId"/>
+            <button type="submit" class="btn btn-default" ng-click="getResult()">View</button>
+        </div>
+    </form>
+    <form>
+    <span ng-show="running"><i class="glyphicon glyphicon-refresh glyphicon-spin glyphicon-loading"></i>
       <text class="glyphicon-loading">Loading...</text>
     </span>
-	<div class="results" ng-hide="jobResult == null">
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">DB:</div>
-			</div>
-			<div class="col-sm-10 tablevalue">{{hidePassword(jobResult.input.db_uri)}}</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">HCs:</div>
-			</div>
-			<div class="col-sm-10 tablevalue">
-				<span ng-repeat="name in jobResult.input.hc_names">{{name}}<br /></span>
-				<span ng-repeat="name in jobResult.input.hc_groups">{{name}}<br /></span>
-			</div>
-		</div>
-		<div ng-hide="jobResult.output == null">
-			<div class="row">
-				<div class="col-sm-2">
-					<div class="tablekey">Completed on:</div>
-				</div>
-				<div class="col-sm-10 tablevalue {{jobResult.when_completed}}">{{jobResult.when_completed}}</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">Job status:</div>
-			</div>
-			<div class="col-sm-10 tablevalue {{jobResult.status}}">{{jobResult.status}}</div>
-		</div>
-		<div ng-show="jobResult.status == 'incomplete'">
-				<div class="row">
-			        <div class="col-sm-2">
-				        <div class="tablekey">Progress:</div>
-			        </div>
-		            <div class="col-sm-10 tablevalue progress">
-                        <div class="bar" style="width:{{((jobResult.progress.complete / jobResult.progress.total) * 100)}}%">
-                        <span class="job-completed">{{jobResult.progress.complete}}/{{jobResult.progress.total}} jobs complete</span>
-                       </div>
-                   </div>
-	        </div>
-	    </div>
-	    <div ng-show="jobResult.status == 'failed'">
-			<div class="row">
-			   <div class="col-sm-2">
-				  <div class="tablekey">HC jobs failed with following errors:</div>
-			    </div>
-		        <div class="col-sm-10 tablevalue">
-	              <table class="table">
-                    <tbody>
-                      <tr>
-                        <th scope="col" title="job_id">Job ID</th>
-                        <th scope="col" title="Message">Error message</th>
-                     </tr>
-                        <tr ng-repeat="(jobid, msg) in jobMsgs">
-		                <td>{{jobid}}</td>
-		                <td>{{msg}}</td>
-                     </tr>
-	                </tbody>
-                  </table>
+        <div class="results" ng-hide="jobResult == null">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="tablekey">DB:</div>
                 </div>
-           </div>
-        </div>
-		<div ng-hide="jobResult.output == null">
-			<div class="row">
-				<div class="col-sm-2">
-					<div class="tablekey">Overall HC result:</div>
-				</div>
-				<div class="col-sm-10 tablevalue {{jobResult.output.status}}">{{jobResult.output.status}}</div>
-			</div>
-			<div ng-hide="jobResult.output.results == null">
+                <div class="col-sm-10 tablevalue">{[{hidePassword(jobResult.input.db_uri)}]}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="tablekey">HCs:</div>
+                </div>
+                <div class="col-sm-10 tablevalue">
+                    <span ng-repeat="name in jobResult.input.hc_names">{[{name}]}<br/></span>
+                    <span ng-repeat="name in jobResult.input.hc_groups">{[{name}]}<br/></span>
+                </div>
+            </div>
+            <div ng-hide="jobResult.output == null">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="tablekey">Completed on:</div>
+                    </div>
+                    <div class="col-sm-10 tablevalue {[{jobResult.when_completed}]}">{[{jobResult.when_completed}]}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="tablekey">Job status:</div>
+                </div>
+                <div class="col-sm-10 tablevalue {[{jobResult.status}]}">{[{jobResult.status}]}</div>
+            </div>
+            <div ng-show="jobResult.status == 'incomplete'">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="tablekey">Progress:</div>
+                    </div>
+                    <div class="col-sm-10 tablevalue progress">
+                        <div class="bar"
+                             style="width:{[{((jobResult.progress.complete / jobResult.progress.total) * 100)}]}%">
+                            <span class="job-completed">{[{jobResult.progress.complete}]}/{[{jobResult.progress.total}]} jobs complete</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="jobResult.status == 'failed'">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="tablekey">HC jobs failed with following errors:</div>
+                    </div>
+                    <div class="col-sm-10 tablevalue">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th scope="col" title="job_id">Job ID</th>
+                                <th scope="col" title="Message">Error message</th>
+                            </tr>
+                            <tr ng-repeat="(jobid, msg) in jobMsgs">
+                                <td>{[{jobid}]}</td>
+                                <td>{[{msg}]}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div ng-hide="jobResult.output == null">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="tablekey">Overall HC result:</div>
+                    </div>
+                    <div class="col-sm-10 tablevalue {[{jobResult.output.status}]}">{[{jobResult.output.status}]}</div>
+                </div>
+                <div ng-hide="jobResult.output.results == null">
 
-				<div class="panel-group" role="tablist" aria-multiselectable="true"
-					bs-collapse>
-					<div class="panel panel-default"
-						ng-repeat="(test,result) in jobResult.output.results" ng-hide="result.status=='passed' && Hide">
-						<div class="{{result.status}} panel-heading" role="tab">
-							<h4 class="panel-title">
-								{{ test }} : {{result.status}} <a bs-collapse-toggle
-									ng-show="result.status=='failed'"> <span
-									class="glyphicon glyphicon-plus"></span>
-								</a>
-							</h4>
-						</div>
-						<div class="panel-collapse" role="tabpanel" bs-collapse-target
-							ng-show="result.status == 'failed'">
-							<div class="panel-body">
-								<ul>
-									<li ng-repeat="msg in result.messages track by $index">
-										{{msg}}</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+                    <div class="panel-group" role="tablist" aria-multiselectable="true"
+                         bs-collapse>
+                        <div class="panel panel-default"
+                             ng-repeat="(test,result) in jobResult.output.results"
+                             ng-hide="result.status=='passed' && Hide">
+                            <div class="{[{result.status}]} panel-heading" role="tab">
+                                <h4 class="panel-title">
+                                    {[{ test }]} : {[{result.status}]} <a bs-collapse-toggle
+                                                                          ng-show="result.status=='failed'"> <span
+                                        class="glyphicon glyphicon-plus"></span>
+                                </a>
+                                </h4>
+                            </div>
+                            <div class="panel-collapse" role="tabpanel" bs-collapse-target
+                                 ng-show="result.status == 'failed'">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li ng-repeat="msg in result.messages track by $index">
+                                            {[{msg}]}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-			</div>
-		</div>
-  </form>
+                </div>
+            </div>
+    </form>
 </div>

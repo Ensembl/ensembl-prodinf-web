@@ -1,49 +1,57 @@
-<div class="container">
-	<form class="form-horizontal">
-		<div class="form-group">
-			<label class="col-sm-2 control-label" for="ServerName"> Server
-				name: </label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="ServerName" ng-model="ServerName" bs-options="splitUri(servername) for servername in getServerNames($viewValue)" placeholder="Enter server name, e.g: mysql-ens-general-dev-1" bs-typeahead>
-			</div>
-			<div class="col-sm-12">
-				<button type="submit" class="btn btn-default pull-right" ng-click="getStatus()">Submit</button>
-			</div>
-		</div>
-	</form>
-	<span ng-show="running" ><i class="glyphicon glyphicon-refresh glyphicon-spin glyphicon-loading"></i>
+<div class="container-fluid">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="ServerName"> Server
+                name: </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="ServerName" ng-model="ServerName"
+                       bs-options="splitUri(servername) for servername in getServerNames($viewValue)"
+                       placeholder="Enter server name, e.g: mysql-ens-general-dev-1" bs-typeahead>
+            </div>
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-default pull-right" ng-click="getStatus()">Submit</button>
+            </div>
+        </div>
+    </form>
+    <span ng-show="running"><i class="glyphicon glyphicon-refresh glyphicon-spin glyphicon-loading"></i>
 		<text class="glyphicon-loading">Loading...</text>
 	</span>
-	<div class="results" ng-hide="serverStatus == null">
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">Host</div>
-			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.host}}</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">CPUs</div>
-			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.n_cpus}}</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">Disk usage</div>
-			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.disk_used_pct}}% used ({{serverStatus.disk_used_g}}G used of {{serverStatus.disk_total_g}}G total) {{serverStatus.disk_available_g}}G available</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">Memory usage</div>
-			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.memory_used_pct}}% used ({{serverStatus.memory_used_m}}M used of {{serverStatus.memory_total_m}}M total)</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="tablekey">Load (1, 5, 15 min)</div>
-			</div>
-			<div class="col-sm-10 tablevalue">{{serverStatus.load_1m}}, {{serverStatus.load_5m}}, {{serverStatus.load_15m}}</div>
-		</div>
-	</div>
+    <div class="results" ng-hide="serverStatus == null">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="tablekey">Host</div>
+            </div>
+            <div class="col-sm-10 tablevalue">{[{serverStatus.host}]}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="tablekey">CPUs</div>
+            </div>
+            <div class="col-sm-10 tablevalue">{[{serverStatus.n_cpus}]}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="tablekey">Disk usage</div>
+            </div>
+            <div class="col-sm-10 tablevalue">{[{serverStatus.disk_used_pct}]}% used ({[{serverStatus.disk_used_g}]}G
+                used of {[{serverStatus.disk_total_g}]}G total) {[{serverStatus.disk_available_g}]}G available
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="tablekey">Memory usage</div>
+            </div>
+            <div class="col-sm-10 tablevalue">{[{serverStatus.memory_used_pct}]}% used
+                ({[{serverStatus.memory_used_m}]}M used of {[{serverStatus.memory_total_m}]}M total)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="tablekey">Load (1, 5, 15 min)</div>
+            </div>
+            <div class="col-sm-10 tablevalue">{[{serverStatus.load_1m}]}, {[{serverStatus.load_5m}]},
+                {[{serverStatus.load_15m}]}
+            </div>
+        </div>
+    </div>
 </div>
