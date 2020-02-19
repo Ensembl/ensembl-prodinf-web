@@ -1,9 +1,9 @@
 {
-  "name": "ensembl-prodinf-hcservice",
+  "name": "ensembl-prodinf-service",
   "version": "0.0.0",
   "dependencies": {
     "angular": "^1.4.0",
-    "bootstrap": "^3.2.0",
+    "bootstrap": "^4.3.1",
     "angular-animate": "^1.4.0",
     "angular-cookies": "^1.4.0",
     "angular-resource": "^1.4.0",
@@ -19,7 +19,7 @@
     "angular-mocks": "^1.4.0"
   },
   "appPath": "app",
-  "moduleName": "ensemblProdinfHcserviceApp",
+  "moduleName": "ensemblProdinfServiceApp",
   "overrides": {
     "bootstrap": {
       "main": [

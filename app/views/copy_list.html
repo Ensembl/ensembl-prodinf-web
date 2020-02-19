@@ -1,45 +1,59 @@
 <div class="container-fluid">
-    <div ng-include src="'/views/inc/top_bar.inc.html'">{{ Top Menu place holder }}</div>
+    <form class="form-inline">
+        <div class="col-sm-pull-5">
+            <button type="submit" class="btn btn-outline-secondary" ng-click="refresh()">Refresh</button>
+            <button type="submit" class="btn btn-outline-secondary" ng-click="ReSubmitJobs()">Re-submit jobs</button>
+            <button type="submit" class="btn btn-outline-secondary" ng-click="deleteJobs()">Delete jobs</button>
+        </div>
+        <div class="input-group col-md-4">
+            <input type="text" class="form-control" placeholder="Search DB Copy job" ng-model="searchDbCopyJob">
+            <span class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </form>
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
             <th scope="col" title="ID">
-                <a href="#!/copy_list" ng-click="sortType = 'id'; sortReverse = !sortReverse">
+                <a href="{[{app_path}]}#!/copy_list" ng-click="sortType = 'id'; sortReverse = !sortReverse">
                     ID
                     <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="Date">
-                <a href="#!/copy_list" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+                <a href="{[{app_path}]}#!/copy_list" ng-click="sortType = 'date'; sortReverse = !sortReverse">
                     Date
                     <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="SourceDB">
-                <a href="#!/copy_list" ng-click="sortType = 'sourcedb'; sortReverse = !sortReverse">
+                <a href="{[{app_path}]}#!/copy_list" ng-click="sortType = 'sourcedb'; sortReverse = !sortReverse">
                     Source DB
                     <span ng-show="sortType == 'sourcedb' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'sourcedb' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="TargetDB">
-                <a href="#!/copy_list" ng-click="sortType = 'targetdb'; sortReverse = !sortReverse">
+                <a href="{[{app_path}]}#!/copy_list" ng-click="sortType = 'targetdb'; sortReverse = !sortReverse">
                     Target DB
                     <span ng-show="sortType == 'targetdb' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'targetdb' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="Status">
-                <a href="#!/copy_list" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                <a href="{[{app_path}]}#!/copy_list" ng-click="sortType = 'status'; sortReverse = !sortReverse">
                     Status
                     <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="Select">
-                <a href="#!/copy_list" ng-click="sortType = 'select'; sortReverse = !sortReverse">
+                <a href="{[{app_path}]}#!/copy_list" ng-click="sortType = 'select'; sortReverse = !sortReverse">
                     Select
                     <span ng-show="sortType == 'select' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'select' && sortReverse" class="fa fa-caret-up"></span>
@@ -50,7 +64,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="job in jobs | orderBy:sortType:sortReverse | filter:searchDbCopyJob">
-            <td><a href="#!/copy_result/{[{job.id}]}">{[{job.id}]}</a></td>
+            <td><a href="{[{app_path}]}#!/copy_result/{[{job.id}]}">{[{job.id}]}</a></td>
             <td>{[{ job.input.timestamp * 1000 | date:'dd-MM-yyyy HH:mm' }]}</td>
             <td>{[{ hidePassword(job.input.source_db_uri) }]}</td>
             <td>{[{ hidePassword(job.input.target_db_uri) }]}</td>
@@ -59,7 +73,8 @@
         </tr>
         </tbody>
     </table>
-    <span ng-show="running"><i class="glyphicon glyphicon-refresh glyphicon-spin glyphicon-loading"></i>
+    <span ng-show="running">
+         <span class="spinner-border spinner-grow-sm"></span>
       <text class="glyphicon-loading">Loading...</text>
   </span>
 </div>

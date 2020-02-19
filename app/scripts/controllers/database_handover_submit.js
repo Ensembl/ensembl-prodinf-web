@@ -15,6 +15,7 @@ angular.module('ProdSrvApp')
             $scope.hidePassword = function (data) {
                 return hidepassword.hide(data);
             };
+            $scope.app_path = CONFIG.FLASK_PATH;
             $scope.jobdata = editjob.get();
             if ($scope.jobdata !== null && $scope.jobdata !== '') {
                 var serveruri = $scope.jobdata.src_uri.split('/');

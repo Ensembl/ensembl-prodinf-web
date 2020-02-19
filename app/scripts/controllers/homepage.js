@@ -9,6 +9,6 @@
 
 angular.module('ProdSrvApp')
     .controller('HomepageCtrl', function ($scope, CONFIG) {
-            $scope.websiteName = CONFIG.WEBSITE_NAME;
+            $scope.websiteName = CONFIG.FLASK_APP;
         }
     );

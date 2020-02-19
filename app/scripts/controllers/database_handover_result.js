@@ -13,6 +13,7 @@ angular.module('ProdSrvApp')
             $scope.hidePassword = function (data) {
                 return hidepassword.hide(data);
             };
+            $scope.app_path = CONFIG.FLASK_PATH;
             $scope.getHandoverResult = function () {
                 $scope.jobResult = null;
                 if ($scope.handoverToken !== null && $scope.handoverToken !== undefined) {

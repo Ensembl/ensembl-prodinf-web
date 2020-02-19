@@ -1,16 +1,16 @@
 <div class="container-fluid">
-    <form>
-        <div>
-            <button type="submit" class="btn btn-default" ng-click="refresh()">Refresh</button>
-            <button type="submit" class="btn btn-default" ng-click="EditReSubmitJob()">Edit and Re-submit jobs</button>
-            <button type="submit" class="btn btn-default" ng-click="deleteHandoverJob()">Delete job</button>
+    <form class="form-inline">
+        <div class="col-sm-pull-5" >
+            <button type="submit" class="btn btn-outline-secondary" ng-click="refresh()">Refresh</button>
+            <button type="submit" class="btn btn-outline-secondary" ng-click="EditReSubmitJob()">Edit and Re-submit jobs</button>
+            <button type="submit" class="btn btn-outline-secondary" ng-click="deleteHandoverJob()">Delete job</button>
         </div>
     </form>
-    <form>
-        <div>
+    <form >
+        <div >
             <label class="control-label" for="handover_token"> Handover token: </label>
             <input type="text" class="form-control" id="handover_token" ng-model="handoverToken"/>
-            <button type="submit" class="btn btn-default" ng-click="getHandoverResult()">View</button>
+            <button type="submit" class="btn btn-outline-secondary" ng-click="getHandoverResult()">View</button>
         </div>
     </form>
     <form>

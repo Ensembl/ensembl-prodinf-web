@@ -13,12 +13,13 @@ angular.module('ProdSrvApp')
             $scope.hidePassword = function (data) {
                 return hidepassword.hide(data);
             };
+            $scope.app_path = CONFIG.FLASK_PATH;
             $scope.sortType = 'report_time'; // set the default sort type
             $scope.sortReverse = true;  // set the default sort order
             $scope.searchFilter = '';     // set the default search/filter term
             $scope.running = false; // default value for loading spinner
             $scope.loadHandoverJobs = function () {
-                var url = CONFIG.HANDOVER_SRV_URL + 'handovers';
+                var url = CONFIG.HANDOVER_SRV_URL + 'handovers/';
                 $scope.running = true;
                 $http.get(url)
                     .then(function (response) {
@@ -70,7 +71,7 @@ angular.module('ProdSrvApp')
                             }
                             input.comment = value.comment;
                             input.source = 'Handover';
-                            var url = CONFIG.HANDOVER_SRV_URL + 'handovers';
+                            var url = CONFIG.HANDOVER_SRV_URL + 'handovers/';
                             $http.post(url, input)
                                 .then(function (response) {
                                     window.alert('Job submitted with handover token ' + response.data);
