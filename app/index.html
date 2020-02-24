@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.css" />
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body ng-app="ProdSrvApp" ng-controller="mainController">
+<!--[if lte IE 8]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<div class="header">
+
+    <nav class="navbar navbar-default" role="navigation" bs-navbar>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">{{websiteName}} Production Services</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Healthcheck<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li data-match-route="/hc_submit"><a href="#!hc_submit">Submit HC job</a></li>
+                    <li data-match-route="/hc_list.*"><a href="#!hc_list">List HC jobs</a></li>
+                    <li data-match-route="/hc_result.*"><a href="#!hc_result">View HC job</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Copy database<b
+                    class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li data-match-route="/copy_submit.*"><a href="#!copy_submit">Submit copy job</a></li>
+                    <li data-match-route="/copy_list.*"><a href="#!copy_list">List copy jobs</a></li>
+                    <li data-match-route="/copy_result.*"><a href="#!copy_result">View copy job</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Database handover<b
+                    class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li data-match-route="/database_handover_submit.*"><a href="#!database_handover_submit">Handover a
+                        database</a></li>
+                    <li data-match-route="/database_handover_list.*"><a href="#!database_handover_list">List Handover
+                        databases</a></li>
+                    <li data-match-route="/database_handover_result.*"><a href="#!database_handover_result">View
+                        handover database detail</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Database server monitor<b
+                    class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li data-match-route="/database_server_status.*"><a href="#!database_server_status">Database server
+                        status</a></li>
+                    <li data-match-route="/database_server_size.*"><a href="#!database_server_size">Database size</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-match-route="/help"><a href="#!help">Get help</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div ng-view></div>
+
+<div class="footer">
+    <div class="container">
+        <p>Tools for Production Fools</p>
+    </div>
+</div>
+
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+    !function (A, n, g, u, l, a, r) {
+        A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+            (A[l].q = A[l].q || []).push(arguments)
+        }, A[l].l = +new Date, a = n.createElement(g),
+            r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+    }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/hc_list.js"></script>
+<script src="scripts/controllers/hc_result.js"></script>
+<script src="scripts/controllers/hc_submit.js"></script>
+<script src="scripts/controllers/database_server_status.js"></script>
+<script src="scripts/controllers/database_server_size.js"></script>
+<script src="scripts/controllers/copy_submit.js"></script>
+<script src="scripts/controllers/copy_result.js"></script>
+<script src="scripts/controllers/copy_list.js"></script>
+<script src="scripts/controllers/database_handover_submit.js"></script>
+<script src="scripts/controllers/database_handover_result.js"></script>
+<script src="scripts/controllers/database_handover_list.js"></script>
+<script src="scripts/controllers/homepage.js"></script>
+<!-- endbuild -->
+</body>
+</html>

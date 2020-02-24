@@ -19,49 +19,49 @@
         <thead>
         <tr>
             <th scope="col" title="Handover token">
-                <a href="{[{app_path}]}#!/database_handover_list" ng-click="sortType = 'handover_token'; sortReverse = !sortReverse">
+                <a href="#!/database_handover_list" ng-click="sortType = 'handover_token'; sortReverse = !sortReverse">
                     Handover token
                     <span ng-show="sortType == 'handover_token' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'handover_token' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="Date">
-                <a href="{[{app_path}]}#!/database_handover_list" ng-click="sortType = 'report_time'; sortReverse = !sortReverse">
+                <a href="#!/database_handover_list" ng-click="sortType = 'report_time'; sortReverse = !sortReverse">
                     Date
                     <span ng-show="sortType == 'report_time' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'report_time' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="DB">
-                <a href="{[{app_path}]}#!/database_handover_list" ng-click="sortType = 'src_uri'; sortReverse = !sortReverse">
+                <a href="#!/database_handover_list" ng-click="sortType = 'src_uri'; sortReverse = !sortReverse">
                     DB
                     <span ng-show="sortType == 'src_uri' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'src_uri' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="Email">
-                <a href="{[{app_path}]}#!/database_handover_list" ng-click="sortType = 'contact'; sortReverse = !sortReverse">
+                <a href="#!/database_handover_list" ng-click="sortType = 'contact'; sortReverse = !sortReverse">
                     Email
                     <span ng-show="sortType == 'contact' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'contact' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="Description">
-                <a href="{[{app_path}]}#!/database_handover_list" ng-click="sortType = 'description'; sortReverse = !sortReverse">
+                <a href="#!/database_handover_list" ng-click="sortType = 'description'; sortReverse = !sortReverse">
                     Description
                     <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="Status">
-                <a href="{[{app_path}]}#!/database_handover_list" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                <a href="#!/database_handover_list" ng-click="sortType = 'status'; sortReverse = !sortReverse">
                     Status
                     <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
             </th>
             <th scope="col" title="Select">
-                <a href="{[{app_path}]}#!/database_handover_list" ng-click="sortType = 'select'; sortReverse = !sortReverse">
+                <a href="#!/database_handover_list" ng-click="sortType = 'select'; sortReverse = !sortReverse">
                     Select
                     <span ng-show="sortType == 'select' && !sortReverse" class="fa fa-caret-down"></span>
                     <span ng-show="sortType == 'select' && sortReverse" class="fa fa-caret-up"></span>
@@ -72,7 +72,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="job in jobs | orderBy:sortType:sortReverse | filter:searchHandoverDatabase">
-            <td><a href="{[{app_path}]}#!/database_handover_result/{[{job.handover_token}]}">{[{job.handover_token}]}</a></td>
+            <td><a href="#!/database_handover_result/{[{job.handover_token}]}">{[{job.handover_token}]}</a></td>
             <td>{[{job.report_time | date:'dd-MM-yyyy HH:mm'}]}</td>
             <td>{[{job.src_uri}]}</td>
             <td>{[{job.contact}]}</td>
